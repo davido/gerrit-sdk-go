@@ -51,7 +51,7 @@ mirrors the Gerrit version, so consumers pin the exact server generation they ta
 ./generate.sh [path-or-url]      # default: ./rest-api-openapi.json
 ```
 
-The crate/module is never hand-maintained: to track a new Gerrit version, refetch the
+The module is never hand-maintained: to track a new Gerrit version, refetch the
 spec (pass a URL to `generate.sh`) and regenerate.
 
 ## The Gerrit-specific handling
