@@ -8,13 +8,13 @@ the client never drifts from the server.
 ## The pipeline (end to end)
 
 ```
-  gerrit6                     gerrit-sdk-go                  examples/
+  gerrit                     gerrit-sdk-go                  examples/
   (emit the spec)      -->    (this repo: the SDK)    -->    (consume the SDK)
   parse-only OpenAPI          openapi-generator (go)         go run, live calls,
   emitter                     + XSSI transport               colored output
 ```
 
-1. **gerrit6 emits the spec.** A parse-only emitter (`java/com/google/gerrit/openapi/**`)
+1. **gerrit emits the spec.** A parse-only emitter (`java/com/google/gerrit/openapi/**`)
    reads the server's REST bindings via the javac Compiler Tree API — no running
    server, no reflection — and writes an OpenAPI 3.1 JSON.
 2. **This repo pins that spec.** `rest-api-openapi.json` is a checked-in snapshot of
@@ -22,7 +22,7 @@ the client never drifts from the server.
    from the emitter.
 3. **`generate.sh` generates the package.** openapi-generator (go) turns the spec into
    `gerritclient/`.
-4. **A consumer reuses it by module path.** `go get github.com/davido/gerrit-sdk-go`
+4. **A consumer reuses it by module path.** `go get github.com/davido/gerrit-sdk-go/v3`
    (or run the bundled example) — see [Use it](#use-it).
 
 The whole story demonstrates feasibility for Gerrit issue
@@ -83,7 +83,7 @@ go test ./...         # unit tests (none yet; the command is green)
 
 ### Test locally — no publish needed
 
-The example lives *inside* this module, so its `github.com/davido/gerrit-sdk-go/…`
+The example lives *inside* this module, so its `github.com/davido/gerrit-sdk-go/v3/…`
 imports resolve to the **local source**; Go never hits the network. Run it against a
 live Gerrit right now:
 
@@ -101,7 +101,7 @@ Once the repo is pushed and tagged, the **same import path** is fetched from the
 any consumer, anywhere:
 
 ```bash
-go run github.com/davido/gerrit-sdk-go/examples/get-change-detail@v3.15.0-SNAPSHOT -- --change 621763
+go run github.com/davido/gerrit-sdk-go/v3/examples/get-change-detail@v3.15.0-SNAPSHOT -- --change 621763
 ```
 
 **Rationale:** Go resolves imports by module path. Inside this module the path maps to
@@ -116,15 +116,15 @@ external reuse is what needs the tag.
 go run ./examples/get-change-detail -- --change 622261
 
 # straight from GitHub, no clone (after publish):
-go run github.com/davido/gerrit-sdk-go/examples/get-change-detail@latest -- --change 621763
+go run github.com/davido/gerrit-sdk-go/v3/examples/get-change-detail@latest -- --change 621763
 ```
 
 In your own module:
 
 ```go
 import (
-	gc "github.com/davido/gerrit-sdk-go/gerritclient"
-	"github.com/davido/gerrit-sdk-go/gerritxssi"
+	gc "github.com/davido/gerrit-sdk-go/v3/gerritclient"
+	"github.com/davido/gerrit-sdk-go/v3/gerritxssi"
 )
 
 cfg := gc.NewConfiguration()
@@ -139,7 +139,7 @@ ci, _, err := client.ChangesAPI.
 ```
 
 ```bash
-go get github.com/davido/gerrit-sdk-go@v3.15.0-SNAPSHOT
+go get github.com/davido/gerrit-sdk-go/v3@v3.15.0-SNAPSHOT
 ```
 
 Go modules publish by **git tag** — there is no artifact to upload; `go get` fetches the

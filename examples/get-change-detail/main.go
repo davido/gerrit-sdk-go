@@ -6,7 +6,7 @@
 // The Gerrit XSSI guard ()]}' prefix on every JSON body) is stripped by the
 // gerritxssi transport, the one Gerrit-specific step not expressible in OpenAPI.
 //
-//	go run github.com/davido/gerrit-sdk-go/examples/get-change-detail@latest -- --change 621763
+//	go run github.com/davido/gerrit-sdk-go/v3/examples/get-change-detail@latest -- --change 621763
 package main
 
 import (
@@ -17,8 +17,8 @@ import (
 	"sort"
 	"strings"
 
-	gc "github.com/davido/gerrit-sdk-go/gerritclient"
-	"github.com/davido/gerrit-sdk-go/gerritxssi"
+	gc "github.com/davido/gerrit-sdk-go/v3/gerritclient"
+	"github.com/davido/gerrit-sdk-go/v3/gerritxssi"
 )
 
 // ListChangesOption values that populate every panel below from a single GET.
