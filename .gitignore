@@ -1,5 +1,3 @@
-# Bazel symlinks (leftover from the pre-codegen prototype build)
-/bazel-*
 # openapi-generator-cli local install
 /node_modules/
 # archived pre-codegen prototype: kept locally, not shipped

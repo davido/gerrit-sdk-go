@@ -11,13 +11,12 @@ the client never drifts from the server.
   gerrit6                     gerrit-sdk-go                  examples/
   (emit the spec)      -->    (this repo: the SDK)    -->    (consume the SDK)
   parse-only OpenAPI          openapi-generator (go)         go run, live calls,
-  emitter, Bazel target       + XSSI transport               colored output
+  emitter                     + XSSI transport               colored output
 ```
 
 1. **gerrit6 emits the spec.** A parse-only emitter (`java/com/google/gerrit/openapi/**`)
    reads the server's REST bindings via the javac Compiler Tree API — no running
-   server, no reflection — and writes an OpenAPI 3.1 JSON. Bazel target:
-   `//tools/openapi:openapi_json`.
+   server, no reflection — and writes an OpenAPI 3.1 JSON.
 2. **This repo pins that spec.** `rest-api-openapi.json` is a checked-in snapshot of
    that target's output. Its `info.version` / `info.license` / `servers` come straight
    from the emitter.
