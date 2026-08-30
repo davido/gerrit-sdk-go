@@ -279,25 +279,27 @@ func (a *PluginsAPIService) GetPluginsExecute(r ApiGetPluginsRequest) (*map[stri
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetPluginsPluginIdStatusRequest struct {
+type ApiGetPluginsPluginIdGerritStatusRequest struct {
 	ctx context.Context
 	ApiService *PluginsAPIService
 	pluginId string
 }
 
-func (r ApiGetPluginsPluginIdStatusRequest) Execute() (*PluginInfo, *http.Response, error) {
-	return r.ApiService.GetPluginsPluginIdStatusExecute(r)
+func (r ApiGetPluginsPluginIdGerritStatusRequest) Execute() (*PluginInfo, *http.Response, error) {
+	return r.ApiService.GetPluginsPluginIdGerritStatusExecute(r)
 }
 
 /*
-GetPluginsPluginIdStatus Method for GetPluginsPluginIdStatus
+GetPluginsPluginIdGerritStatus Get Plugin Status
+
+Retrieves the status of a plugin on the Gerrit server.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pluginId
- @return ApiGetPluginsPluginIdStatusRequest
+ @return ApiGetPluginsPluginIdGerritStatusRequest
 */
-func (a *PluginsAPIService) GetPluginsPluginIdStatus(ctx context.Context, pluginId string) ApiGetPluginsPluginIdStatusRequest {
-	return ApiGetPluginsPluginIdStatusRequest{
+func (a *PluginsAPIService) GetPluginsPluginIdGerritStatus(ctx context.Context, pluginId string) ApiGetPluginsPluginIdGerritStatusRequest {
+	return ApiGetPluginsPluginIdGerritStatusRequest{
 		ApiService: a,
 		ctx: ctx,
 		pluginId: pluginId,
@@ -306,7 +308,7 @@ func (a *PluginsAPIService) GetPluginsPluginIdStatus(ctx context.Context, plugin
 
 // Execute executes the request
 //  @return PluginInfo
-func (a *PluginsAPIService) GetPluginsPluginIdStatusExecute(r ApiGetPluginsPluginIdStatusRequest) (*PluginInfo, *http.Response, error) {
+func (a *PluginsAPIService) GetPluginsPluginIdGerritStatusExecute(r ApiGetPluginsPluginIdGerritStatusRequest) (*PluginInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -314,12 +316,12 @@ func (a *PluginsAPIService) GetPluginsPluginIdStatusExecute(r ApiGetPluginsPlugi
 		localVarReturnValue  *PluginInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.GetPluginsPluginIdStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.GetPluginsPluginIdGerritStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/plugins/{plugin-id}/status"
+	localVarPath := localBasePath + "/plugins/{plugin-id}/gerrit~status"
 	localVarPath = strings.Replace(localVarPath, "{"+"plugin-id"+"}", url.PathEscape(parameterValueToString(r.pluginId, "pluginId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -380,25 +382,25 @@ func (a *PluginsAPIService) GetPluginsPluginIdStatusExecute(r ApiGetPluginsPlugi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostPluginsPluginIdDisableRequest struct {
+type ApiPostPluginsPluginIdGerritDisableRequest struct {
 	ctx context.Context
 	ApiService *PluginsAPIService
 	pluginId string
 }
 
-func (r ApiPostPluginsPluginIdDisableRequest) Execute() (*PluginInfo, *http.Response, error) {
-	return r.ApiService.PostPluginsPluginIdDisableExecute(r)
+func (r ApiPostPluginsPluginIdGerritDisableRequest) Execute() (*PluginInfo, *http.Response, error) {
+	return r.ApiService.PostPluginsPluginIdGerritDisableExecute(r)
 }
 
 /*
-PostPluginsPluginIdDisable Method for PostPluginsPluginIdDisable
+PostPluginsPluginIdGerritDisable Disable Plugin
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pluginId
- @return ApiPostPluginsPluginIdDisableRequest
+ @return ApiPostPluginsPluginIdGerritDisableRequest
 */
-func (a *PluginsAPIService) PostPluginsPluginIdDisable(ctx context.Context, pluginId string) ApiPostPluginsPluginIdDisableRequest {
-	return ApiPostPluginsPluginIdDisableRequest{
+func (a *PluginsAPIService) PostPluginsPluginIdGerritDisable(ctx context.Context, pluginId string) ApiPostPluginsPluginIdGerritDisableRequest {
+	return ApiPostPluginsPluginIdGerritDisableRequest{
 		ApiService: a,
 		ctx: ctx,
 		pluginId: pluginId,
@@ -407,7 +409,7 @@ func (a *PluginsAPIService) PostPluginsPluginIdDisable(ctx context.Context, plug
 
 // Execute executes the request
 //  @return PluginInfo
-func (a *PluginsAPIService) PostPluginsPluginIdDisableExecute(r ApiPostPluginsPluginIdDisableRequest) (*PluginInfo, *http.Response, error) {
+func (a *PluginsAPIService) PostPluginsPluginIdGerritDisableExecute(r ApiPostPluginsPluginIdGerritDisableRequest) (*PluginInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -415,12 +417,12 @@ func (a *PluginsAPIService) PostPluginsPluginIdDisableExecute(r ApiPostPluginsPl
 		localVarReturnValue  *PluginInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.PostPluginsPluginIdDisable")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.PostPluginsPluginIdGerritDisable")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/plugins/{plugin-id}/disable"
+	localVarPath := localBasePath + "/plugins/{plugin-id}/gerrit~disable"
 	localVarPath = strings.Replace(localVarPath, "{"+"plugin-id"+"}", url.PathEscape(parameterValueToString(r.pluginId, "pluginId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -481,25 +483,27 @@ func (a *PluginsAPIService) PostPluginsPluginIdDisableExecute(r ApiPostPluginsPl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostPluginsPluginIdEnableRequest struct {
+type ApiPostPluginsPluginIdGerritEnableRequest struct {
 	ctx context.Context
 	ApiService *PluginsAPIService
 	pluginId string
 }
 
-func (r ApiPostPluginsPluginIdEnableRequest) Execute() (*PluginInfo, *http.Response, error) {
-	return r.ApiService.PostPluginsPluginIdEnableExecute(r)
+func (r ApiPostPluginsPluginIdGerritEnableRequest) Execute() (*PluginInfo, *http.Response, error) {
+	return r.ApiService.PostPluginsPluginIdGerritEnableExecute(r)
 }
 
 /*
-PostPluginsPluginIdEnable Method for PostPluginsPluginIdEnable
+PostPluginsPluginIdGerritEnable Enable Plugin
+
+Enables a plugin on the Gerrit server.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pluginId
- @return ApiPostPluginsPluginIdEnableRequest
+ @return ApiPostPluginsPluginIdGerritEnableRequest
 */
-func (a *PluginsAPIService) PostPluginsPluginIdEnable(ctx context.Context, pluginId string) ApiPostPluginsPluginIdEnableRequest {
-	return ApiPostPluginsPluginIdEnableRequest{
+func (a *PluginsAPIService) PostPluginsPluginIdGerritEnable(ctx context.Context, pluginId string) ApiPostPluginsPluginIdGerritEnableRequest {
+	return ApiPostPluginsPluginIdGerritEnableRequest{
 		ApiService: a,
 		ctx: ctx,
 		pluginId: pluginId,
@@ -508,7 +512,7 @@ func (a *PluginsAPIService) PostPluginsPluginIdEnable(ctx context.Context, plugi
 
 // Execute executes the request
 //  @return PluginInfo
-func (a *PluginsAPIService) PostPluginsPluginIdEnableExecute(r ApiPostPluginsPluginIdEnableRequest) (*PluginInfo, *http.Response, error) {
+func (a *PluginsAPIService) PostPluginsPluginIdGerritEnableExecute(r ApiPostPluginsPluginIdGerritEnableRequest) (*PluginInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -516,12 +520,12 @@ func (a *PluginsAPIService) PostPluginsPluginIdEnableExecute(r ApiPostPluginsPlu
 		localVarReturnValue  *PluginInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.PostPluginsPluginIdEnable")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.PostPluginsPluginIdGerritEnable")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/plugins/{plugin-id}/enable"
+	localVarPath := localBasePath + "/plugins/{plugin-id}/gerrit~enable"
 	localVarPath = strings.Replace(localVarPath, "{"+"plugin-id"+"}", url.PathEscape(parameterValueToString(r.pluginId, "pluginId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -582,25 +586,27 @@ func (a *PluginsAPIService) PostPluginsPluginIdEnableExecute(r ApiPostPluginsPlu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostPluginsPluginIdReloadRequest struct {
+type ApiPostPluginsPluginIdGerritReloadRequest struct {
 	ctx context.Context
 	ApiService *PluginsAPIService
 	pluginId string
 }
 
-func (r ApiPostPluginsPluginIdReloadRequest) Execute() (*PluginInfo, *http.Response, error) {
-	return r.ApiService.PostPluginsPluginIdReloadExecute(r)
+func (r ApiPostPluginsPluginIdGerritReloadRequest) Execute() (*PluginInfo, *http.Response, error) {
+	return r.ApiService.PostPluginsPluginIdGerritReloadExecute(r)
 }
 
 /*
-PostPluginsPluginIdReload Method for PostPluginsPluginIdReload
+PostPluginsPluginIdGerritReload Reload Plugin
+
+Reloads a plugin on the Gerrit server.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pluginId
- @return ApiPostPluginsPluginIdReloadRequest
+ @return ApiPostPluginsPluginIdGerritReloadRequest
 */
-func (a *PluginsAPIService) PostPluginsPluginIdReload(ctx context.Context, pluginId string) ApiPostPluginsPluginIdReloadRequest {
-	return ApiPostPluginsPluginIdReloadRequest{
+func (a *PluginsAPIService) PostPluginsPluginIdGerritReload(ctx context.Context, pluginId string) ApiPostPluginsPluginIdGerritReloadRequest {
+	return ApiPostPluginsPluginIdGerritReloadRequest{
 		ApiService: a,
 		ctx: ctx,
 		pluginId: pluginId,
@@ -609,7 +615,7 @@ func (a *PluginsAPIService) PostPluginsPluginIdReload(ctx context.Context, plugi
 
 // Execute executes the request
 //  @return PluginInfo
-func (a *PluginsAPIService) PostPluginsPluginIdReloadExecute(r ApiPostPluginsPluginIdReloadRequest) (*PluginInfo, *http.Response, error) {
+func (a *PluginsAPIService) PostPluginsPluginIdGerritReloadExecute(r ApiPostPluginsPluginIdGerritReloadRequest) (*PluginInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -617,12 +623,12 @@ func (a *PluginsAPIService) PostPluginsPluginIdReloadExecute(r ApiPostPluginsPlu
 		localVarReturnValue  *PluginInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.PostPluginsPluginIdReload")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PluginsAPIService.PostPluginsPluginIdGerritReload")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/plugins/{plugin-id}/reload"
+	localVarPath := localBasePath + "/plugins/{plugin-id}/gerrit~reload"
 	localVarPath = strings.Replace(localVarPath, "{"+"plugin-id"+"}", url.PathEscape(parameterValueToString(r.pluginId, "pluginId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

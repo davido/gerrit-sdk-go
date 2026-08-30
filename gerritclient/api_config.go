@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -132,7 +133,7 @@ func (r ApiGetConfigServerCachesRequest) IncludeDiskstats(includeDiskstats bool)
 	return r
 }
 
-func (r ApiGetConfigServerCachesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetConfigServerCachesRequest) Execute() (*GetConfigServerCaches200Response, *http.Response, error) {
 	return r.ApiService.GetConfigServerCachesExecute(r)
 }
 
@@ -152,13 +153,13 @@ func (a *ConfigAPIService) GetConfigServerCaches(ctx context.Context) ApiGetConf
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) GetConfigServerCachesExecute(r ApiGetConfigServerCachesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GetConfigServerCaches200Response
+func (a *ConfigAPIService) GetConfigServerCachesExecute(r ApiGetConfigServerCachesRequest) (*GetConfigServerCaches200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GetConfigServerCaches200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerCaches")
@@ -188,7 +189,7 @@ func (a *ConfigAPIService) GetConfigServerCachesExecute(r ApiGetConfigServerCach
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -648,7 +649,7 @@ type ApiGetConfigServerIndexesRequest struct {
 	ApiService *ConfigAPIService
 }
 
-func (r ApiGetConfigServerIndexesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetConfigServerIndexesRequest) Execute() ([]GetConfigServerIndexes200ResponseInner, *http.Response, error) {
 	return r.ApiService.GetConfigServerIndexesExecute(r)
 }
 
@@ -668,13 +669,13 @@ func (a *ConfigAPIService) GetConfigServerIndexes(ctx context.Context) ApiGetCon
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) GetConfigServerIndexesExecute(r ApiGetConfigServerIndexesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return []GetConfigServerIndexes200ResponseInner
+func (a *ConfigAPIService) GetConfigServerIndexesExecute(r ApiGetConfigServerIndexesRequest) ([]GetConfigServerIndexes200ResponseInner, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  []GetConfigServerIndexes200ResponseInner
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerIndexes")
@@ -1199,6 +1200,239 @@ func (a *ConfigAPIService) GetConfigServerLabelsExecute(r ApiGetConfigServerLabe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetConfigServerMetricsRequest struct {
+	ctx context.Context
+	ApiService *ConfigAPIService
+	dataOnly *bool
+	prefix *[]string
+}
+
+func (r ApiGetConfigServerMetricsRequest) DataOnly(dataOnly bool) ApiGetConfigServerMetricsRequest {
+	r.dataOnly = &dataOnly
+	return r
+}
+
+func (r ApiGetConfigServerMetricsRequest) Prefix(prefix []string) ApiGetConfigServerMetricsRequest {
+	r.prefix = &prefix
+	return r
+}
+
+func (r ApiGetConfigServerMetricsRequest) Execute() (*map[string]MetricJson, *http.Response, error) {
+	return r.ApiService.GetConfigServerMetricsExecute(r)
+}
+
+/*
+GetConfigServerMetrics Method for GetConfigServerMetrics
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetConfigServerMetricsRequest
+*/
+func (a *ConfigAPIService) GetConfigServerMetrics(ctx context.Context) ApiGetConfigServerMetricsRequest {
+	return ApiGetConfigServerMetricsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]MetricJson
+func (a *ConfigAPIService) GetConfigServerMetricsExecute(r ApiGetConfigServerMetricsRequest) (*map[string]MetricJson, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]MetricJson
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerMetrics")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/config/server/metrics"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.dataOnly != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "data-only", r.dataOnly, "form", "")
+	}
+	if r.prefix != nil {
+		t := *r.prefix
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "prefix", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "prefix", t, "form", "multi")
+		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetConfigServerMetricsMetricIdRequest struct {
+	ctx context.Context
+	ApiService *ConfigAPIService
+	metricId string
+	dataOnly *bool
+}
+
+func (r ApiGetConfigServerMetricsMetricIdRequest) DataOnly(dataOnly bool) ApiGetConfigServerMetricsMetricIdRequest {
+	r.dataOnly = &dataOnly
+	return r
+}
+
+func (r ApiGetConfigServerMetricsMetricIdRequest) Execute() (*MetricJson, *http.Response, error) {
+	return r.ApiService.GetConfigServerMetricsMetricIdExecute(r)
+}
+
+/*
+GetConfigServerMetricsMetricId Method for GetConfigServerMetricsMetricId
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param metricId
+ @return ApiGetConfigServerMetricsMetricIdRequest
+*/
+func (a *ConfigAPIService) GetConfigServerMetricsMetricId(ctx context.Context, metricId string) ApiGetConfigServerMetricsMetricIdRequest {
+	return ApiGetConfigServerMetricsMetricIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		metricId: metricId,
+	}
+}
+
+// Execute executes the request
+//  @return MetricJson
+func (a *ConfigAPIService) GetConfigServerMetricsMetricIdExecute(r ApiGetConfigServerMetricsMetricIdRequest) (*MetricJson, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *MetricJson
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerMetricsMetricId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/config/server/metrics/{metric-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"metric-id"+"}", url.PathEscape(parameterValueToString(r.metricId, "metricId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.dataOnly != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "data-only", r.dataOnly, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2069,7 +2303,7 @@ func (r ApiGetConfigServerVersionRequest) Verbose(verbose bool) ApiGetConfigServ
 	return r
 }
 
-func (r ApiGetConfigServerVersionRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetConfigServerVersionRequest) Execute() (*GetConfigServerVersion200Response, *http.Response, error) {
 	return r.ApiService.GetConfigServerVersionExecute(r)
 }
 
@@ -2089,13 +2323,13 @@ func (a *ConfigAPIService) GetConfigServerVersion(ctx context.Context) ApiGetCon
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) GetConfigServerVersionExecute(r ApiGetConfigServerVersionRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GetConfigServerVersion200Response
+func (a *ConfigAPIService) GetConfigServerVersionExecute(r ApiGetConfigServerVersionRequest) (*GetConfigServerVersion200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GetConfigServerVersion200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerVersion")
@@ -2494,7 +2728,7 @@ func (r ApiPostConfigServerCleanupChangesRequest) CleanupChangesInput(cleanupCha
 	return r
 }
 
-func (r ApiPostConfigServerCleanupChangesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerCleanupChangesRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerCleanupChangesExecute(r)
 }
 
@@ -2512,13 +2746,13 @@ func (a *ConfigAPIService) PostConfigServerCleanupChanges(ctx context.Context) A
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerCleanupChangesExecute(r ApiPostConfigServerCleanupChangesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerCleanupChangesExecute(r ApiPostConfigServerCleanupChangesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerCleanupChanges")
@@ -2593,7 +2827,7 @@ type ApiPostConfigServerCleanupDraftCommentsRequest struct {
 	ApiService *ConfigAPIService
 }
 
-func (r ApiPostConfigServerCleanupDraftCommentsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerCleanupDraftCommentsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerCleanupDraftCommentsExecute(r)
 }
 
@@ -2611,13 +2845,13 @@ func (a *ConfigAPIService) PostConfigServerCleanupDraftComments(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerCleanupDraftCommentsExecute(r ApiPostConfigServerCleanupDraftCommentsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerCleanupDraftCommentsExecute(r ApiPostConfigServerCleanupDraftCommentsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerCleanupDraftComments")
@@ -2690,7 +2924,7 @@ type ApiPostConfigServerDeactivateStaleAccountsRequest struct {
 	ApiService *ConfigAPIService
 }
 
-func (r ApiPostConfigServerDeactivateStaleAccountsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerDeactivateStaleAccountsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerDeactivateStaleAccountsExecute(r)
 }
 
@@ -2710,13 +2944,13 @@ func (a *ConfigAPIService) PostConfigServerDeactivateStaleAccounts(ctx context.C
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerDeactivateStaleAccountsExecute(r ApiPostConfigServerDeactivateStaleAccountsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerDeactivateStaleAccountsExecute(r ApiPostConfigServerDeactivateStaleAccountsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerDeactivateStaleAccounts")
@@ -2993,7 +3227,7 @@ func (r ApiPostConfigServerIndexesIndexIdSnapshotRequest) SnapshotIndexInput(sna
 	return r
 }
 
-func (r ApiPostConfigServerIndexesIndexIdSnapshotRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerIndexesIndexIdSnapshotRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerIndexesIndexIdSnapshotExecute(r)
 }
 
@@ -3015,13 +3249,13 @@ func (a *ConfigAPIService) PostConfigServerIndexesIndexIdSnapshot(ctx context.Co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerIndexesIndexIdSnapshotExecute(r ApiPostConfigServerIndexesIndexIdSnapshotRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerIndexesIndexIdSnapshotExecute(r ApiPostConfigServerIndexesIndexIdSnapshotRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerIndexesIndexIdSnapshot")
@@ -3077,7 +3311,7 @@ func (a *ConfigAPIService) PostConfigServerIndexesIndexIdSnapshotExecute(r ApiPo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3113,7 +3347,7 @@ func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest) R
 	return r
 }
 
-func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexExecute(r)
 }
 
@@ -3137,13 +3371,13 @@ func (a *ConfigAPIService) PostConfigServerIndexesIndexIdVersionsIndexVersionIdR
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexExecute(r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexExecute(r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindex")
@@ -3228,7 +3462,7 @@ func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest) 
 	return r
 }
 
-func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotExecute(r)
 }
 
@@ -3252,13 +3486,13 @@ func (a *ConfigAPIService) PostConfigServerIndexesIndexIdVersionsIndexVersionIdS
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotExecute(r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotExecute(r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshot")
@@ -3341,7 +3575,7 @@ func (r ApiPostConfigServerPasswordsToTokensRequest) MigratePasswordsToTokensInp
 	return r
 }
 
-func (r ApiPostConfigServerPasswordsToTokensRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerPasswordsToTokensRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerPasswordsToTokensExecute(r)
 }
 
@@ -3359,13 +3593,13 @@ func (a *ConfigAPIService) PostConfigServerPasswordsToTokens(ctx context.Context
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerPasswordsToTokensExecute(r ApiPostConfigServerPasswordsToTokensRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerPasswordsToTokensExecute(r ApiPostConfigServerPasswordsToTokensRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerPasswordsToTokens")
@@ -3446,7 +3680,7 @@ func (r ApiPostConfigServerReduceTokenLifetimeRequest) ReduceMaxTokenLifetimeInp
 	return r
 }
 
-func (r ApiPostConfigServerReduceTokenLifetimeRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerReduceTokenLifetimeRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerReduceTokenLifetimeExecute(r)
 }
 
@@ -3464,13 +3698,13 @@ func (a *ConfigAPIService) PostConfigServerReduceTokenLifetime(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerReduceTokenLifetimeExecute(r ApiPostConfigServerReduceTokenLifetimeRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerReduceTokenLifetimeExecute(r ApiPostConfigServerReduceTokenLifetimeRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerReduceTokenLifetime")
@@ -3650,7 +3884,7 @@ func (r ApiPostConfigServerSnapshotIndexesRequest) SnapshotIndexesInput(snapshot
 	return r
 }
 
-func (r ApiPostConfigServerSnapshotIndexesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostConfigServerSnapshotIndexesRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostConfigServerSnapshotIndexesExecute(r)
 }
 
@@ -3668,13 +3902,13 @@ func (a *ConfigAPIService) PostConfigServerSnapshotIndexes(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ConfigAPIService) PostConfigServerSnapshotIndexesExecute(r ApiPostConfigServerSnapshotIndexesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) PostConfigServerSnapshotIndexesExecute(r ApiPostConfigServerSnapshotIndexesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerSnapshotIndexes")
@@ -3729,7 +3963,7 @@ func (a *ConfigAPIService) PostConfigServerSnapshotIndexesExecute(r ApiPostConfi
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

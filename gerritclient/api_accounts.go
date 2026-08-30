@@ -123,7 +123,7 @@ type ApiDeleteAccountsAccountIdActiveRequest struct {
 	accountId string
 }
 
-func (r ApiDeleteAccountsAccountIdActiveRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiDeleteAccountsAccountIdActiveRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.DeleteAccountsAccountIdActiveExecute(r)
 }
 
@@ -145,13 +145,13 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdActive(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsAPIService) DeleteAccountsAccountIdActiveExecute(r ApiDeleteAccountsAccountIdActiveRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *AccountsAPIService) DeleteAccountsAccountIdActiveExecute(r ApiDeleteAccountsAccountIdActiveRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.DeleteAccountsAccountIdActive")
@@ -205,7 +205,7 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdActiveExecute(r ApiDeleteAcc
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -235,7 +235,7 @@ type ApiDeleteAccountsAccountIdEmailsEmailIdRequest struct {
 	emailId string
 }
 
-func (r ApiDeleteAccountsAccountIdEmailsEmailIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiDeleteAccountsAccountIdEmailsEmailIdRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.DeleteAccountsAccountIdEmailsEmailIdExecute(r)
 }
 
@@ -259,13 +259,13 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdEmailsEmailId(ctx context.Co
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsAPIService) DeleteAccountsAccountIdEmailsEmailIdExecute(r ApiDeleteAccountsAccountIdEmailsEmailIdRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *AccountsAPIService) DeleteAccountsAccountIdEmailsEmailIdExecute(r ApiDeleteAccountsAccountIdEmailsEmailIdRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.DeleteAccountsAccountIdEmailsEmailId")
@@ -320,7 +320,7 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdEmailsEmailIdExecute(r ApiDe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -341,6 +341,102 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdEmailsEmailIdExecute(r ApiDe
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeleteAccountsAccountIdGpgkeysGpgKeyIdRequest struct {
+	ctx context.Context
+	ApiService *AccountsAPIService
+	accountId string
+	gpgKeyId string
+}
+
+func (r ApiDeleteAccountsAccountIdGpgkeysGpgKeyIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAccountsAccountIdGpgkeysGpgKeyIdExecute(r)
+}
+
+/*
+DeleteAccountsAccountIdGpgkeysGpgKeyId Delete GPG Key
+
+Deletes a GPG key of a user.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param accountId
+ @param gpgKeyId
+ @return ApiDeleteAccountsAccountIdGpgkeysGpgKeyIdRequest
+*/
+func (a *AccountsAPIService) DeleteAccountsAccountIdGpgkeysGpgKeyId(ctx context.Context, accountId string, gpgKeyId string) ApiDeleteAccountsAccountIdGpgkeysGpgKeyIdRequest {
+	return ApiDeleteAccountsAccountIdGpgkeysGpgKeyIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		accountId: accountId,
+		gpgKeyId: gpgKeyId,
+	}
+}
+
+// Execute executes the request
+func (a *AccountsAPIService) DeleteAccountsAccountIdGpgkeysGpgKeyIdExecute(r ApiDeleteAccountsAccountIdGpgkeysGpgKeyIdRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.DeleteAccountsAccountIdGpgkeysGpgKeyId")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/accounts/{account-id}/gpgkeys/{gpg-key-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"account-id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gpg-key-id"+"}", url.PathEscape(parameterValueToString(r.gpgKeyId, "gpgKeyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ApiDeleteAccountsAccountIdNameRequest struct {
@@ -564,7 +660,7 @@ type ApiDeleteAccountsAccountIdSshkeysSshKeyIdRequest struct {
 	sshKeyId string
 }
 
-func (r ApiDeleteAccountsAccountIdSshkeysSshKeyIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiDeleteAccountsAccountIdSshkeysSshKeyIdRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.DeleteAccountsAccountIdSshkeysSshKeyIdExecute(r)
 }
 
@@ -588,13 +684,13 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdSshkeysSshKeyId(ctx context.
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsAPIService) DeleteAccountsAccountIdSshkeysSshKeyIdExecute(r ApiDeleteAccountsAccountIdSshkeysSshKeyIdRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *AccountsAPIService) DeleteAccountsAccountIdSshkeysSshKeyIdExecute(r ApiDeleteAccountsAccountIdSshkeysSshKeyIdRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.DeleteAccountsAccountIdSshkeysSshKeyId")
@@ -649,7 +745,7 @@ func (a *AccountsAPIService) DeleteAccountsAccountIdSshkeysSshKeyIdExecute(r Api
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1449,7 +1545,7 @@ func (a *AccountsAPIService) GetAccountsAccountIdAvatarExecute(r ApiGetAccountsA
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 302 {
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2210,6 +2306,216 @@ func (a *AccountsAPIService) GetAccountsAccountIdExternalIdsExecute(r ApiGetAcco
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetAccountsAccountIdGpgkeysRequest struct {
+	ctx context.Context
+	ApiService *AccountsAPIService
+	accountId string
+}
+
+func (r ApiGetAccountsAccountIdGpgkeysRequest) Execute() (*map[string]GpgKeyInfo, *http.Response, error) {
+	return r.ApiService.GetAccountsAccountIdGpgkeysExecute(r)
+}
+
+/*
+GetAccountsAccountIdGpgkeys List GPG Keys
+
+Returns the GPG keys of an account.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param accountId
+ @return ApiGetAccountsAccountIdGpgkeysRequest
+*/
+func (a *AccountsAPIService) GetAccountsAccountIdGpgkeys(ctx context.Context, accountId string) ApiGetAccountsAccountIdGpgkeysRequest {
+	return ApiGetAccountsAccountIdGpgkeysRequest{
+		ApiService: a,
+		ctx: ctx,
+		accountId: accountId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]GpgKeyInfo
+func (a *AccountsAPIService) GetAccountsAccountIdGpgkeysExecute(r ApiGetAccountsAccountIdGpgkeysRequest) (*map[string]GpgKeyInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]GpgKeyInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.GetAccountsAccountIdGpgkeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/accounts/{account-id}/gpgkeys"
+	localVarPath = strings.Replace(localVarPath, "{"+"account-id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAccountsAccountIdGpgkeysGpgKeyIdRequest struct {
+	ctx context.Context
+	ApiService *AccountsAPIService
+	accountId string
+	gpgKeyId string
+}
+
+func (r ApiGetAccountsAccountIdGpgkeysGpgKeyIdRequest) Execute() (*GpgKeyInfo, *http.Response, error) {
+	return r.ApiService.GetAccountsAccountIdGpgkeysGpgKeyIdExecute(r)
+}
+
+/*
+GetAccountsAccountIdGpgkeysGpgKeyId Get GPG Key
+
+Retrieves a GPG key of a user.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param accountId
+ @param gpgKeyId
+ @return ApiGetAccountsAccountIdGpgkeysGpgKeyIdRequest
+*/
+func (a *AccountsAPIService) GetAccountsAccountIdGpgkeysGpgKeyId(ctx context.Context, accountId string, gpgKeyId string) ApiGetAccountsAccountIdGpgkeysGpgKeyIdRequest {
+	return ApiGetAccountsAccountIdGpgkeysGpgKeyIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		accountId: accountId,
+		gpgKeyId: gpgKeyId,
+	}
+}
+
+// Execute executes the request
+//  @return GpgKeyInfo
+func (a *AccountsAPIService) GetAccountsAccountIdGpgkeysGpgKeyIdExecute(r ApiGetAccountsAccountIdGpgkeysGpgKeyIdRequest) (*GpgKeyInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GpgKeyInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.GetAccountsAccountIdGpgkeysGpgKeyId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/accounts/{account-id}/gpgkeys/{gpg-key-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"account-id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"gpg-key-id"+"}", url.PathEscape(parameterValueToString(r.gpgKeyId, "gpgKeyId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetAccountsAccountIdGroupsRequest struct {
 	ctx context.Context
 	ApiService *AccountsAPIService
@@ -2356,6 +2662,109 @@ func (a *AccountsAPIService) GetAccountsAccountIdNameExecute(r ApiGetAccountsAcc
 	}
 
 	localVarPath := localBasePath + "/accounts/{account-id}/name"
+	localVarPath = strings.Replace(localVarPath, "{"+"account-id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAccountsAccountIdOauthtokenRequest struct {
+	ctx context.Context
+	ApiService *AccountsAPIService
+	accountId string
+}
+
+func (r ApiGetAccountsAccountIdOauthtokenRequest) Execute() (*OAuthTokenInfo, *http.Response, error) {
+	return r.ApiService.GetAccountsAccountIdOauthtokenExecute(r)
+}
+
+/*
+GetAccountsAccountIdOauthtoken Get OAuth Access Token
+
+Returns a previously obtained OAuth access token.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param accountId
+ @return ApiGetAccountsAccountIdOauthtokenRequest
+*/
+func (a *AccountsAPIService) GetAccountsAccountIdOauthtoken(ctx context.Context, accountId string) ApiGetAccountsAccountIdOauthtokenRequest {
+	return ApiGetAccountsAccountIdOauthtokenRequest{
+		ApiService: a,
+		ctx: ctx,
+		accountId: accountId,
+	}
+}
+
+// Execute executes the request
+//  @return OAuthTokenInfo
+func (a *AccountsAPIService) GetAccountsAccountIdOauthtokenExecute(r ApiGetAccountsAccountIdOauthtokenRequest) (*OAuthTokenInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *OAuthTokenInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.GetAccountsAccountIdOauthtoken")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/accounts/{account-id}/oauthtoken"
 	localVarPath = strings.Replace(localVarPath, "{"+"account-id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -2941,7 +3350,7 @@ type ApiGetAccountsAccountIdStarredChangesRequest struct {
 	accountId string
 }
 
-func (r ApiGetAccountsAccountIdStarredChangesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetAccountsAccountIdStarredChangesRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetAccountsAccountIdStarredChangesExecute(r)
 }
 
@@ -2963,13 +3372,13 @@ func (a *AccountsAPIService) GetAccountsAccountIdStarredChanges(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *AccountsAPIService) GetAccountsAccountIdStarredChangesExecute(r ApiGetAccountsAccountIdStarredChangesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *AccountsAPIService) GetAccountsAccountIdStarredChangesExecute(r ApiGetAccountsAccountIdStarredChangesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.GetAccountsAccountIdStarredChanges")
@@ -3023,7 +3432,7 @@ func (a *AccountsAPIService) GetAccountsAccountIdStarredChangesExecute(r ApiGetA
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3770,6 +4179,117 @@ func (a *AccountsAPIService) PostAccountsAccountIdExternalIdsDeleteExecute(r Api
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ApiPostAccountsAccountIdGpgkeysRequest struct {
+	ctx context.Context
+	ApiService *AccountsAPIService
+	accountId string
+	gpgKeysInput *GpgKeysInput
+}
+
+func (r ApiPostAccountsAccountIdGpgkeysRequest) GpgKeysInput(gpgKeysInput GpgKeysInput) ApiPostAccountsAccountIdGpgkeysRequest {
+	r.gpgKeysInput = &gpgKeysInput
+	return r
+}
+
+func (r ApiPostAccountsAccountIdGpgkeysRequest) Execute() (*map[string]GpgKeyInfo, *http.Response, error) {
+	return r.ApiService.PostAccountsAccountIdGpgkeysExecute(r)
+}
+
+/*
+PostAccountsAccountIdGpgkeys Add/Delete GPG Keys
+
+Add or delete one or more GPG keys for a user.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param accountId
+ @return ApiPostAccountsAccountIdGpgkeysRequest
+*/
+func (a *AccountsAPIService) PostAccountsAccountIdGpgkeys(ctx context.Context, accountId string) ApiPostAccountsAccountIdGpgkeysRequest {
+	return ApiPostAccountsAccountIdGpgkeysRequest{
+		ApiService: a,
+		ctx: ctx,
+		accountId: accountId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]GpgKeyInfo
+func (a *AccountsAPIService) PostAccountsAccountIdGpgkeysExecute(r ApiPostAccountsAccountIdGpgkeysRequest) (*map[string]GpgKeyInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *map[string]GpgKeyInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.PostAccountsAccountIdGpgkeys")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/accounts/{account-id}/gpgkeys"
+	localVarPath = strings.Replace(localVarPath, "{"+"account-id"+"}", url.PathEscape(parameterValueToString(r.accountId, "accountId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.gpgKeysInput
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiPostAccountsAccountIdIndexRequest struct {
@@ -4754,7 +5274,7 @@ func (a *AccountsAPIService) PutAccountsAccountIdEmailsEmailIdExecute(r ApiPutAc
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

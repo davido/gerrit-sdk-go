@@ -130,6 +130,7 @@ docs/EntriesInfo.md
 docs/EvaluateChangeQueryExpressionResultInfo.md
 docs/ExperimentInfo.md
 docs/FetchInfo.md
+docs/FieldJson.md
 docs/FileChange.md
 docs/FileContentInput.md
 docs/FileMeta.md
@@ -147,11 +148,19 @@ docs/FlowStageState.md
 docs/GarbageCollectInput.md
 docs/GeneralPreferencesInfo.md
 docs/GerritInfo.md
+docs/GetConfigServerCaches200Response.md
+docs/GetConfigServerIndexes200ResponseInner.md
+docs/GetConfigServerIndexes200ResponseInnerVersionsValue.md
+docs/GetConfigServerVersion200Response.md
+docs/GetConfigServerVersion200ResponseOneOf.md
+docs/GetGroupsDefaultResponse.md
 docs/GetMetaFileInfo.md
+docs/GetProjectsDefaultResponse.md
 docs/GitBasicAuthPolicy.md
 docs/GitPerson.md
 docs/GpgKeyInfo.md
 docs/GpgKeyInfoStatus.md
+docs/GpgKeysInput.md
 docs/GroupAuditEventInfo.md
 docs/GroupBaseInfo.md
 docs/GroupInfo.md
@@ -190,6 +199,7 @@ docs/MergeInput.md
 docs/MergePatchSetInput.md
 docs/MergeableInfo.md
 docs/MetadataInfo.md
+docs/MetricJson.md
 docs/MigrateLabelFunctionsToSubmitRequirementStatus.md
 docs/MigrateLabelsInfo.md
 docs/MigrateLabelsReviewInfo.md
@@ -199,6 +209,7 @@ docs/NameInput.md
 docs/NoMergeBaseReason.md
 docs/NotifyHandling.md
 docs/NotifyInfo.md
+docs/OAuthTokenInfo.md
 docs/Operation.md
 docs/OwnerInput.md
 docs/ParentInfo.md
@@ -408,6 +419,7 @@ model_entries_info.go
 model_evaluate_change_query_expression_result_info.go
 model_experiment_info.go
 model_fetch_info.go
+model_field_json.go
 model_file_change.go
 model_file_content_input.go
 model_file_meta.go
@@ -425,11 +437,19 @@ model_flow_stage_state.go
 model_garbage_collect_input.go
 model_general_preferences_info.go
 model_gerrit_info.go
+model_get_config_server_caches_200_response.go
+model_get_config_server_indexes_200_response_inner.go
+model_get_config_server_indexes_200_response_inner_versions_value.go
+model_get_config_server_version_200_response.go
+model_get_config_server_version_200_response_one_of.go
+model_get_groups_default_response.go
 model_get_meta_file_info.go
+model_get_projects_default_response.go
 model_git_basic_auth_policy.go
 model_git_person.go
 model_gpg_key_info.go
 model_gpg_key_info_status.go
+model_gpg_keys_input.go
 model_group_audit_event_info.go
 model_group_base_info.go
 model_group_info.go
@@ -467,6 +487,7 @@ model_merge_input.go
 model_merge_patch_set_input.go
 model_mergeable_info.go
 model_metadata_info.go
+model_metric_json.go
 model_migrate_label_functions_to_submit_requirement_status.go
 model_migrate_labels_info.go
 model_migrate_labels_review_info.go
@@ -476,6 +497,7 @@ model_name_input.go
 model_no_merge_base_reason.go
 model_notify_handling.go
 model_notify_info.go
+model_o_auth_token_info.go
 model_operation.go
 model_owner_input.go
 model_parent_info.go

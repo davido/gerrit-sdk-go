@@ -17,8 +17,8 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"os"
 	"reflect"
+	"os"
 )
 
 
@@ -630,9 +630,93 @@ func (a *ProjectsAPIService) DeleteProjectsProjectIdTagsTagIdExecute(r ApiDelete
 type ApiGetProjectsRequest struct {
 	ctx context.Context
 	ApiService *ProjectsAPIService
+	all *bool
+	description *bool
+	format *string
+	hasAclFor *string
+	limit *int32
+	match *string
+	prefix *string
+	query *string
+	regexFilter *string
+	showBranch *[]string
+	start *int32
+	state *string
+	tree *bool
+	type_ *string
 }
 
-func (r ApiGetProjectsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetProjectsRequest) All(all bool) ApiGetProjectsRequest {
+	r.all = &all
+	return r
+}
+
+func (r ApiGetProjectsRequest) Description(description bool) ApiGetProjectsRequest {
+	r.description = &description
+	return r
+}
+
+func (r ApiGetProjectsRequest) Format(format string) ApiGetProjectsRequest {
+	r.format = &format
+	return r
+}
+
+func (r ApiGetProjectsRequest) HasAclFor(hasAclFor string) ApiGetProjectsRequest {
+	r.hasAclFor = &hasAclFor
+	return r
+}
+
+func (r ApiGetProjectsRequest) Limit(limit int32) ApiGetProjectsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiGetProjectsRequest) Match(match string) ApiGetProjectsRequest {
+	r.match = &match
+	return r
+}
+
+func (r ApiGetProjectsRequest) Prefix(prefix string) ApiGetProjectsRequest {
+	r.prefix = &prefix
+	return r
+}
+
+func (r ApiGetProjectsRequest) Query(query string) ApiGetProjectsRequest {
+	r.query = &query
+	return r
+}
+
+func (r ApiGetProjectsRequest) RegexFilter(regexFilter string) ApiGetProjectsRequest {
+	r.regexFilter = &regexFilter
+	return r
+}
+
+func (r ApiGetProjectsRequest) ShowBranch(showBranch []string) ApiGetProjectsRequest {
+	r.showBranch = &showBranch
+	return r
+}
+
+func (r ApiGetProjectsRequest) Start(start int32) ApiGetProjectsRequest {
+	r.start = &start
+	return r
+}
+
+func (r ApiGetProjectsRequest) State(state string) ApiGetProjectsRequest {
+	r.state = &state
+	return r
+}
+
+func (r ApiGetProjectsRequest) Tree(tree bool) ApiGetProjectsRequest {
+	r.tree = &tree
+	return r
+}
+
+func (r ApiGetProjectsRequest) Type_(type_ string) ApiGetProjectsRequest {
+	r.type_ = &type_
+	return r
+}
+
+func (r ApiGetProjectsRequest) Execute() (*GetProjectsDefaultResponse, *http.Response, error) {
 	return r.ApiService.GetProjectsExecute(r)
 }
 
@@ -652,13 +736,13 @@ func (a *ProjectsAPIService) GetProjects(ctx context.Context) ApiGetProjectsRequ
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GetProjectsDefaultResponse
+func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (*GetProjectsDefaultResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GetProjectsDefaultResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjects")
@@ -672,6 +756,56 @@ func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (map[st
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.all != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "all", r.all, "form", "")
+	}
+	if r.description != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "description", r.description, "form", "")
+	}
+	if r.format != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "format", r.format, "form", "")
+	}
+	if r.hasAclFor != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "has-acl-for", r.hasAclFor, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.match != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "match", r.match, "form", "")
+	}
+	if r.prefix != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "prefix", r.prefix, "form", "")
+	}
+	if r.query != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "form", "")
+	}
+	if r.regexFilter != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "r", r.regexFilter, "form", "")
+	}
+	if r.showBranch != nil {
+		t := *r.showBranch
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "show-branch", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "show-branch", t, "form", "multi")
+		}
+	}
+	if r.start != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
+	}
+	if r.state != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "form", "")
+	}
+	if r.tree != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tree", r.tree, "form", "")
+	}
+	if r.type_ != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -711,7 +845,7 @@ func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (map[st
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v GetProjectsDefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1195,57 +1329,199 @@ func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdExecute(r ApiGe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetProjectsProjectIdBranchesBranchIdFilesRequest struct {
+type ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest struct {
 	ctx context.Context
 	ApiService *ProjectsAPIService
 	projectId string
 	branchId string
+	fileId string
 }
 
-func (r ApiGetProjectsProjectIdBranchesBranchIdFilesRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetProjectsProjectIdBranchesBranchIdFilesExecute(r)
+func (r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest) Execute() (*os.File, *http.Response, error) {
+	return r.ApiService.GetProjectsProjectIdBranchesBranchIdFilesFileIdContentExecute(r)
 }
 
 /*
-GetProjectsProjectIdBranchesBranchIdFiles Method for GetProjectsProjectIdBranchesBranchIdFiles
+GetProjectsProjectIdBranchesBranchIdFilesFileIdContent Get Content
+
+Gets the content of a file from the HEAD revision of a certain branch.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
  @param branchId
- @return ApiGetProjectsProjectIdBranchesBranchIdFilesRequest
+ @param fileId
+ @return ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest
 */
-func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFiles(ctx context.Context, projectId string, branchId string) ApiGetProjectsProjectIdBranchesBranchIdFilesRequest {
-	return ApiGetProjectsProjectIdBranchesBranchIdFilesRequest{
+func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFilesFileIdContent(ctx context.Context, projectId string, branchId string, fileId string) ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest {
+	return ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest{
 		ApiService: a,
 		ctx: ctx,
 		projectId: projectId,
 		branchId: branchId,
+		fileId: fileId,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFilesExecute(r ApiGetProjectsProjectIdBranchesBranchIdFilesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return *os.File
+func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFilesFileIdContentExecute(r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdContentRequest) (*os.File, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *os.File
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjectsProjectIdBranchesBranchIdFiles")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjectsProjectIdBranchesBranchIdFilesFileIdContent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/projects/{project-id}/branches/{branch-id}/files"
+	localVarPath := localBasePath + "/projects/{project-id}/branches/{branch-id}/files/{file-id}/content"
 	localVarPath = strings.Replace(localVarPath, "{"+"project-id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"branch-id"+"}", url.PathEscape(parameterValueToString(r.branchId, "branchId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"file-id"+"}", url.PathEscape(parameterValueToString(r.fileId, "fileId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/octet-stream"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest struct {
+	ctx context.Context
+	ApiService *ProjectsAPIService
+	projectId string
+	branchId string
+	fileId string
+	base *string
+	intraline *bool
+	whitespace *string
+}
+
+func (r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest) Base(base string) ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest {
+	r.base = &base
+	return r
+}
+
+func (r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest) Intraline(intraline bool) ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest {
+	r.intraline = &intraline
+	return r
+}
+
+func (r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest) Whitespace(whitespace string) ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest {
+	r.whitespace = &whitespace
+	return r
+}
+
+func (r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest) Execute() (*DiffInfo, *http.Response, error) {
+	return r.ApiService.GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffExecute(r)
+}
+
+/*
+GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff Method for GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @param branchId
+ @param fileId
+ @return ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest
+*/
+func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff(ctx context.Context, projectId string, branchId string, fileId string) ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest {
+	return ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		branchId: branchId,
+		fileId: fileId,
+	}
+}
+
+// Execute executes the request
+//  @return DiffInfo
+func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFilesFileIdDiffExecute(r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest) (*DiffInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DiffInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project-id}/branches/{branch-id}/files/{file-id}/diff"
+	localVarPath = strings.Replace(localVarPath, "{"+"project-id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"branch-id"+"}", url.PathEscape(parameterValueToString(r.branchId, "branchId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"file-id"+"}", url.PathEscape(parameterValueToString(r.fileId, "fileId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.base != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "base", r.base, "form", "")
+	}
+	if r.intraline != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "intraline", r.intraline, "form", "")
+	}
+	if r.whitespace != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "whitespace", r.whitespace, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1285,14 +1561,6 @@ func (a *ProjectsAPIService) GetProjectsProjectIdBranchesBranchIdFilesExecute(r 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -2170,115 +2438,6 @@ func (a *ProjectsAPIService) GetProjectsProjectIdChildrenChildProjectIdExecute(r
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetProjectsProjectIdCommitsRequest struct {
-	ctx context.Context
-	ApiService *ProjectsAPIService
-	projectId string
-}
-
-func (r ApiGetProjectsProjectIdCommitsRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetProjectsProjectIdCommitsExecute(r)
-}
-
-/*
-GetProjectsProjectIdCommits Method for GetProjectsProjectIdCommits
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param projectId
- @return ApiGetProjectsProjectIdCommitsRequest
-*/
-func (a *ProjectsAPIService) GetProjectsProjectIdCommits(ctx context.Context, projectId string) ApiGetProjectsProjectIdCommitsRequest {
-	return ApiGetProjectsProjectIdCommitsRequest{
-		ApiService: a,
-		ctx: ctx,
-		projectId: projectId,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) GetProjectsProjectIdCommitsExecute(r ApiGetProjectsProjectIdCommitsRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjectsProjectIdCommits")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/projects/{project-id}/commits"
-	localVarPath = strings.Replace(localVarPath, "{"+"project-id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -5385,7 +5544,7 @@ func (r ApiPostProjectsProjectIdGcRequest) GarbageCollectInput(garbageCollectInp
 	return r
 }
 
-func (r ApiPostProjectsProjectIdGcRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostProjectsProjectIdGcRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostProjectsProjectIdGcExecute(r)
 }
 
@@ -5407,13 +5566,13 @@ func (a *ProjectsAPIService) PostProjectsProjectIdGc(ctx context.Context, projec
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) PostProjectsProjectIdGcExecute(r ApiPostProjectsProjectIdGcRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ProjectsAPIService) PostProjectsProjectIdGcExecute(r ApiPostProjectsProjectIdGcRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.PostProjectsProjectIdGc")
@@ -5496,7 +5655,7 @@ func (r ApiPostProjectsProjectIdIndexRequest) IndexProjectInput(indexProjectInpu
 	return r
 }
 
-func (r ApiPostProjectsProjectIdIndexRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostProjectsProjectIdIndexRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostProjectsProjectIdIndexExecute(r)
 }
 
@@ -5516,13 +5675,13 @@ func (a *ProjectsAPIService) PostProjectsProjectIdIndex(ctx context.Context, pro
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) PostProjectsProjectIdIndexExecute(r ApiPostProjectsProjectIdIndexRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ProjectsAPIService) PostProjectsProjectIdIndexExecute(r ApiPostProjectsProjectIdIndexRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.PostProjectsProjectIdIndex")
@@ -5599,7 +5758,7 @@ type ApiPostProjectsProjectIdIndexChangesRequest struct {
 	projectId string
 }
 
-func (r ApiPostProjectsProjectIdIndexChangesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostProjectsProjectIdIndexChangesRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostProjectsProjectIdIndexChangesExecute(r)
 }
 
@@ -5619,13 +5778,13 @@ func (a *ProjectsAPIService) PostProjectsProjectIdIndexChanges(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) PostProjectsProjectIdIndexChangesExecute(r ApiPostProjectsProjectIdIndexChangesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ProjectsAPIService) PostProjectsProjectIdIndexChangesExecute(r ApiPostProjectsProjectIdIndexChangesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.PostProjectsProjectIdIndexChanges")
@@ -5706,7 +5865,7 @@ func (r ApiPostProjectsProjectIdLabelsRequest) BatchLabelInput(batchLabelInput B
 	return r
 }
 
-func (r ApiPostProjectsProjectIdLabelsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostProjectsProjectIdLabelsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostProjectsProjectIdLabelsExecute(r)
 }
 
@@ -5728,13 +5887,13 @@ func (a *ProjectsAPIService) PostProjectsProjectIdLabels(ctx context.Context, pr
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) PostProjectsProjectIdLabelsExecute(r ApiPostProjectsProjectIdLabelsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ProjectsAPIService) PostProjectsProjectIdLabelsExecute(r ApiPostProjectsProjectIdLabelsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.PostProjectsProjectIdLabels")
@@ -6142,7 +6301,7 @@ func (r ApiPostProjectsProjectIdSubmitRequirementsRequest) BatchSubmitRequiremen
 	return r
 }
 
-func (r ApiPostProjectsProjectIdSubmitRequirementsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostProjectsProjectIdSubmitRequirementsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.PostProjectsProjectIdSubmitRequirementsExecute(r)
 }
 
@@ -6164,13 +6323,13 @@ func (a *ProjectsAPIService) PostProjectsProjectIdSubmitRequirements(ctx context
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ProjectsAPIService) PostProjectsProjectIdSubmitRequirementsExecute(r ApiPostProjectsProjectIdSubmitRequirementsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *ProjectsAPIService) PostProjectsProjectIdSubmitRequirementsExecute(r ApiPostProjectsProjectIdSubmitRequirementsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.PostProjectsProjectIdSubmitRequirements")
@@ -6556,7 +6715,7 @@ func (a *ProjectsAPIService) PutProjectsProjectIdExecute(r ApiPutProjectsProject
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

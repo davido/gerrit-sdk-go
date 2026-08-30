@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -236,7 +237,7 @@ type ApiDeleteGroupsGroupIdGroupsSubgroupIdRequest struct {
 	subgroupId string
 }
 
-func (r ApiDeleteGroupsGroupIdGroupsSubgroupIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiDeleteGroupsGroupIdGroupsSubgroupIdRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.DeleteGroupsGroupIdGroupsSubgroupIdExecute(r)
 }
 
@@ -260,13 +261,13 @@ func (a *GroupsAPIService) DeleteGroupsGroupIdGroupsSubgroupId(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GroupsAPIService) DeleteGroupsGroupIdGroupsSubgroupIdExecute(r ApiDeleteGroupsGroupIdGroupsSubgroupIdRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *GroupsAPIService) DeleteGroupsGroupIdGroupsSubgroupIdExecute(r ApiDeleteGroupsGroupIdGroupsSubgroupIdRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.DeleteGroupsGroupIdGroupsSubgroupId")
@@ -321,7 +322,7 @@ func (a *GroupsAPIService) DeleteGroupsGroupIdGroupsSubgroupIdExecute(r ApiDelet
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,7 +352,7 @@ type ApiDeleteGroupsGroupIdMembersMemberIdRequest struct {
 	memberId string
 }
 
-func (r ApiDeleteGroupsGroupIdMembersMemberIdRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiDeleteGroupsGroupIdMembersMemberIdRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.DeleteGroupsGroupIdMembersMemberIdExecute(r)
 }
 
@@ -375,13 +376,13 @@ func (a *GroupsAPIService) DeleteGroupsGroupIdMembersMemberId(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GroupsAPIService) DeleteGroupsGroupIdMembersMemberIdExecute(r ApiDeleteGroupsGroupIdMembersMemberIdRequest) (map[string]interface{}, *http.Response, error) {
+//  @return interface{}
+func (a *GroupsAPIService) DeleteGroupsGroupIdMembersMemberIdExecute(r ApiDeleteGroupsGroupIdMembersMemberIdRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.DeleteGroupsGroupIdMembersMemberId")
@@ -436,7 +437,7 @@ func (a *GroupsAPIService) DeleteGroupsGroupIdMembersMemberIdExecute(r ApiDelete
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -462,9 +463,93 @@ func (a *GroupsAPIService) DeleteGroupsGroupIdMembersMemberIdExecute(r ApiDelete
 type ApiGetGroupsRequest struct {
 	ctx context.Context
 	ApiService *GroupsAPIService
+	o *string
+	group *[]string
+	limit *int32
+	match *string
+	o2 *[]string
+	owned *bool
+	ownedBy *string
+	project *[]string
+	query *string
+	regex *string
+	start *int32
+	suggest *string
+	user *string
+	visibleToAll *bool
 }
 
-func (r ApiGetGroupsRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetGroupsRequest) O(o string) ApiGetGroupsRequest {
+	r.o = &o
+	return r
+}
+
+func (r ApiGetGroupsRequest) Group(group []string) ApiGetGroupsRequest {
+	r.group = &group
+	return r
+}
+
+func (r ApiGetGroupsRequest) Limit(limit int32) ApiGetGroupsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiGetGroupsRequest) Match(match string) ApiGetGroupsRequest {
+	r.match = &match
+	return r
+}
+
+func (r ApiGetGroupsRequest) O2(o2 []string) ApiGetGroupsRequest {
+	r.o2 = &o2
+	return r
+}
+
+func (r ApiGetGroupsRequest) Owned(owned bool) ApiGetGroupsRequest {
+	r.owned = &owned
+	return r
+}
+
+func (r ApiGetGroupsRequest) OwnedBy(ownedBy string) ApiGetGroupsRequest {
+	r.ownedBy = &ownedBy
+	return r
+}
+
+func (r ApiGetGroupsRequest) Project(project []string) ApiGetGroupsRequest {
+	r.project = &project
+	return r
+}
+
+func (r ApiGetGroupsRequest) Query(query string) ApiGetGroupsRequest {
+	r.query = &query
+	return r
+}
+
+func (r ApiGetGroupsRequest) Regex(regex string) ApiGetGroupsRequest {
+	r.regex = &regex
+	return r
+}
+
+func (r ApiGetGroupsRequest) Start(start int32) ApiGetGroupsRequest {
+	r.start = &start
+	return r
+}
+
+func (r ApiGetGroupsRequest) Suggest(suggest string) ApiGetGroupsRequest {
+	r.suggest = &suggest
+	return r
+}
+
+func (r ApiGetGroupsRequest) User(user string) ApiGetGroupsRequest {
+	r.user = &user
+	return r
+}
+
+func (r ApiGetGroupsRequest) VisibleToAll(visibleToAll bool) ApiGetGroupsRequest {
+	r.visibleToAll = &visibleToAll
+	return r
+}
+
+func (r ApiGetGroupsRequest) Execute() (*GetGroupsDefaultResponse, *http.Response, error) {
 	return r.ApiService.GetGroupsExecute(r)
 }
 
@@ -484,13 +569,13 @@ func (a *GroupsAPIService) GetGroups(ctx context.Context) ApiGetGroupsRequest {
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return GetGroupsDefaultResponse
+func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (*GetGroupsDefaultResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *GetGroupsDefaultResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroups")
@@ -504,6 +589,72 @@ func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (map[string]i
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.o != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "O", r.o, "form", "")
+	}
+	if r.group != nil {
+		t := *r.group
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "group", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "group", t, "form", "multi")
+		}
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.match != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "match", r.match, "form", "")
+	}
+	if r.o2 != nil {
+		t := *r.o2
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "o", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "o", t, "form", "multi")
+		}
+	}
+	if r.owned != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "owned", r.owned, "form", "")
+	}
+	if r.ownedBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "owned-by", r.ownedBy, "form", "")
+	}
+	if r.project != nil {
+		t := *r.project
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "project", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "project", t, "form", "multi")
+		}
+	}
+	if r.query != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "form", "")
+	}
+	if r.regex != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "regex", r.regex, "form", "")
+	}
+	if r.start != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
+	}
+	if r.suggest != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "suggest", r.suggest, "form", "")
+	}
+	if r.user != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "user", r.user, "form", "")
+	}
+	if r.visibleToAll != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "visible-to-all", r.visibleToAll, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -543,7 +694,7 @@ func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (map[string]i
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v GetGroupsDefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2548,7 +2699,7 @@ func (a *GroupsAPIService) PutGroupsGroupIdExecute(r ApiPutGroupsGroupIdRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

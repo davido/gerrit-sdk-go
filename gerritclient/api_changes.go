@@ -723,6 +723,202 @@ func (a *ChangesAPIService) DeleteChangesChangeIdPrivateExecute(r ApiDeleteChang
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteChangesChangeIdReviewersReviewerIdRequest struct {
+	ctx context.Context
+	ApiService *ChangesAPIService
+	changeId string
+	reviewerId string
+}
+
+func (r ApiDeleteChangesChangeIdReviewersReviewerIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteChangesChangeIdReviewersReviewerIdExecute(r)
+}
+
+/*
+DeleteChangesChangeIdReviewersReviewerId Delete Reviewer
+
+'POST /changes/\{change-id\}/reviewers/\{account-id\}/delete' --
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param changeId
+ @param reviewerId
+ @return ApiDeleteChangesChangeIdReviewersReviewerIdRequest
+*/
+func (a *ChangesAPIService) DeleteChangesChangeIdReviewersReviewerId(ctx context.Context, changeId string, reviewerId string) ApiDeleteChangesChangeIdReviewersReviewerIdRequest {
+	return ApiDeleteChangesChangeIdReviewersReviewerIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		changeId: changeId,
+		reviewerId: reviewerId,
+	}
+}
+
+// Execute executes the request
+func (a *ChangesAPIService) DeleteChangesChangeIdReviewersReviewerIdExecute(r ApiDeleteChangesChangeIdReviewersReviewerIdRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.DeleteChangesChangeIdReviewersReviewerId")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers/{reviewer-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"reviewer-id"+"}", url.PathEscape(parameterValueToString(r.reviewerId, "reviewerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiDeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest struct {
+	ctx context.Context
+	ApiService *ChangesAPIService
+	changeId string
+	reviewerId string
+	voteId string
+}
+
+func (r ApiDeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteChangesChangeIdReviewersReviewerIdVotesVoteIdExecute(r)
+}
+
+/*
+DeleteChangesChangeIdReviewersReviewerIdVotesVoteId Delete Vote
+
+'POST /changes/\{change-id\}/reviewers/\{account-id\}/votes/\{label-id\}/delete' --
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param changeId
+ @param reviewerId
+ @param voteId
+ @return ApiDeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest
+*/
+func (a *ChangesAPIService) DeleteChangesChangeIdReviewersReviewerIdVotesVoteId(ctx context.Context, changeId string, reviewerId string, voteId string) ApiDeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest {
+	return ApiDeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		changeId: changeId,
+		reviewerId: reviewerId,
+		voteId: voteId,
+	}
+}
+
+// Execute executes the request
+func (a *ChangesAPIService) DeleteChangesChangeIdReviewersReviewerIdVotesVoteIdExecute(r ApiDeleteChangesChangeIdReviewersReviewerIdVotesVoteIdRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.DeleteChangesChangeIdReviewersReviewerIdVotesVoteId")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers/{reviewer-id}/votes/{vote-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"reviewer-id"+"}", url.PathEscape(parameterValueToString(r.reviewerId, "reviewerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vote-id"+"}", url.PathEscape(parameterValueToString(r.voteId, "voteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiDeleteChangesChangeIdRevisionsRevisionIdCommentsCommentIdRequest struct {
 	ctx context.Context
 	ApiService *ChangesAPIService
@@ -4216,48 +4412,54 @@ func (a *ChangesAPIService) GetChangesChangeIdReviewersExecute(r ApiGetChangesCh
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetChangesChangeIdRevisionsRequest struct {
+type ApiGetChangesChangeIdReviewersReviewerIdRequest struct {
 	ctx context.Context
 	ApiService *ChangesAPIService
 	changeId string
+	reviewerId string
 }
 
-func (r ApiGetChangesChangeIdRevisionsRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetChangesChangeIdRevisionsExecute(r)
+func (r ApiGetChangesChangeIdReviewersReviewerIdRequest) Execute() ([]ReviewerInfo, *http.Response, error) {
+	return r.ApiService.GetChangesChangeIdReviewersReviewerIdExecute(r)
 }
 
 /*
-GetChangesChangeIdRevisions Method for GetChangesChangeIdRevisions
+GetChangesChangeIdReviewersReviewerId Get Reviewer
+
+Retrieves a reviewer of a change.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
- @return ApiGetChangesChangeIdRevisionsRequest
+ @param reviewerId
+ @return ApiGetChangesChangeIdReviewersReviewerIdRequest
 */
-func (a *ChangesAPIService) GetChangesChangeIdRevisions(ctx context.Context, changeId string) ApiGetChangesChangeIdRevisionsRequest {
-	return ApiGetChangesChangeIdRevisionsRequest{
+func (a *ChangesAPIService) GetChangesChangeIdReviewersReviewerId(ctx context.Context, changeId string, reviewerId string) ApiGetChangesChangeIdReviewersReviewerIdRequest {
+	return ApiGetChangesChangeIdReviewersReviewerIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		changeId: changeId,
+		reviewerId: reviewerId,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ChangesAPIService) GetChangesChangeIdRevisionsExecute(r ApiGetChangesChangeIdRevisionsRequest) (map[string]interface{}, *http.Response, error) {
+//  @return []ReviewerInfo
+func (a *ChangesAPIService) GetChangesChangeIdReviewersReviewerIdExecute(r ApiGetChangesChangeIdReviewersReviewerIdRequest) ([]ReviewerInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  []ReviewerInfo
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.GetChangesChangeIdRevisions")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.GetChangesChangeIdReviewersReviewerId")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/changes/{change-id}/revisions"
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers/{reviewer-id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"reviewer-id"+"}", url.PathEscape(parameterValueToString(r.reviewerId, "reviewerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -4302,14 +4504,113 @@ func (a *ChangesAPIService) GetChangesChangeIdRevisionsExecute(r ApiGetChangesCh
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetChangesChangeIdReviewersReviewerIdVotesRequest struct {
+	ctx context.Context
+	ApiService *ChangesAPIService
+	changeId string
+	reviewerId string
+}
+
+func (r ApiGetChangesChangeIdReviewersReviewerIdVotesRequest) Execute() (map[string]int32, *http.Response, error) {
+	return r.ApiService.GetChangesChangeIdReviewersReviewerIdVotesExecute(r)
+}
+
+/*
+GetChangesChangeIdReviewersReviewerIdVotes List Votes
+
+Lists the votes for a specific reviewer of the change.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param changeId
+ @param reviewerId
+ @return ApiGetChangesChangeIdReviewersReviewerIdVotesRequest
+*/
+func (a *ChangesAPIService) GetChangesChangeIdReviewersReviewerIdVotes(ctx context.Context, changeId string, reviewerId string) ApiGetChangesChangeIdReviewersReviewerIdVotesRequest {
+	return ApiGetChangesChangeIdReviewersReviewerIdVotesRequest{
+		ApiService: a,
+		ctx: ctx,
+		changeId: changeId,
+		reviewerId: reviewerId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]int32
+func (a *ChangesAPIService) GetChangesChangeIdReviewersReviewerIdVotesExecute(r ApiGetChangesChangeIdReviewersReviewerIdVotesRequest) (map[string]int32, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]int32
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.GetChangesChangeIdReviewersReviewerIdVotes")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers/{reviewer-id}/votes"
+	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"reviewer-id"+"}", url.PathEscape(parameterValueToString(r.reviewerId, "reviewerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -5343,7 +5644,7 @@ func (r ApiGetChangesChangeIdRevisionsRevisionIdFilesRequest) Reviewed(reviewed 
 	return r
 }
 
-func (r ApiGetChangesChangeIdRevisionsRevisionIdFilesRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiGetChangesChangeIdRevisionsRevisionIdFilesRequest) Execute() (*map[string]CommonFileInfo, *http.Response, error) {
 	return r.ApiService.GetChangesChangeIdRevisionsRevisionIdFilesExecute(r)
 }
 
@@ -5367,13 +5668,13 @@ func (a *ChangesAPIService) GetChangesChangeIdRevisionsRevisionIdFiles(ctx conte
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *ChangesAPIService) GetChangesChangeIdRevisionsRevisionIdFilesExecute(r ApiGetChangesChangeIdRevisionsRevisionIdFilesRequest) (map[string]interface{}, *http.Response, error) {
+//  @return map[string]CommonFileInfo
+func (a *ChangesAPIService) GetChangesChangeIdRevisionsRevisionIdFilesExecute(r ApiGetChangesChangeIdRevisionsRevisionIdFilesRequest) (*map[string]CommonFileInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
+		localVarReturnValue  *map[string]CommonFileInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.GetChangesChangeIdRevisionsRevisionIdFiles")
@@ -5965,119 +6266,6 @@ func (a *ChangesAPIService) GetChangesChangeIdRevisionsRevisionIdFilesFileIdDown
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetChangesChangeIdRevisionsRevisionIdFixesRequest struct {
-	ctx context.Context
-	ApiService *ChangesAPIService
-	changeId string
-	revisionId string
-}
-
-func (r ApiGetChangesChangeIdRevisionsRevisionIdFixesRequest) Execute() (map[string]interface{}, *http.Response, error) {
-	return r.ApiService.GetChangesChangeIdRevisionsRevisionIdFixesExecute(r)
-}
-
-/*
-GetChangesChangeIdRevisionsRevisionIdFixes Method for GetChangesChangeIdRevisionsRevisionIdFixes
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param changeId
- @param revisionId
- @return ApiGetChangesChangeIdRevisionsRevisionIdFixesRequest
-*/
-func (a *ChangesAPIService) GetChangesChangeIdRevisionsRevisionIdFixes(ctx context.Context, changeId string, revisionId string) ApiGetChangesChangeIdRevisionsRevisionIdFixesRequest {
-	return ApiGetChangesChangeIdRevisionsRevisionIdFixesRequest{
-		ApiService: a,
-		ctx: ctx,
-		changeId: changeId,
-		revisionId: revisionId,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]interface{}
-func (a *ChangesAPIService) GetChangesChangeIdRevisionsRevisionIdFixesExecute(r ApiGetChangesChangeIdRevisionsRevisionIdFixesRequest) (map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.GetChangesChangeIdRevisionsRevisionIdFixes")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/changes/{change-id}/revisions/{revision-id}/fixes"
-	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"revision-id"+"}", url.PathEscape(parameterValueToString(r.revisionId, "revisionId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-			var v map[string]interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -11041,6 +11229,337 @@ func (a *ChangesAPIService) PostChangesChangeIdRevertSubmissionExecute(r ApiPost
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostChangesChangeIdReviewersRequest struct {
+	ctx context.Context
+	ApiService *ChangesAPIService
+	changeId string
+	reviewerInput *ReviewerInput
+}
+
+func (r ApiPostChangesChangeIdReviewersRequest) ReviewerInput(reviewerInput ReviewerInput) ApiPostChangesChangeIdReviewersRequest {
+	r.reviewerInput = &reviewerInput
+	return r
+}
+
+func (r ApiPostChangesChangeIdReviewersRequest) Execute() (*ReviewerResult, *http.Response, error) {
+	return r.ApiService.PostChangesChangeIdReviewersExecute(r)
+}
+
+/*
+PostChangesChangeIdReviewers Add Reviewer
+
+Adds one user or all members of one group as reviewer to the change.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param changeId
+ @return ApiPostChangesChangeIdReviewersRequest
+*/
+func (a *ChangesAPIService) PostChangesChangeIdReviewers(ctx context.Context, changeId string) ApiPostChangesChangeIdReviewersRequest {
+	return ApiPostChangesChangeIdReviewersRequest{
+		ApiService: a,
+		ctx: ctx,
+		changeId: changeId,
+	}
+}
+
+// Execute executes the request
+//  @return ReviewerResult
+func (a *ChangesAPIService) PostChangesChangeIdReviewersExecute(r ApiPostChangesChangeIdReviewersRequest) (*ReviewerResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ReviewerResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.PostChangesChangeIdReviewers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers"
+	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "text/plain"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.reviewerInput
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v ReviewerResult
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest struct {
+	ctx context.Context
+	ApiService *ChangesAPIService
+	changeId string
+	reviewerId string
+	deleteReviewerInput *DeleteReviewerInput
+}
+
+func (r ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest) DeleteReviewerInput(deleteReviewerInput DeleteReviewerInput) ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest {
+	r.deleteReviewerInput = &deleteReviewerInput
+	return r
+}
+
+func (r ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostChangesChangeIdReviewersReviewerIdDeleteExecute(r)
+}
+
+/*
+PostChangesChangeIdReviewersReviewerIdDelete Delete Reviewer
+
+Deletes a reviewer from a change. Deleting a reviewer also removes that user from the attention set.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param changeId
+ @param reviewerId
+ @return ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest
+*/
+func (a *ChangesAPIService) PostChangesChangeIdReviewersReviewerIdDelete(ctx context.Context, changeId string, reviewerId string) ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest {
+	return ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest{
+		ApiService: a,
+		ctx: ctx,
+		changeId: changeId,
+		reviewerId: reviewerId,
+	}
+}
+
+// Execute executes the request
+func (a *ChangesAPIService) PostChangesChangeIdReviewersReviewerIdDeleteExecute(r ApiPostChangesChangeIdReviewersReviewerIdDeleteRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.PostChangesChangeIdReviewersReviewerIdDelete")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers/{reviewer-id}/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"reviewer-id"+"}", url.PathEscape(parameterValueToString(r.reviewerId, "reviewerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.deleteReviewerInput
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest struct {
+	ctx context.Context
+	ApiService *ChangesAPIService
+	changeId string
+	reviewerId string
+	voteId string
+	deleteVoteInput *DeleteVoteInput
+}
+
+func (r ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest) DeleteVoteInput(deleteVoteInput DeleteVoteInput) ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest {
+	r.deleteVoteInput = &deleteVoteInput
+	return r
+}
+
+func (r ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteExecute(r)
+}
+
+/*
+PostChangesChangeIdReviewersReviewerIdVotesVoteIdDelete Delete Vote
+
+Deletes a single vote from a change. Note, that even when the last vote of a reviewer is removed the reviewer itself is still listed on the change.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param changeId
+ @param reviewerId
+ @param voteId
+ @return ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest
+*/
+func (a *ChangesAPIService) PostChangesChangeIdReviewersReviewerIdVotesVoteIdDelete(ctx context.Context, changeId string, reviewerId string, voteId string) ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest {
+	return ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest{
+		ApiService: a,
+		ctx: ctx,
+		changeId: changeId,
+		reviewerId: reviewerId,
+		voteId: voteId,
+	}
+}
+
+// Execute executes the request
+func (a *ChangesAPIService) PostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteExecute(r ApiPostChangesChangeIdReviewersReviewerIdVotesVoteIdDeleteRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChangesAPIService.PostChangesChangeIdReviewersReviewerIdVotesVoteIdDelete")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/changes/{change-id}/reviewers/{reviewer-id}/votes/{vote-id}/delete"
+	localVarPath = strings.Replace(localVarPath, "{"+"change-id"+"}", url.PathEscape(parameterValueToString(r.changeId, "changeId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"reviewer-id"+"}", url.PathEscape(parameterValueToString(r.reviewerId, "reviewerId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"vote-id"+"}", url.PathEscape(parameterValueToString(r.voteId, "voteId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "text/plain"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.deleteVoteInput
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ApiPostChangesChangeIdRevisionsRevisionIdCherrypickRequest struct {
