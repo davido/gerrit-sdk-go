@@ -19,32 +19,59 @@ var _ MappedNullable = &GeneralPreferencesInfo{}
 
 // GeneralPreferencesInfo struct for GeneralPreferencesInfo
 type GeneralPreferencesInfo struct {
+	// The number of changes to show on each page. Allowed values are 10, 25, 50, 100.
 	ChangesPerPage *int32 `json:"changes_per_page,omitempty"`
+	// The type of download URL the user prefers to use. May be any key from the schemes map in DownloadInfo.
 	DownloadScheme *string `json:"download_scheme,omitempty"`
+	// Which theme to use. Allowed values are AUTO or DARK or LIGHT.
 	Theme *Theme `json:"theme,omitempty"`
+	// The format to display the date in. Allowed values are STD, US, ISO, EURO, UK.
 	DateFormat *DateFormat `json:"date_format,omitempty"`
+	// The format to display the time in. Allowed values are HHMM_12, HHMM_24.
 	TimeFormat *TimeFormat `json:"time_format,omitempty"`
+	// Whether to expand diffs inline instead of opening as separate page (Gerrit web app UI only).
 	ExpandInlineDiffs *bool `json:"expand_inline_diffs,omitempty"`
+	// Whether to show relative dates in the changes table.
 	RelativeDateInChangeTable *bool `json:"relative_date_in_change_table,omitempty"`
+	// The type of diff view to show. Allowed values are SIDE_BY_SIDE, UNIFIED_DIFF.
 	DiffView *DiffView `json:"diff_view,omitempty"`
+	// Whether to show the change sizes as colored bars in the change table.
 	SizeBarInChangeTable *bool `json:"size_bar_in_change_table,omitempty"`
+	// Whether to show change number in the change table.
 	LegacycidInChangeTable *bool `json:"legacycid_in_change_table,omitempty"`
+	// Whether to mute common path prefixes in file names in the file table.
 	MuteCommonPathPrefixes *bool `json:"mute_common_path_prefixes,omitempty"`
+	// Whether to insert Signed-off-by footer in changes created with the inline edit feature.
 	SignedOffBy *bool `json:"signed_off_by,omitempty"`
+	// The type of email strategy to use. On ENABLED, the user will receive emails from Gerrit. On CC_ON_OWN_COMMENTS the user will also receive emails for their own comments. On ATTENTION_SET_ONLY, on emails about changes, the user will receive emails only if they are in the attention set of that change.
 	EmailStrategy *EmailStrategy `json:"email_strategy,omitempty"`
+	// The format to use for outgoing email. Allowed values are PLAINTEXT and HTML_PLAINTEXT.
 	EmailFormat *EmailFormat `json:"email_format,omitempty"`
+	// The base which should be pre-selected in the 'Diff Against' drop-down list when the change screen is opened for a merge commit. Allowed values are AUTO_MERGE and FIRST_PARENT.
 	DefaultBaseForMerges *DefaultBase `json:"default_base_for_merges,omitempty"`
+	// Whether to publish draft comments on push by default.
 	PublishCommentsOnPush *bool `json:"publish_comments_on_push,omitempty"`
+	// Whether to disable all keyboard shortcuts.
 	DisableKeyboardShortcuts *bool `json:"disable_keyboard_shortcuts,omitempty"`
+	// Whether to disable token highlighting on hover.
 	DisableTokenHighlighting *bool `json:"disable_token_highlighting,omitempty"`
+	// Whether to set work-in-progress on push or on create changes online by default.
 	WorkInProgressByDefault *bool `json:"work_in_progress_by_default,omitempty"`
+	// The menu items of the MY top menu as a list of TopMenuItemInfo entities.
 	My []MenuItem `json:"my,omitempty"`
+	// The columns to display in the change table (Gerrit web app UI only). The default is empty, which will default columns as determined by the frontend.
 	ChangeTable []string `json:"change_table,omitempty"`
+	// Whether to prompt user to enable browser notification in browser.
 	AllowBrowserNotifications *bool `json:"allow_browser_notifications,omitempty"`
+	// Whether to receive suggested code while writing comments. This feature needs a plugin implementation.
 	AllowSuggestCodeWhileCommenting *bool `json:"allow_suggest_code_while_commenting,omitempty"`
+	// Whether to receive autocompletions while writing comments. This feature needs a plugin implementation.
 	AllowAutocompletingComments *bool `json:"allow_autocompleting_comments,omitempty"`
+	// The name of the AI model selected for the AI chat. This feature needs a plugin implementation.
 	AiChatSelectedModel *string `json:"ai_chat_selected_model,omitempty"`
+	// A comma-separated list of label names that limits which label columns are shown in the change table. If empty, all labels are shown.
 	LabelFilter *string `json:"label_filter,omitempty"`
+	// String indicating which sidebar should be open on the diff page. Set to \"NONE\" if no sidebars should be open. Plugin-supplied sidebars will be prefixed with \"plugin-\".
 	DiffPageSidebar *string `json:"diff_page_sidebar,omitempty"`
 }
 

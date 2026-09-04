@@ -1276,7 +1276,9 @@ func (r ApiGetConfigServerMetricsRequest) Execute() (*map[string]MetricJson, *ht
 }
 
 /*
-GetConfigServerMetrics Method for GetConfigServerMetrics
+GetConfigServerMetrics List Metrics
+
+Lists the metrics of the server, returning a map of metric name to a MetricJson entity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetConfigServerMetricsRequest
@@ -1394,7 +1396,9 @@ func (r ApiGetConfigServerMetricsMetricIdRequest) Execute() (*MetricJson, *http.
 }
 
 /*
-GetConfigServerMetricsMetricId Method for GetConfigServerMetricsMetricId
+GetConfigServerMetricsMetricId Get Metric
+
+Retrieves a single metric of the server. The metric name is used as the \{metric-id\} and must be URL-encoded because it may contain slashes.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param metricId

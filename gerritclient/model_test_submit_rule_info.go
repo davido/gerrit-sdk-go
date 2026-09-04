@@ -19,12 +19,19 @@ var _ MappedNullable = &TestSubmitRuleInfo{}
 
 // TestSubmitRuleInfo struct for TestSubmitRuleInfo
 type TestSubmitRuleInfo struct {
+	// OK, the change can be submitted. + NOT_READY, additional labels are required before submit. + CLOSED, closed changes cannot be submitted. + RULE_ERROR, rule code failed with an error.
 	Status *string `json:"status,omitempty"`
+	// When status is RULE_ERROR this message provides some text describing the failure of the rule predicate.
 	ErrorMessage *string `json:"error_message,omitempty"`
+	// Map of labels that are approved; an AccountInfo identifies the voter chosen by the rule.
 	Ok map[string]AccountInfo `json:"ok,omitempty"`
+	// Map of labels that are preventing submit; AccountInfo identifies voter.
 	Reject map[string]AccountInfo `json:"reject,omitempty"`
+	// Map of labels that need to be given to submit. The value is currently an empty object.
 	Need map[string]map[string]interface{} `json:"need,omitempty"`
+	// Map of labels that can be used, but do not affect submit. AccountInfo identifies voter, if the label has been applied.
 	May map[string]AccountInfo `json:"may,omitempty"`
+	// Map of labels that should have been in need but cannot be used by any user because of access restrictions. The value is currently an empty object.
 	Impossible map[string]map[string]interface{} `json:"impossible,omitempty"`
 }
 

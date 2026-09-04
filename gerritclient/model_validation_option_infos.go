@@ -19,6 +19,7 @@ var _ MappedNullable = &ValidationOptionInfos{}
 
 // ValidationOptionInfos struct for ValidationOptionInfos
 type ValidationOptionInfos struct {
+	// The list of all possible validation options.
 	ValidationOptions []ValidationOptionInfo `json:"validation_options,omitempty"`
 }
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &BranchInfo{}
 
 // BranchInfo struct for BranchInfo
 type BranchInfo struct {
+	// Actions the caller might be able to perform on this branch, as a map of action name to ActionInfo entities.
 	Actions map[string]ActionInfo `json:"actions,omitempty"`
 	// Links to the branch in external sites as a list of WebLinkInfo entries.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`

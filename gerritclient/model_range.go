@@ -19,9 +19,13 @@ var _ MappedNullable = &Range{}
 
 // Range struct for Range
 type Range struct {
+	// The start line number of the range. (1-based)
 	StartLine *int32 `json:"start_line,omitempty"`
+	// The character position in the start line. (0-based)
 	StartCharacter *int32 `json:"start_character,omitempty"`
+	// The end line number of the range. (1-based)
 	EndLine *int32 `json:"end_line,omitempty"`
+	// The character position in the end line. (0-based)
 	EndCharacter *int32 `json:"end_character,omitempty"`
 }
 

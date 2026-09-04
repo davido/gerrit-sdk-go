@@ -19,30 +19,55 @@ var _ MappedNullable = &MetricJson{}
 
 // MetricJson struct for MetricJson
 type MetricJson struct {
+	// The description of the metric.
 	Description *string `json:"description,omitempty"`
+	// The unit of measurement of the recorded values.
 	Unit *string `json:"unit,omitempty"`
+	// Whether the metric reports a single constant value.
 	Constant *bool `json:"constant,omitempty"`
+	// Whether the metric reports a rate.
 	Rate *bool `json:"rate,omitempty"`
+	// Whether the metric is a gauge that reports an instantaneous value.
 	Gauge *bool `json:"gauge,omitempty"`
+	// Whether the metric accumulates over time.
 	Cumulative *bool `json:"cumulative,omitempty"`
+	// The number of recorded events.
 	Count *int32 `json:"count,omitempty"`
+	// The current value, for constant metrics and gauges.
 	Value map[string]interface{} `json:"value,omitempty"`
+	// The one-minute moving average rate.
 	Rate1m *float32 `json:"rate_1m,omitempty"`
+	// The five-minute moving average rate.
 	Rate5m *float32 `json:"rate_5m,omitempty"`
+	// The fifteen-minute moving average rate.
 	Rate15m *float32 `json:"rate_15m,omitempty"`
+	// The mean rate since the metric was registered.
 	RateMean *float32 `json:"rate_mean,omitempty"`
+	// The median (50th percentile) of the recorded values.
 	P50 *float32 `json:"p50,omitempty"`
+	// The 75th percentile of the recorded values.
 	P75 *float32 `json:"p75,omitempty"`
+	// The 95th percentile of the recorded values.
 	P95 *float32 `json:"p95,omitempty"`
+	// The 98th percentile of the recorded values.
 	P98 *float32 `json:"p98,omitempty"`
+	// The 99th percentile of the recorded values.
 	P99 *float32 `json:"p99,omitempty"`
+	// The 99.9th percentile of the recorded values.
 	P999 *float32 `json:"p99_9,omitempty"`
+	// The minimum recorded value.
 	Min *float32 `json:"min,omitempty"`
+	// The average of the recorded values.
 	Avg *float32 `json:"avg,omitempty"`
+	// The maximum recorded value.
 	Max *float32 `json:"max,omitempty"`
+	// The sum of the recorded values.
 	Sum *float32 `json:"sum,omitempty"`
+	// The standard deviation of the recorded values.
 	StdDev *float32 `json:"std_dev,omitempty"`
+	// The fields of the metric as a list of FieldJson entities.
 	Fields []FieldJson `json:"fields,omitempty"`
+	// The per-field-value breakdown of the metric, as a map of field values to the recorded value for that combination.
 	Buckets map[string]map[string]interface{} `json:"buckets,omitempty"`
 }
 

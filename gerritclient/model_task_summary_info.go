@@ -21,10 +21,13 @@ var _ MappedNullable = &TaskSummaryInfo{}
 type TaskSummaryInfo struct {
 	// Total number of current tasks.
 	Total *int32 `json:"total,omitempty"`
+	// Number of currently stopping tasks.
 	Stopping *int32 `json:"stopping,omitempty"`
 	// Number of currently running tasks.
 	Running *int32 `json:"running,omitempty"`
+	// Number of currently parked tasks.
 	Parked *int32 `json:"parked,omitempty"`
+	// Number of currently starting tasks.
 	Starting *int32 `json:"starting,omitempty"`
 	// Number of currently ready tasks.
 	Ready *int32 `json:"ready,omitempty"`

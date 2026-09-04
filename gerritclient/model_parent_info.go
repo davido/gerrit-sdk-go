@@ -32,7 +32,7 @@ type ParentInfo struct {
 	// If the parent commit is a patch-set of another gerrit change, this field will hold the patch-set number of the parent change. Otherwise, will be null.
 	PatchSetNumber *int32 `json:"patch_set_number,omitempty"`
 	// If the parent commit is a patch-set of another gerrit change, this field will hold the change status of the parent change. Otherwise, will be null.
-	ChangeStatus *string `json:"change_status,omitempty"`
+	ChangeStatus *ChangeStatus `json:"change_status,omitempty"`
 }
 
 // NewParentInfo instantiates a new ParentInfo object
@@ -245,9 +245,9 @@ func (o *ParentInfo) SetPatchSetNumber(v int32) {
 }
 
 // GetChangeStatus returns the ChangeStatus field value if set, zero value otherwise.
-func (o *ParentInfo) GetChangeStatus() string {
+func (o *ParentInfo) GetChangeStatus() ChangeStatus {
 	if o == nil || IsNil(o.ChangeStatus) {
-		var ret string
+		var ret ChangeStatus
 		return ret
 	}
 	return *o.ChangeStatus
@@ -255,7 +255,7 @@ func (o *ParentInfo) GetChangeStatus() string {
 
 // GetChangeStatusOk returns a tuple with the ChangeStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ParentInfo) GetChangeStatusOk() (*string, bool) {
+func (o *ParentInfo) GetChangeStatusOk() (*ChangeStatus, bool) {
 	if o == nil || IsNil(o.ChangeStatus) {
 		return nil, false
 	}
@@ -271,8 +271,8 @@ func (o *ParentInfo) HasChangeStatus() bool {
 	return false
 }
 
-// SetChangeStatus gets a reference to the given string and assigns it to the ChangeStatus field.
-func (o *ParentInfo) SetChangeStatus(v string) {
+// SetChangeStatus gets a reference to the given ChangeStatus and assigns it to the ChangeStatus field.
+func (o *ParentInfo) SetChangeStatus(v ChangeStatus) {
 	o.ChangeStatus = &v
 }
 

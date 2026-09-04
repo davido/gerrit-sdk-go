@@ -19,11 +19,17 @@ var _ MappedNullable = &ReviewerResult{}
 
 // ReviewerResult struct for ReviewerResult
 type ReviewerResult struct {
+	// Value of the reviewer field from ReviewerInput set while adding the reviewer.
 	Input *string `json:"input,omitempty"`
+	// Error message explaining why the reviewer could not be added. + If a group was specified in the input and an error is returned, it means that none of the members were added as reviewer.
 	Error *string `json:"error,omitempty"`
+	// Whether adding the reviewer requires confirmation.
 	Confirm *bool `json:"confirm,omitempty"`
+	// The newly added reviewers as a list of ReviewerInfo entities.
 	Reviewers []ReviewerInfo `json:"reviewers,omitempty"`
+	// The newly CCed accounts as a list of AccountInfo entities. This field will only appear if the requested state for the reviewer was CC.
 	Ccs []AccountInfo `json:"ccs,omitempty"`
+	// The newly removed accounts as a list of AccountInfo entities. This field will only appear if the requested state for the reviewer was REMOVED.
 	Removed *AccountInfo `json:"removed,omitempty"`
 }
 

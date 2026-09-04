@@ -21,6 +21,7 @@ var _ MappedNullable = &FlowActionTypeInfo{}
 type FlowActionTypeInfo struct {
 	// The name of the action.
 	Name *string `json:"name,omitempty"`
+	// Placeholder text shown for the action's parameters in the UI.
 	ParametersPlaceholder *string `json:"parameters_placeholder,omitempty"`
 }
 

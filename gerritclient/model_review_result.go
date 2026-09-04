@@ -19,10 +19,15 @@ var _ MappedNullable = &ReviewResult{}
 
 // ReviewResult struct for ReviewResult
 type ReviewResult struct {
+	// Map of labels to values after the review was posted. Null if any reviewer additions were rejected.
 	Labels map[string]int32 `json:"labels,omitempty"`
+	// Map of account or group identifier to ReviewerResult representing the outcome of adding/removing a reviewer. Absent if no reviewer additions were requested.
 	Reviewers map[string]ReviewerResult `json:"reviewers,omitempty"`
+	// If true, the change was moved from WIP to ready for review as a result of this action. Not set if false.
 	Ready *bool `json:"ready,omitempty"`
+	// Error message for non-200 responses.
 	Error *string `json:"error,omitempty"`
+	// Post-update change information.
 	ChangeInfo *ChangeInfo `json:"change_info,omitempty"`
 }
 

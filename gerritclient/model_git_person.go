@@ -19,9 +19,13 @@ var _ MappedNullable = &GitPerson{}
 
 // GitPerson struct for GitPerson
 type GitPerson struct {
+	// The name of the author/committer.
 	Name *string `json:"name,omitempty"`
+	// The email address of the author/committer.
 	Email *string `json:"email,omitempty"`
+	// The timestamp of when this identity was constructed.
 	Date *string `json:"date,omitempty"`
+	// The timezone offset from UTC of when this identity was constructed.
 	Tz *int32 `json:"tz,omitempty"`
 }
 

@@ -19,8 +19,11 @@ var _ MappedNullable = &GarbageCollectInput{}
 
 // GarbageCollectInput struct for GarbageCollectInput
 type GarbageCollectInput struct {
+	// Whether progress information should be shown.
 	ShowProgress *bool `json:"show_progress,omitempty"`
+	// Whether an aggressive garbage collection should be done.
 	Aggressive *bool `json:"aggressive,omitempty"`
+	// Whether the garbage collection should run asynchronously.
 	Async *bool `json:"async,omitempty"`
 }
 

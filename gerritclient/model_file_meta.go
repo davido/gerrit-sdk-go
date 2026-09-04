@@ -19,9 +19,13 @@ var _ MappedNullable = &FileMeta{}
 
 // FileMeta struct for FileMeta
 type FileMeta struct {
+	// The name of the file.
 	Name *string `json:"name,omitempty"`
+	// The content type of the file. For the commit message and merge list the value is text/x-gerrit-commit-message and text/x-gerrit-merge-list respectively. For git links the value is x-git/gitlink. For symlinks the value is x-git/symlink. For regular files the value is the file mime type (e.g.
 	ContentType *string `json:"content_type,omitempty"`
+	// The total number of lines in the file.
 	Lines *int32 `json:"lines,omitempty"`
+	// Links to the file in external sites as a list of WebLinkInfo entries.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`
 }
 

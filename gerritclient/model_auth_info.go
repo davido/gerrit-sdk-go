@@ -19,6 +19,7 @@ var _ MappedNullable = &AuthInfo{}
 
 // AuthInfo struct for AuthInfo
 type AuthInfo struct {
+	// The authentication type that is configured on the server; see auth.type.
 	AuthType *AuthType `json:"auth_type,omitempty"`
 	// Whether contributor agreements are required.
 	UseContributorAgreements *bool `json:"use_contributor_agreements,omitempty"`

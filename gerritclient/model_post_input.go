@@ -19,8 +19,11 @@ var _ MappedNullable = &PostInput{}
 
 // PostInput struct for PostInput
 type PostInput struct {
+	// Path to file to restore.
 	RestorePath *string `json:"restore_path,omitempty"`
+	// Old path to file to rename.
 	OldPath *string `json:"old_path,omitempty"`
+	// New path to file to rename.
 	NewPath *string `json:"new_path,omitempty"`
 }
 

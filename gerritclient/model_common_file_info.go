@@ -19,16 +19,27 @@ var _ MappedNullable = &CommonFileInfo{}
 
 // CommonFileInfo struct for CommonFileInfo
 type CommonFileInfo struct {
+	// The status of the file (\"A\"=Added, \"D\"=Deleted, \"R\"=Renamed, \"C\"=Copied, \"W\"=Rewritten). + Not set if the file was Modified (\"M\").
 	Status *string `json:"status,omitempty"`
+	// File mode in octal (e.g. 100644) at the old commit. The first three digits indicate the file type and the last three digits contain the file permission bits. For added files, this field will not be present.
 	OldMode *int32 `json:"old_mode,omitempty"`
+	// File mode in octal (e.g. 100644) at the new commit. The first three digits indicate the file type and the last three digits contain the file permission bits. For deleted files, this field will not be present.
 	NewMode *int32 `json:"new_mode,omitempty"`
+	// SHA-1 of the file content at the old commit. For added files, this field will not be present.
 	OldSha *string `json:"old_sha,omitempty"`
+	// SHA-1 of the file content at the new commit. For deleted files, this field will not be present.
 	NewSha *string `json:"new_sha,omitempty"`
+	// Whether the file is binary.
 	Binary *bool `json:"binary,omitempty"`
+	// The old file path. + Only set if the file was renamed or copied.
 	OldPath *string `json:"old_path,omitempty"`
+	// Number of inserted lines. + Not set for binary files or if no lines were inserted. + An empty last line is not included in the count and hence this number can differ by one from details provided in DiffInfo.
 	LinesInserted *int32 `json:"lines_inserted,omitempty"`
+	// Number of deleted lines. + Not set for binary files or if no lines were deleted. + An empty last line is not included in the count and hence this number can differ by one from details provided in DiffInfo.
 	LinesDeleted *int32 `json:"lines_deleted,omitempty"`
+	// Number of bytes by which the file size increased/decreased.
 	SizeDelta *int32 `json:"size_delta,omitempty"`
+	// File size in bytes.
 	Size *int32 `json:"size,omitempty"`
 	DiffsTooExpensiveToCompute *bool `json:"diffs_too_expensive_to_compute,omitempty"`
 }

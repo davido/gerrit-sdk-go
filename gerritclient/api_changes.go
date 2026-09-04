@@ -4858,7 +4858,9 @@ func (r ApiGetChangesChangeIdRevisionsRevisionIdArchiveRequest) Execute() (*os.F
 }
 
 /*
-GetChangesChangeIdRevisionsRevisionIdArchive Method for GetChangesChangeIdRevisionsRevisionIdArchive
+GetChangesChangeIdRevisionsRevisionIdArchive Get Archive
+
+Retrieves an archive of the files in a revision.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -7594,7 +7596,9 @@ func (r ApiGetChangesChangeIdRevisionsRevisionIdRobotcommentsRequest) Execute() 
 }
 
 /*
-GetChangesChangeIdRevisionsRevisionIdRobotcomments Method for GetChangesChangeIdRevisionsRevisionIdRobotcomments
+GetChangesChangeIdRevisionsRevisionIdRobotcomments List Robot Comments
+
+Lists the robot comments of a revision.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -7708,7 +7712,9 @@ func (r ApiGetChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentIdReque
 }
 
 /*
-GetChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentId Method for GetChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentId
+GetChangesChangeIdRevisionsRevisionIdRobotcommentsRobotCommentId Get Robot Comment
+
+Retrieves a robot comment of a revision.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -7930,7 +7936,9 @@ func (r ApiGetChangesChangeIdRobotcommentsRequest) Execute() (*map[string][]Robo
 }
 
 /*
-GetChangesChangeIdRobotcomments Method for GetChangesChangeIdRobotcomments
+GetChangesChangeIdRobotcomments List Change Robot Comments
+
+Lists the robot comments of all revisions of the change.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId

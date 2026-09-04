@@ -19,9 +19,13 @@ var _ MappedNullable = &AgreementInfo{}
 
 // AgreementInfo struct for AgreementInfo
 type AgreementInfo struct {
+	// The unique name of the contributor agreement.
 	Name *string `json:"name,omitempty"`
+	// The description of the contributor agreement.
 	Description *string `json:"description,omitempty"`
+	// The URL of the contributor agreement.
 	Url *string `json:"url,omitempty"`
+	// The group to which a user that signs the contributor agreement online is added automatically as a GroupInfo entity. If not set, users cannot sign the contributor agreement online.
 	AutoVerifyGroup *GroupInfo `json:"auto_verify_group,omitempty"`
 }
 

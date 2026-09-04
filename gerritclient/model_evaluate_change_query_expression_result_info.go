@@ -25,6 +25,7 @@ type EvaluateChangeQueryExpressionResultInfo struct {
 	PassingAtoms []string `json:"passing_atoms,omitempty"`
 	// List of failing leaf atoms (atoms that do not match the change).
 	FailingAtoms []string `json:"failing_atoms,omitempty"`
+	// Explanations for why atoms pass or fail. Explanations are only available for a few atoms, for most atoms no explanation is provided. Not set if none of the atoms has an explanation.
 	AtomExplanations map[string]string `json:"atom_explanations,omitempty"`
 }
 

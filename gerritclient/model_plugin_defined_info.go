@@ -19,7 +19,9 @@ var _ MappedNullable = &PluginDefinedInfo{}
 
 // PluginDefinedInfo struct for PluginDefinedInfo
 type PluginDefinedInfo struct {
+	// The name of the plugin that contributed the information.
 	Name *string `json:"name,omitempty"`
+	// A message from the plugin.
 	Message *string `json:"message,omitempty"`
 }
 

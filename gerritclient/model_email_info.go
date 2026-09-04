@@ -23,6 +23,7 @@ type EmailInfo struct {
 	Email *string `json:"email,omitempty"`
 	// Whether this is the preferred email address of the user.
 	Preferred *bool `json:"preferred,omitempty"`
+	// Whether this email address is the one used to display the user's avatar.
 	Avatar *bool `json:"avatar,omitempty"`
 	// Set true if the user must confirm control of the email address by following a verification link before Gerrit will permit use of this address.
 	PendingConfirmation *bool `json:"pending_confirmation,omitempty"`

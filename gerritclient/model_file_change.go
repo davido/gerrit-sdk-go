@@ -19,9 +19,13 @@ var _ MappedNullable = &FileChange{}
 
 // FileChange struct for FileChange
 type FileChange struct {
+	// The new file content, base64-encoded, for a create or update. For a 120000 (symlink) entry, the decoded content is the symlink target path.
 	Content *string `json:"content,omitempty"`
+	// The file mode in octal format (100644 regular file, 100755 executable, 120000 symlink). If not set, new files are created as 100644 and existing files keep their mode.
 	FileMode *int32 `json:"file_mode,omitempty"`
+	// If true, deletes the file at this path.
 	Delete *bool `json:"delete,omitempty"`
+	// Source path to rename from. The file at rename_from is moved to this entry's path.
 	RenameFrom *string `json:"rename_from,omitempty"`
 }
 

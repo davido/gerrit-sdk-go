@@ -21,17 +21,29 @@ var _ MappedNullable = &AccountDetailInfo{}
 type AccountDetailInfo struct {
 	// The timestamp of when the account was registered.
 	RegisteredOn *string `json:"registered_on,omitempty"`
+	// The numeric ID of the account.
 	AccountId *int32 `json:"_account_id,omitempty"`
+	// The full name of the user. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and option DETAILS for account queries.
 	Name *string `json:"name,omitempty"`
+	// The display name of the user. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and option DETAILS for account queries.
 	DisplayName *string `json:"display_name,omitempty"`
+	// The email address the user prefers to be contacted through. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and options DETAILS and ALL_EMAILS for account queries.
 	Email *string `json:"email,omitempty"`
+	// A list of the secondary email addresses of the user. + Only set for account queries when the ALL_EMAILS option or the suggest parameter is set. + Secondary emails are only included if the calling user has the Modify Account, and hence is allowed to see secondary emails of other users.
 	SecondaryEmails []string `json:"secondary_emails,omitempty"`
+	// The username of the user. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS for change queries + and option DETAILS for account queries.
 	Username *string `json:"username,omitempty"`
+	// List of AvatarInfo + entities that provide information about avatar images of the account.
 	Avatars []AvatarInfo `json:"avatars,omitempty"`
+	// Whether the query would deliver more results if not limited. + Only set on the last account that is returned.
 	MoreAccounts *bool `json:"_more_accounts,omitempty"`
+	// Status message of the account.
 	Status *string `json:"status,omitempty"`
+	// Whether the account is inactive.
 	Inactive *bool `json:"inactive,omitempty"`
+	// Whether the account is deleted. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS
 	Deleted *bool `json:"deleted,omitempty"`
+	// List of additional tags that this account has. The only + current tag an account can have is SERVICE_USER. + Only set if detailed account information is requested. + See option DETAILED_ACCOUNTS
 	Tags []string `json:"tags,omitempty"`
 }
 

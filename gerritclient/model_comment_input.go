@@ -19,6 +19,7 @@ var _ MappedNullable = &CommentInput{}
 
 // CommentInput struct for CommentInput
 type CommentInput struct {
+	// Whether to include the source lines around the comment as context in the response.
 	EnableContext *bool `json:"enable_context,omitempty"`
 }
 

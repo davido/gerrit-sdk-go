@@ -124,6 +124,7 @@ type ChangeInfo struct {
 	MoreChanges *bool `json:"_more_changes,omitempty"`
 	// A list of ProblemInfo entities describing potential problems with this change. Only set if CHECK is set.
 	Problems []ProblemInfo `json:"problems,omitempty"`
+	// Plugin-provided information about the change, as a list of PluginDefinedInfo entities. Only present if a plugin contributes data.
 	Plugins []PluginDefinedInfo `json:"plugins,omitempty"`
 	// A list of TrackingIdInfo entities describing references to external tracking systems. Only set if tracking ids are requested.
 	TrackingIds []TrackingIdInfo `json:"tracking_ids,omitempty"`

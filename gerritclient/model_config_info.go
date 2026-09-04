@@ -41,6 +41,7 @@ type ConfigInfo struct {
 	PrivateByDefault *InheritedBooleanInfo `json:"private_by_default,omitempty"`
 	// InheritedBooleanInfo that tells whether all new changes are set as work-in-progress by default.
 	WorkInProgressByDefault *InheritedBooleanInfo `json:"work_in_progress_by_default,omitempty"`
+	// InheritedBooleanInfo that tells whether reviewers and CCs that do not have a Gerrit account can be added to a change by their email address.
 	EnableReviewerByEmail *InheritedBooleanInfo `json:"enable_reviewer_by_email,omitempty"`
 	// InheritedBooleanInfo that indicates whether a change's author date will be changed to match its submitter date upon submit.
 	MatchAuthorToCommitterDate *InheritedBooleanInfo `json:"match_author_to_committer_date,omitempty"`
@@ -62,6 +63,7 @@ type ConfigInfo struct {
 	Actions map[string]ActionInfo `json:"actions,omitempty"`
 	// Map with the comment link configurations of the project. The name of the comment link configuration is mapped to a CommentlinkInfo entity.
 	Commentlinks map[string]CommentLinkInfo `json:"commentlinks,omitempty"`
+	// Views that are shown as extension panels, as a map of panel section name to the list of panel names configured for the project.
 	ExtensionPanelNames map[string][]string `json:"extension_panel_names,omitempty"`
 }
 

@@ -19,8 +19,11 @@ var _ MappedNullable = &FieldJson{}
 
 // FieldJson struct for FieldJson
 type FieldJson struct {
+	// The name of the field.
 	Name *string `json:"name,omitempty"`
+	// The type of the field, set only for enum-valued fields.
 	Type *string `json:"type,omitempty"`
+	// The description of the field.
 	Description *string `json:"description,omitempty"`
 }
 

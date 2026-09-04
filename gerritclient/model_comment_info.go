@@ -55,6 +55,7 @@ type CommentInfo struct {
 	CommitId *string `json:"commit_id,omitempty"`
 	// Suggested fixes for this comment as a list of FixSuggestionInfo entities.
 	FixSuggestions []FixSuggestionInfo `json:"fix_suggestions,omitempty"`
+	// Whether the comment was created by an AI agent. Not set if false.
 	IsAi *bool `json:"is_ai,omitempty"`
 }
 

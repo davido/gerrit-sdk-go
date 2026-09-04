@@ -19,6 +19,7 @@ var _ MappedNullable = &ReceiveInfo{}
 
 // ReceiveInfo struct for ReceiveInfo
 type ReceiveInfo struct {
+	// Whether signed push validation support is enabled on the server; see the global configuration for details.
 	EnableSignedPush *bool `json:"enable_signed_push,omitempty"`
 }
 

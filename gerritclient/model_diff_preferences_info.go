@@ -49,12 +49,15 @@ type DiffPreferencesInfo struct {
 	AutoHideDiffTableHeader *bool `json:"auto_hide_diff_table_header,omitempty"`
 	// If true the line numbers are hidden.
 	HideLineNumbers *bool `json:"hide_line_numbers,omitempty"`
+	// Whether the whole file should be rendered instead of only the changed parts.
 	RenderEntireFile *bool `json:"render_entire_file,omitempty"`
+	// Whether empty panes should be hidden. The left pane is empty when a file was added; the right pane is empty when a file was deleted.
 	HideEmptyPane *bool `json:"hide_empty_pane,omitempty"`
 	// Whether matching brackets should be highlighted.
 	MatchBrackets *bool `json:"match_brackets,omitempty"`
 	// Whether to enable line wrapping or not.
 	LineWrapping *bool `json:"line_wrapping,omitempty"`
+	// The responsive-rendering mode of the diff view. Allowed values are NONE, SHRINK_ONLY and FULL_RESPONSIVE.
 	ResponsiveMode *ResponsiveMode `json:"responsive_mode,omitempty"`
 	// Whether whitespace changes should be ignored and if yes, which whitespace changes should be ignored. + Allowed values are IGNORE_NONE, IGNORE_TRAILING, IGNORE_LEADING_AND_TRAILING, IGNORE_ALL.
 	IgnoreWhitespace *Whitespace `json:"ignore_whitespace,omitempty"`
@@ -62,6 +65,7 @@ type DiffPreferencesInfo struct {
 	RetainHeader *bool `json:"retain_header,omitempty"`
 	// Whether deleted files should be skipped on file switch.
 	SkipDeleted *bool `json:"skip_deleted,omitempty"`
+	// Whether files without changes are skipped when switching between files.
 	SkipUnchanged *bool `json:"skip_unchanged,omitempty"`
 	// Whether uncommented files should be skipped on file switch.
 	SkipUncommented *bool `json:"skip_uncommented,omitempty"`

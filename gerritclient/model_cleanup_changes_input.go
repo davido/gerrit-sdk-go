@@ -19,9 +19,13 @@ var _ MappedNullable = &CleanupChangesInput{}
 
 // CleanupChangesInput struct for CleanupChangesInput
 type CleanupChangesInput struct {
+	// Abandon all changes that weren't updated in the timespan given here
 	After *string `json:"after,omitempty"`
+	// Whether to also abandon changes that are mergeable
 	IfMergeable *bool `json:"if_mergeable,omitempty"`
+	// Message to post to changes abandoned by the cleanup
 	Message *string `json:"message,omitempty"`
+	// Additional query predicates appended to the base cleanup query. Can be used to limit the batch size, exclude changes, or both, e.g. age:4w limit:100 -project:some/repo -hashtag:keep-alive. By default unset.
 	Query *string `json:"query,omitempty"`
 }
 

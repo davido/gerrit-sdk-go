@@ -19,9 +19,13 @@ var _ MappedNullable = &MenuItem{}
 
 // MenuItem struct for MenuItem
 type MenuItem struct {
+	// The URL of the menu item link.
 	Url *string `json:"url,omitempty"`
+	// The name of the menu item.
 	Name *string `json:"name,omitempty"`
+	// Target attribute of the menu item link.
 	Target *string `json:"target,omitempty"`
+	// The id attribute of the menu item link.
 	Id *string `json:"id,omitempty"`
 }
 

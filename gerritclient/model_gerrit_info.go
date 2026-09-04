@@ -19,7 +19,9 @@ var _ MappedNullable = &GerritInfo{}
 
 // GerritInfo struct for GerritInfo
 type GerritInfo struct {
+	// The name of the All-Projects root project.
 	AllProjects *string `json:"all_projects,omitempty"`
+	// The name of the All-Users project, in which per-user data such as account preferences and watched projects is stored.
 	AllUsers *string `json:"all_users,omitempty"`
 	// Whether documentation search is available.
 	DocSearch *bool `json:"doc_search,omitempty"`
@@ -29,6 +31,7 @@ type GerritInfo struct {
 	EditGpgKeys *bool `json:"edit_gpg_keys,omitempty"`
 	// URL to report bugs.
 	ReportBugUrl *string `json:"report_bug_url,omitempty"`
+	// The name of the configured primary web link (gerrit.primaryWeblinkName), if one is set.
 	PrimaryWeblinkName *string `json:"primary_weblink_name,omitempty"`
 	// Short identifier for this Gerrit installation.
 	InstanceId *string `json:"instance_id,omitempty"`

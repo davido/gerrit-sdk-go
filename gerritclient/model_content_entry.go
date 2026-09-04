@@ -19,13 +19,21 @@ var _ MappedNullable = &ContentEntry{}
 
 // ContentEntry struct for ContentEntry
 type ContentEntry struct {
+	// Content in the file on both sides (unchanged).
 	Ab []string `json:"ab,omitempty"`
+	// Content only in the file on side A (deleted in B).
 	A []string `json:"a,omitempty"`
+	// Content only in the file on side B (added in B).
 	B []string `json:"b,omitempty"`
+	// Text sections deleted from side A as a DiffIntralineInfo entity.
 	EditA [][]int32 `json:"edit_a,omitempty"`
+	// Text sections inserted in side B as a DiffIntralineInfo entity.
 	EditB [][]int32 `json:"edit_b,omitempty"`
+	// Indicates whether this entry was introduced by a rebase.
 	DueToRebase *bool `json:"due_to_rebase,omitempty"`
+	// Set to true if the region is common according to the requested ignore-whitespace parameter, but a and b contain differing amounts of whitespace. When present and true a and b are used instead of ab.
 	Common *bool `json:"common,omitempty"`
+	// count of lines skipped on both sides when the file is too large to include all common lines.
 	Skip *int32 `json:"skip,omitempty"`
 }
 

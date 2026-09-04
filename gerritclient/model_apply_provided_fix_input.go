@@ -19,7 +19,9 @@ var _ MappedNullable = &ApplyProvidedFixInput{}
 
 // ApplyProvidedFixInput struct for ApplyProvidedFixInput
 type ApplyProvidedFixInput struct {
+	// The replacements that make up the fix, as a list of FixReplacementInfo entities.
 	FixReplacementInfos []FixReplacementInfo `json:"fix_replacement_infos,omitempty"`
+	// Number of the patch set the fix was originally computed against.
 	OriginalPatchsetForFix *int32 `json:"original_patchset_for_fix,omitempty"`
 }
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &SubmitInput{}
 
 // SubmitInput struct for SubmitInput
 type SubmitInput struct {
+	// Deprecated and no longer used. Kept for backwards compatibility.
 	WaitForMerge *bool `json:"wait_for_merge,omitempty"`
 	// If set, submit the change on behalf of the given user. The value may take any format accepted by the accounts REST API. Using this option requires Submit (On Behalf Of) permission on the branch.
 	OnBehalfOf *string `json:"on_behalf_of,omitempty"`

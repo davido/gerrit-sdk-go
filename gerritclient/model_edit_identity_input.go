@@ -19,8 +19,11 @@ var _ MappedNullable = &EditIdentityInput{}
 
 // EditIdentityInput struct for EditIdentityInput
 type EditIdentityInput struct {
+	// The name of the author/committer. If not specified, the existing name will be used.
 	Name *string `json:"name,omitempty"`
+	// The email of the author/committer. If not specified, the existing email will be used.
 	Email *string `json:"email,omitempty"`
+	// Type of the identity being edited. Must be either AUTHOR or COMMITTER.
 	Type *ChangeEditIdentityType `json:"type,omitempty"`
 }
 

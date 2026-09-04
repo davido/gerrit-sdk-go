@@ -19,24 +19,43 @@ var _ MappedNullable = &RobotCommentInfo{}
 
 // RobotCommentInfo struct for RobotCommentInfo
 type RobotCommentInfo struct {
+	// The author of the message as an AccountInfo entity. + Unset for draft comments, assumed to be the calling user.
 	Author *AccountInfo `json:"author,omitempty"`
+	// Value of the tag field from ReviewInput set while posting the review. NOTE: To apply different tags on different votes/comments multiple invocations of the REST call are required.
 	Tag *string `json:"tag,omitempty"`
+	// Available with the list change comments endpoint. Contains the id of the change message that this comment is linked to.
 	ChangeMessageId *string `json:"change_message_id,omitempty"`
+	// Whether or not the comment must be addressed by the user. The state of resolution of a comment thread is stored in the last comment in that thread chronologically.
 	Unresolved *bool `json:"unresolved,omitempty"`
+	// A list of ContextLine containing the lines of the source file where the comment was written. Available only if the \"enable-context\" parameter (see List Change Comments) is set.
 	ContextLines []ContextLineInfo `json:"context_lines,omitempty"`
+	// Mime type of the file where the comment is written. Available only if the \"enable-context\" parameter (see List Change Comments) is set.
 	SourceContentType *string `json:"source_content_type,omitempty"`
+	// The patch set number for the comment; only set in contexts where + comments may be returned for multiple patch sets.
 	PatchSet *int32 `json:"patch_set,omitempty"`
+	// The URL encoded UUID of the comment.
 	Id *string `json:"id,omitempty"`
+	// The file path for which the inline comment was done. + Not set if returned in a map where the key is the file path.
 	Path *string `json:"path,omitempty"`
+	// The side on which the comment was added. + Allowed values are REVISION and PARENT. + If not set, the default is REVISION.
 	Side *Side `json:"side,omitempty"`
+	// The 1-based parent number. Used only for merge commits when side == PARENT. When not set the comment is for the auto-merge tree.
 	Parent *int32 `json:"parent,omitempty"`
+	// The number of the line for which the comment was done. + If range is set, this equals the end line of the range. + If neither line nor range is set, it's a file comment.
 	Line *int32 `json:"line,omitempty"`
+	// The range of the comment as a CommentRange entity.
 	Range *Range `json:"range,omitempty"`
+	// The URL encoded UUID of the comment to which this comment is a reply.
 	InReplyTo *string `json:"in_reply_to,omitempty"`
+	// The timestamp of when this comment was written.
 	Updated *string `json:"updated,omitempty"`
+	// The comment message.
 	Message *string `json:"message,omitempty"`
+	// Hex commit SHA-1 (40 characters string) of the commit of the patchset to which this comment applies.
 	CommitId *string `json:"commit_id,omitempty"`
+	// Suggested fixes for this comment as a list of FixSuggestionInfo entities.
 	FixSuggestions []FixSuggestionInfo `json:"fix_suggestions,omitempty"`
+	// Whether the comment was created by an AI agent. Not set if false.
 	IsAi *bool `json:"is_ai,omitempty"`
 }
 
