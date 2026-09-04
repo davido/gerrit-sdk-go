@@ -19,7 +19,9 @@ var _ MappedNullable = &RangeInfo{}
 
 // RangeInfo struct for RangeInfo
 type RangeInfo struct {
+	// First index.
 	Start *int32 `json:"start,omitempty"`
+	// Last index.
 	End *int32 `json:"end,omitempty"`
 }
 

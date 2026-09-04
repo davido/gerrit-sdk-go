@@ -19,8 +19,11 @@ var _ MappedNullable = &PermissionInfo{}
 
 // PermissionInfo struct for PermissionInfo
 type PermissionInfo struct {
+	// The name of the label. Not set if it's not a label permission.
 	Label *string `json:"label,omitempty"`
+	// Whether this permission is assigned exclusively.
 	Exclusive *bool `json:"exclusive,omitempty"`
+	// The rules assigned for this permission as a map that maps the UUIDs of the groups for which the permission are assigned to PermissionRuleInfo entities.
 	Rules map[string]PermissionRuleInfo `json:"rules,omitempty"`
 }
 

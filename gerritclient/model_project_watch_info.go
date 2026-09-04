@@ -19,13 +19,21 @@ var _ MappedNullable = &ProjectWatchInfo{}
 
 // ProjectWatchInfo struct for ProjectWatchInfo
 type ProjectWatchInfo struct {
+	// The name of the project.
 	Project *string `json:"project,omitempty"`
+	// A filter string to be applied to the project.
 	Filter *string `json:"filter,omitempty"`
+	// An error message when project is for example hidden or deleted.
 	Problem *string `json:"problem,omitempty"`
+	// Notify on new changes.
 	NotifyNewChanges *bool `json:"notify_new_changes,omitempty"`
+	// Notify on new patch sets.
 	NotifyNewPatchSets *bool `json:"notify_new_patch_sets,omitempty"`
+	// Notify on comments.
 	NotifyAllComments *bool `json:"notify_all_comments,omitempty"`
+	// Notify on submitted changes.
 	NotifySubmittedChanges *bool `json:"notify_submitted_changes,omitempty"`
+	// Notify on abandoned changes.
 	NotifyAbandonedChanges *bool `json:"notify_abandoned_changes,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &IndexChangesInput{}
 
 // IndexChangesInput struct for IndexChangesInput
 type IndexChangesInput struct {
+	// List of change-ids. When delete_missing is true, each entry must be in project~changeNumber format.
 	Changes []string `json:"changes,omitempty"`
+	// Delete changes which are missing in NoteDb from the index. This can be used to get rid of stale index entries. Possible values are true and false. By default set to false.
 	DeleteMissing *bool `json:"delete_missing,omitempty"`
 }
 

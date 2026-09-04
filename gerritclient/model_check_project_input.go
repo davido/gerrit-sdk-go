@@ -19,6 +19,7 @@ var _ MappedNullable = &CheckProjectInput{}
 
 // CheckProjectInput struct for CheckProjectInput
 type CheckProjectInput struct {
+	// Parameters for the AutoCloseableChangesCheck as AutoCloseableChangesCheckInput entity.
 	AutoCloseableChangesCheck *AutoCloseableChangesCheckInput `json:"auto_closeable_changes_check,omitempty"`
 }
 

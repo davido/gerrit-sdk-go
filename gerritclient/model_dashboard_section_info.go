@@ -19,7 +19,9 @@ var _ MappedNullable = &DashboardSectionInfo{}
 
 // DashboardSectionInfo struct for DashboardSectionInfo
 type DashboardSectionInfo struct {
+	// The title of the section.
 	Name *string `json:"name,omitempty"`
+	// The query of the section. + Tokens such as ${project} are not resolved.
 	Query *string `json:"query,omitempty"`
 }
 

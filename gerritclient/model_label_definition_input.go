@@ -19,17 +19,29 @@ var _ MappedNullable = &LabelDefinitionInput{}
 
 // LabelDefinitionInput struct for LabelDefinitionInput
 type LabelDefinitionInput struct {
+	// The new name of the label.+ For label creation the name is required if this LabelDefinitionInput entity is contained in a BatchLabelInput entity.
 	Name *string `json:"name,omitempty"`
+	// The new description for the label.
 	Description *string `json:"description,omitempty"`
+	// The new function of the label (can be NoOp/NoBlock and PatchSetLock). By default NoOp when creating new labels.
 	Function *string `json:"function,omitempty"`
+	// The new values of the label as a map of label value to value description. The label values are formatted strings, e.g. \"+1\" instead of \"1\", \" 0\" instead of \"0\".
 	Values map[string]string `json:"values,omitempty"`
+	// The new default value of the label (as integer).
 	DefaultValue *int32 `json:"default_value,omitempty"`
+	// The new branches for which the label applies as a list of branches. A branch can be a ref, a ref pattern or a regular expression. If not set, the label applies for all branches.
 	Branches []string `json:"branches,omitempty"`
+	// Whether this label can be overridden by child projects.
 	CanOverride *bool `json:"can_override,omitempty"`
+	// See copyCondition.
 	CopyCondition *string `json:"copy_condition,omitempty"`
+	// If true, clears the value stored in copy_condition.
 	UnsetCopyCondition *bool `json:"unset_copy_condition,omitempty"`
+	// Whether allowPostSubmit is set on the label.
 	AllowPostSubmit *bool `json:"allow_post_submit,omitempty"`
+	// Whether ignoreSelfApproval is set on the label.
 	IgnoreSelfApproval *bool `json:"ignore_self_approval,omitempty"`
+	// Message that should be used to commit the change of the label in the project.config file to the refs/meta/config branch.+ Must not be set if this LabelDefinitionInput entity is contained in a BatchLabelInput entity.
 	CommitMessage *string `json:"commit_message,omitempty"`
 }
 

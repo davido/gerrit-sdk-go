@@ -19,8 +19,11 @@ var _ MappedNullable = &MaxObjectSizeLimitInfo{}
 
 // MaxObjectSizeLimitInfo struct for MaxObjectSizeLimitInfo
 type MaxObjectSizeLimitInfo struct {
+	// The effective value in bytes of the max object size limit. + Not set if there is no limit for the object size.
 	Value *string `json:"value,omitempty"`
+	// The max object size limit that is configured on the project as a formatted string. + Not set if there is no limit for the object size configured on project level.
 	ConfiguredValue *string `json:"configured_value,omitempty"`
+	// A string describing whether the value was inherited or overridden from the parent project or global config. + Not set if not inherited or overridden.
 	Summary *string `json:"summary,omitempty"`
 }
 

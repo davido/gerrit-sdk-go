@@ -19,8 +19,11 @@ var _ MappedNullable = &FetchInfo{}
 
 // FetchInfo struct for FetchInfo
 type FetchInfo struct {
+	// The URL of the project.
 	Url *string `json:"url,omitempty"`
+	// The ref of the patch set.
 	Ref *string `json:"ref,omitempty"`
+	// The download commands for this patch set as a map that maps the command names to the commands. + Only set if download commands are requested.
 	Commands map[string]string `json:"commands,omitempty"`
 }
 

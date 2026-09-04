@@ -19,9 +19,13 @@ var _ MappedNullable = &SuggestedReviewerInfo{}
 
 // SuggestedReviewerInfo struct for SuggestedReviewerInfo
 type SuggestedReviewerInfo struct {
+	// An AccountInfo entity, if the suggestion is an account.
 	Account *AccountInfo `json:"account,omitempty"`
+	// A GroupBaseInfo entity, if the suggestion is a group.
 	Group *GroupBaseInfo `json:"group,omitempty"`
+	// The total number of accounts in the suggestion. This is 1 if account is present. If group is present, the total number of accounts that are members of the group is returned (this count includes members of nested groups).
 	Count *int32 `json:"count,omitempty"`
+	// True if group is present and count is above the threshold where the confirmed flag must be passed to add the group as a reviewer.
 	Confirm *bool `json:"confirm,omitempty"`
 }
 

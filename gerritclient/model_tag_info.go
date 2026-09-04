@@ -19,13 +19,21 @@ var _ MappedNullable = &TagInfo{}
 
 // TagInfo struct for TagInfo
 type TagInfo struct {
+	// The revision of the object to which the tag points.
 	Object *string `json:"object,omitempty"`
+	// The tag message. For signed tags, includes the signature.
 	Message *string `json:"message,omitempty"`
+	// The tagger as a GitPersonInfo entity.
 	Tagger *GitPerson `json:"tagger,omitempty"`
+	// The timestamp of when the tag was created. For annotated and signed tags, this is the timestamp of the tag object and is the same as the date field in the tagger. For lightweight tags, it is the commit timestamp of the commit to which the tag points, when the object is a commit.
 	Created *string `json:"created,omitempty"`
+	// Links to the tag in external sites as a list of WebLinkInfo entries.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`
+	// The ref of the tag.
 	Ref *string `json:"ref,omitempty"`
+	// For lightweight tags, the revision of the commit to which the tag points. For annotated tags, the revision of the tag object.
 	Revision *string `json:"revision,omitempty"`
+	// Whether the calling user can delete this tag.
 	CanDelete *bool `json:"can_delete,omitempty"`
 }
 

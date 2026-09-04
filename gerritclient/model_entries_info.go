@@ -19,8 +19,11 @@ var _ MappedNullable = &EntriesInfo{}
 
 // EntriesInfo struct for EntriesInfo
 type EntriesInfo struct {
+	// Number of cache entries that are held in memory.
 	Mem *int32 `json:"mem,omitempty"`
+	// Number of cache entries on the disk. For non-disk caches this value is not set; for disk caches it is only set if there are entries in the cache.
 	Disk *int32 `json:"disk,omitempty"`
+	// The space that is consumed by the cache on disk. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes). Only set for disk caches.
 	Space *string `json:"space,omitempty"`
 }
 

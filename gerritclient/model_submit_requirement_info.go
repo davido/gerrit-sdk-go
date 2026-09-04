@@ -19,12 +19,19 @@ var _ MappedNullable = &SubmitRequirementInfo{}
 
 // SubmitRequirementInfo struct for SubmitRequirementInfo
 type SubmitRequirementInfo struct {
+	// The submit requirement name.
 	Name *string `json:"name,omitempty"`
+	// Description of the submit requirement.
 	Description *string `json:"description,omitempty"`
+	// The name of the project in which this submit requirement is defined. Not set for globally defined submit requirements.
 	ProjectName *string `json:"project_name,omitempty"`
+	// Query expression that can be evaluated on any change. If evaluated to true on a change, the submit requirement is then applicable for this change. If not specified, the submit requirement is applicable for all changes.
 	ApplicabilityExpression *string `json:"applicability_expression,omitempty"`
+	// Query expression that can be evaluated on any change. If evaluated to true on a change, the submit requirement is fulfilled and not blocking change submission.
 	SubmittabilityExpression *string `json:"submittability_expression,omitempty"`
+	// Query expression that can be evaluated on any change. If evaluated to true on a change, the submit requirement is overridden and not blocking change submission.
 	OverrideExpression *string `json:"override_expression,omitempty"`
+	// Whether this submit requirement can be overridden in child projects.
 	AllowOverrideInChildProjects *bool `json:"allow_override_in_child_projects,omitempty"`
 }
 

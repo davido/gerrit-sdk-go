@@ -19,9 +19,13 @@ var _ MappedNullable = &BatchSubmitRequirementInput{}
 
 // BatchSubmitRequirementInput struct for BatchSubmitRequirementInput
 type BatchSubmitRequirementInput struct {
+	// Message that should be used to commit the submit requirements updates in the project.config file to the refs/meta/config branch.
 	CommitMessage *string `json:"commit_message,omitempty"`
+	// List of submit requirements that should be deleted.
 	Delete []string `json:"delete,omitempty"`
+	// List of SubmitRequirementInput entities that describe submit requirements that should be created.
 	Create []SubmitRequirementInput `json:"create,omitempty"`
+	// Map of submit requirement names to SubmitRequirementInput entities that describe the updates that should be done for the submit requirements. The given inputs must set all properties (including those that are not being changed).
 	Update map[string]SubmitRequirementInput `json:"update,omitempty"`
 }
 

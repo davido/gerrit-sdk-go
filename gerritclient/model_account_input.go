@@ -19,13 +19,21 @@ var _ MappedNullable = &AccountInput{}
 
 // AccountInput struct for AccountInput
 type AccountInput struct {
+	// The user name. If provided, must match the user name from the URL.
 	Username *string `json:"username,omitempty"`
+	// The full name of the user.
 	Name *string `json:"name,omitempty"`
+	// The display name of the user.
 	DisplayName *string `json:"display_name,omitempty"`
+	// The email address of the user.
 	Email *string `json:"email,omitempty"`
+	// The public SSH key of the user.
 	SshKey *string `json:"ssh_key,omitempty"`
+	// The HTTP password of the user. (deprecated)
 	HttpPassword *string `json:"http_password,omitempty"`
+	// A list of tokens in the form of AuthTokenInputs to assign to the user.
 	Tokens []AuthTokenInput `json:"tokens,omitempty"`
+	// A list of group IDs that identify the groups to which the user should be added.
 	Groups []string `json:"groups,omitempty"`
 }
 

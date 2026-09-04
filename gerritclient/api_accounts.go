@@ -3350,14 +3350,14 @@ type ApiGetAccountsAccountIdStarredChangesRequest struct {
 	accountId string
 }
 
-func (r ApiGetAccountsAccountIdStarredChangesRequest) Execute() (interface{}, *http.Response, error) {
+func (r ApiGetAccountsAccountIdStarredChangesRequest) Execute() ([]ChangeInfo, *http.Response, error) {
 	return r.ApiService.GetAccountsAccountIdStarredChangesExecute(r)
 }
 
 /*
-GetAccountsAccountIdStarredChanges Get Changes With Default Star
+GetAccountsAccountIdStarredChanges Get changes with default star
 
-Gets the changes that were starred with the default star by the identified user account. This URL endpoint is functionally identical to the changes query GET /changes/?q=is:starred. The result is a list of ChangeInfo entities.
+Gets the changes that were starred with the default star by the identified user account.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accountId
@@ -3372,13 +3372,13 @@ func (a *AccountsAPIService) GetAccountsAccountIdStarredChanges(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return interface{}
-func (a *AccountsAPIService) GetAccountsAccountIdStarredChangesExecute(r ApiGetAccountsAccountIdStarredChangesRequest) (interface{}, *http.Response, error) {
+//  @return []ChangeInfo
+func (a *AccountsAPIService) GetAccountsAccountIdStarredChangesExecute(r ApiGetAccountsAccountIdStarredChangesRequest) ([]ChangeInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  interface{}
+		localVarReturnValue  []ChangeInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AccountsAPIService.GetAccountsAccountIdStarredChanges")
@@ -3432,14 +3432,6 @@ func (a *AccountsAPIService) GetAccountsAccountIdStarredChangesExecute(r ApiGetA
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v interface{}
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &FlowActionInfo{}
 
 // FlowActionInfo struct for FlowActionInfo
 type FlowActionInfo struct {
+	// The name of the action. Which actions are supported depends on the flow service implementation.
 	Name *string `json:"name,omitempty"`
+	// Parameters for the action as list of strings. Which parameters are supported and their format depends on the flow service implementation.
 	Parameters []string `json:"parameters,omitempty"`
 }
 

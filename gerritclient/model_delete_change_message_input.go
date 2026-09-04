@@ -19,6 +19,7 @@ var _ MappedNullable = &DeleteChangeMessageInput{}
 
 // DeleteChangeMessageInput struct for DeleteChangeMessageInput
 type DeleteChangeMessageInput struct {
+	// The reason why the change message should be deleted. + If set, the change message will be replaced with \"Change message removed by: name\\nReason: reason\", or just \"Change message removed by: name.\" if not set.
 	Reason *string `json:"reason,omitempty"`
 }
 

@@ -19,8 +19,11 @@ var _ MappedNullable = &AuthTokenInfo{}
 
 // AuthTokenInfo struct for AuthTokenInfo
 type AuthTokenInfo struct {
+	// The id of the token.
 	Id *string `json:"id,omitempty"`
+	// The token in plain text. Will only be returned once when creating the token.
 	Token *string `json:"token,omitempty"`
+	// The timestamp at which the token will expire or has been expired. If null, token lifetime is unlimited.
 	Expiration *string `json:"expiration,omitempty"`
 }
 

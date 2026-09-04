@@ -19,9 +19,13 @@ var _ MappedNullable = &ReflogEntryInfo{}
 
 // ReflogEntryInfo struct for ReflogEntryInfo
 type ReflogEntryInfo struct {
+	// The old commit ID.
 	OldId *string `json:"old_id,omitempty"`
+	// The new commit ID.
 	NewId *string `json:"new_id,omitempty"`
+	// The user performing the change as a GitPersonInfo entity.
 	Who *GitPerson `json:"who,omitempty"`
+	// Comment of the reflog entry.
 	Comment *string `json:"comment,omitempty"`
 }
 

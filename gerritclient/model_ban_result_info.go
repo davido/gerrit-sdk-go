@@ -19,8 +19,11 @@ var _ MappedNullable = &BanResultInfo{}
 
 // BanResultInfo struct for BanResultInfo
 type BanResultInfo struct {
+	// List of newly banned commits.
 	NewlyBanned []string `json:"newly_banned,omitempty"`
+	// List of commits that were already banned.
 	AlreadyBanned []string `json:"already_banned,omitempty"`
+	// List of object IDs that were ignored.
 	Ignored []string `json:"ignored,omitempty"`
 }
 

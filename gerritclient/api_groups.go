@@ -549,7 +549,7 @@ func (r ApiGetGroupsRequest) VisibleToAll(visibleToAll bool) ApiGetGroupsRequest
 	return r
 }
 
-func (r ApiGetGroupsRequest) Execute() (*GetGroupsDefaultResponse, *http.Response, error) {
+func (r ApiGetGroupsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetGroupsExecute(r)
 }
 
@@ -569,13 +569,13 @@ func (a *GroupsAPIService) GetGroups(ctx context.Context) ApiGetGroupsRequest {
 }
 
 // Execute executes the request
-//  @return GetGroupsDefaultResponse
-func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (*GetGroupsDefaultResponse, *http.Response, error) {
+//  @return interface{}
+func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetGroupsDefaultResponse
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GroupsAPIService.GetGroups")
@@ -694,7 +694,7 @@ func (a *GroupsAPIService) GetGroupsExecute(r ApiGetGroupsRequest) (*GetGroupsDe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GetGroupsDefaultResponse
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

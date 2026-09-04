@@ -19,17 +19,29 @@ var _ MappedNullable = &GroupInfo{}
 
 // GroupInfo struct for GroupInfo
 type GroupInfo struct {
+	// URL to information about the group. Typically a URL to a web page that permits users to apply to join the group, or manage their membership.
 	Url *string `json:"url,omitempty"`
+	// Options of the group
 	Options *GroupOptionsInfo `json:"options,omitempty"`
+	// The description of the group.
 	Description *string `json:"description,omitempty"`
+	// The numeric ID of the group.
 	GroupId *int32 `json:"group_id,omitempty"`
+	// The name of the owner group.
 	Owner *string `json:"owner,omitempty"`
+	// The URL encoded UUID of the owner group.
 	OwnerId *string `json:"owner_id,omitempty"`
+	// The timestamp of when the group was created.
 	CreatedOn *string `json:"created_on,omitempty"`
+	// Whether the query would deliver more results if not limited. + Only set on the last group that is returned by a group query.
 	MoreGroups *bool `json:"_more_groups,omitempty"`
+	// A list of AccountInfo entities describing the direct members. + Only set if members are requested.
 	Members []AccountInfo `json:"members,omitempty"`
+	// A list of GroupInfo entities describing the direct subgroups. + Only set if subgroups are requested.
 	Includes []GroupInfo `json:"includes,omitempty"`
+	// The URL encoded UUID of the group.
 	Id *string `json:"id,omitempty"`
+	// The name of the group. + For external groups the group name is missing if there is no group backend that can resolve the group UUID. E.g. this can happen when a plugin that provided a group backend was uninstalled.
 	Name *string `json:"name,omitempty"`
 }
 

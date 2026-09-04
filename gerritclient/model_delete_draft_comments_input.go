@@ -19,6 +19,7 @@ var _ MappedNullable = &DeleteDraftCommentsInput{}
 
 // DeleteDraftCommentsInput struct for DeleteDraftCommentsInput
 type DeleteDraftCommentsInput struct {
+	// A change query limiting results to changes matching this query; has:draft is implied and not necessary to list explicitly. If not set, matches all changes with drafts.
 	Query *string `json:"query,omitempty"`
 }
 

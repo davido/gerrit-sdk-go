@@ -19,12 +19,19 @@ var _ MappedNullable = &SubmitRequirementExpressionInfo{}
 
 // SubmitRequirementExpressionInfo struct for SubmitRequirementExpressionInfo
 type SubmitRequirementExpressionInfo struct {
+	// The submit requirement expression as a string, for example branch:refs/heads/foo and label:verified=+1.
 	Expression *string `json:"expression,omitempty"`
+	// True if the submit requirement is fulfilled for the change.
 	Fulfilled *bool `json:"fulfilled,omitempty"`
+	// A string containing the status of evaluating the expression which can be one of the following: + * PASS - expression was evaluated and result is true. + * FAIL - expression was evaluated and result is false. + * ERROR - an error occurred while evaluating the expression.
 	Status *SubmitRequirementExpressionInfoStatus `json:"status,omitempty"`
+	// A list of passing atoms as strings. For the above expression, passing_atoms can contain [\"branch:refs/heads/foo\"] if the branch predicate is fulfilled for the change.
 	PassingAtoms []string `json:"passing_atoms,omitempty"`
+	// A list of failing atoms. This is similar to passing_atoms except that it contains the list of predicates that are not fulfilled for the change.
 	FailingAtoms []string `json:"failing_atoms,omitempty"`
+	// A map of atoms (as strings) to strings explaining the result. This field only contains atoms for which the explanation is available.
 	AtomExplanations map[string]string `json:"atom_explanations,omitempty"`
+	// If the submit requirement fails during evaluation, this string will contain an error message describing why it failed.
 	ErrorMessage *string `json:"error_message,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &PushCertificateInfo{}
 
 // PushCertificateInfo struct for PushCertificateInfo
 type PushCertificateInfo struct {
+	// Signed certificate payload and GPG signature block.
 	Certificate *string `json:"certificate,omitempty"`
+	// Information about the key that signed the push, along with any problems found while checking the signature or the key itself, as a GpgKeyInfo entity.
 	Key *GpgKeyInfo `json:"key,omitempty"`
 }
 

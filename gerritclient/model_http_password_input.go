@@ -19,7 +19,9 @@ var _ MappedNullable = &HttpPasswordInput{}
 
 // HttpPasswordInput struct for HttpPasswordInput
 type HttpPasswordInput struct {
+	// The new HTTP password. Only Gerrit administrators may set the HTTP password directly. + If empty or not set and generate is false or not set, the HTTP password is deleted.
 	HttpPassword *string `json:"http_password,omitempty"`
+	// Whether a new HTTP password should be generated
 	Generate *bool `json:"generate,omitempty"`
 }
 

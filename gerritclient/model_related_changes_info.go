@@ -19,6 +19,7 @@ var _ MappedNullable = &RelatedChangesInfo{}
 
 // RelatedChangesInfo struct for RelatedChangesInfo
 type RelatedChangesInfo struct {
+	// A list of RelatedChangeAndCommitInfo entities describing the related changes. Sorted by git commit order, newest to oldest. Empty if there are no related changes.
 	Changes []RelatedChangeAndCommitInfo `json:"changes,omitempty"`
 }
 

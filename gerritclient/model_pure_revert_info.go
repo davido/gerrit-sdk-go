@@ -19,6 +19,7 @@ var _ MappedNullable = &PureRevertInfo{}
 
 // PureRevertInfo struct for PureRevertInfo
 type PureRevertInfo struct {
+	// Outcome of the check as boolean.
 	IsPureRevert *bool `json:"is_pure_revert,omitempty"`
 }
 

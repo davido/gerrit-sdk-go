@@ -19,24 +19,43 @@ var _ MappedNullable = &ProjectInput{}
 
 // ProjectInput struct for ProjectInput
 type ProjectInput struct {
+	// The name of the project (not encoded). + If set, must match the project name in the URL. + If name ends with .git the suffix will be automatically removed.
 	Name *string `json:"name,omitempty"`
+	// The name of the parent project. + If not set, the All-Projects project will be the parent project.
 	Parent *string `json:"parent,omitempty"`
+	// The description of the project.
 	Description *string `json:"description,omitempty"`
+	// Whether a permission-only project should be created.
 	PermissionsOnly *bool `json:"permissions_only,omitempty"`
+	// Whether an empty initial commit should be created.
 	CreateEmptyCommit *bool `json:"create_empty_commit,omitempty"`
+	// The submit type that should be set for the project (MERGE_IF_NECESSARY, REBASE_IF_NECESSARY, REBASE_ALWAYS, FAST_FORWARD_ONLY, MERGE_ALWAYS, CHERRY_PICK). + If not set, MERGE_IF_NECESSARY is set as submit type unless repository.<name>.defaultSubmitType is set to a different value.
 	SubmitType *SubmitType `json:"submit_type,omitempty"`
+	// A list of branches that should be initially created. + For the branch names the refs/heads/ prefix can be omitted. + The first entry of the list will be the default branch. + If the list is empty, host-level default is used.
 	Branches []string `json:"branches,omitempty"`
+	// A list of groups that should be assigned as project owner. + Each group in the list must be specified as group-id. + If not set, the groups that are configured as default owners are set as project owners.
 	Owners []string `json:"owners,omitempty"`
+	// Whether contributor agreements should be used for the project (TRUE, FALSE, INHERIT).
 	UseContributorAgreements *InheritableBoolean `json:"use_contributor_agreements,omitempty"`
+	// Whether the usage of 'Signed-Off-By' footers is required for the project (TRUE, FALSE, INHERIT).
 	UseSignedOffBy *InheritableBoolean `json:"use_signed_off_by,omitempty"`
+	// Whether content merge should be enabled for the project (TRUE, FALSE, INHERIT). + FALSE, if the submit_type is FAST_FORWARD_ONLY.
 	UseContentMerge *InheritableBoolean `json:"use_content_merge,omitempty"`
+	// Whether the usage of Change-Ids is required for the project (TRUE, FALSE, INHERIT). This property is deprecated and will be removed in a future release.
 	RequireChangeId *InheritableBoolean `json:"require_change_id,omitempty"`
+	// Whether a new change is created for every commit not in target branch for the project (TRUE, FALSE, INHERIT).
 	CreateNewChangeForAllNotInTarget *InheritableBoolean `json:"create_new_change_for_all_not_in_target,omitempty"`
+	// Whether empty commits should be rejected when a change is merged (TRUE, FALSE, INHERIT).
 	RejectEmptyCommit *InheritableBoolean `json:"reject_empty_commit,omitempty"`
+	// Whether signed push validation is enabled on the project (TRUE, FALSE, INHERIT).
 	EnableSignedPush *InheritableBoolean `json:"enable_signed_push,omitempty"`
+	// Whether signed push validation is required on the project (TRUE, FALSE, INHERIT).
 	RequireSignedPush *InheritableBoolean `json:"require_signed_push,omitempty"`
+	// Max allowed Git object size for this project. Common unit suffixes of 'k', 'm', or 'g' are supported.
 	MaxObjectSizeLimit *string `json:"max_object_size_limit,omitempty"`
+	// Plugin configuration values as map which maps the plugin name to a map of parameter names to values.
 	PluginConfigValues map[string]map[string]ConfigValue `json:"plugin_config_values,omitempty"`
+	// If set, only the project initialization is being (re-)done and the repository creation is skipped. The project initialization consists out of setting HEAD, creating the project.config file in refs/meta/config and creating initial branches with empty commits.
 	InitOnly *bool `json:"init_only,omitempty"`
 }
 

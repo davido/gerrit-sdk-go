@@ -19,8 +19,11 @@ var _ MappedNullable = &ThreadSummaryInfo{}
 
 // ThreadSummaryInfo struct for ThreadSummaryInfo
 type ThreadSummaryInfo struct {
+	// The number of available processors.
 	Cpus *int32 `json:"cpus,omitempty"`
+	// The total number of current threads.
 	Threads *int32 `json:"threads,omitempty"`
+	// Detailed thread counts as a map that maps a thread kind to a map that maps a thread state to the thread count.
 	Counts map[string]map[string]int32 `json:"counts,omitempty"`
 }
 

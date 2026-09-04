@@ -19,6 +19,7 @@ var _ MappedNullable = &UsernameInput{}
 
 // UsernameInput struct for UsernameInput
 type UsernameInput struct {
+	// The new username of the account.
 	Username *string `json:"username,omitempty"`
 }
 

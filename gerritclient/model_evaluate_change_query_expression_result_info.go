@@ -19,8 +19,11 @@ var _ MappedNullable = &EvaluateChangeQueryExpressionResultInfo{}
 
 // EvaluateChangeQueryExpressionResultInfo struct for EvaluateChangeQueryExpressionResultInfo
 type EvaluateChangeQueryExpressionResultInfo struct {
+	// Whether the change matches the change query expression.
 	Status *bool `json:"status,omitempty"`
+	// List of passing leaf atoms (atoms that match the change).
 	PassingAtoms []string `json:"passing_atoms,omitempty"`
+	// List of failing leaf atoms (atoms that do not match the change).
 	FailingAtoms []string `json:"failing_atoms,omitempty"`
 	AtomExplanations map[string]string `json:"atom_explanations,omitempty"`
 }

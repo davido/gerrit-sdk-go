@@ -19,7 +19,9 @@ var _ MappedNullable = &LabelTypeInfo{}
 
 // LabelTypeInfo struct for LabelTypeInfo
 type LabelTypeInfo struct {
+	// Map of the available values to their description.
 	Values map[string]string `json:"values,omitempty"`
+	// The default value of this label.
 	DefaultValue *int32 `json:"default_value,omitempty"`
 }
 

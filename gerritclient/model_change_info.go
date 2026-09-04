@@ -19,63 +19,119 @@ var _ MappedNullable = &ChangeInfo{}
 
 // ChangeInfo struct for ChangeInfo
 type ChangeInfo struct {
+	// The ID of the change. The format is \"'<project>\\~<_number>'\". 'project' and '_number' are URL encoded. The callers must not rely on the format.
 	Id *string `json:"id,omitempty"`
+	// The ID of the change in the format \"'<project>\\~<branch>~<Change-Id>'\", where 'project' and 'branch' are URL encoded. For 'branch' the refs/heads/ prefix is omitted.
 	TripletId *string `json:"triplet_id,omitempty"`
+	// The name of the project.
 	Project *string `json:"project,omitempty"`
+	// The name of the target branch. + The refs/heads/ prefix is omitted.
 	Branch *string `json:"branch,omitempty"`
+	// The full name of the target branch. + Always starts with refs/.
 	FullBranch *string `json:"full_branch,omitempty"`
+	// The topic to which this change belongs.
 	Topic *string `json:"topic,omitempty"`
+	// The map that maps account IDs to AttentionSetInfo of that account. Those are all accounts that are currently in the attention set.
 	AttentionSet map[string]AttentionSetInfo `json:"attention_set,omitempty"`
+	// The map that maps account IDs to AttentionSetInfo of that account. Those are all accounts that were in the attention set but were removed. The AttentionSetInfo is the latest and most recent removal of the account from the attention set.
 	RemovedFromAttentionSet map[string]AttentionSetInfo `json:"removed_from_attention_set,omitempty"`
+	// A map that maps custom keys to custom values that are tied to a specific change, both in the form of strings. Only set if custom keyed values are requested.
 	CustomKeyedValues map[string]string `json:"custom_keyed_values,omitempty"`
+	// List of hashtags that are set on the change.
 	Hashtags []string `json:"hashtags,omitempty"`
+	// The Change-Id of the change.
 	ChangeId *string `json:"change_id,omitempty"`
+	// The subject of the change (header line of the commit message).
 	Subject *string `json:"subject,omitempty"`
+	// The status of the change (NEW, MERGED, ABANDONED).
 	Status *ChangeStatus `json:"status,omitempty"`
+	// The timestamp of when the change was created.
 	Created *string `json:"created,omitempty"`
+	// The timestamp of when the change was last updated.
 	Updated *string `json:"updated,omitempty"`
+	// The timestamp of when the change was submitted.
 	Submitted *string `json:"submitted,omitempty"`
+	// The user who submitted the change, as an AccountInfo entity.
 	Submitter *AccountInfo `json:"submitter,omitempty"`
+	// Whether the calling user has starred this change. Only set if requested.
 	Starred *bool `json:"starred,omitempty"`
 	Stars []string `json:"stars,omitempty"`
+	// Whether the change was reviewed by the calling user. Only set if reviewed is requested.
 	Reviewed *bool `json:"reviewed,omitempty"`
+	// The submit type of the change. + Not set for merged changes.
 	SubmitType *SubmitType `json:"submit_type,omitempty"`
+	// Whether the change is mergeable. + Only set for open changes if change.mergeabilityComputationBehavior is API_REF_UPDATED_AND_CHANGE_REINDEX.
 	Mergeable *bool `json:"mergeable,omitempty"`
+	// Whether the change has been approved by the project submit rules. + Only set if requested.
 	Submittable *bool `json:"submittable,omitempty"`
+	// Number of inserted lines.
 	Insertions *int32 `json:"insertions,omitempty"`
+	// Number of deleted lines.
 	Deletions *int32 `json:"deletions,omitempty"`
+	// Total number of inline comments across all patch sets.
 	TotalCommentCount *int32 `json:"total_comment_count,omitempty"`
+	// Number of unresolved inline comment threads across all patch sets.
 	UnresolvedCommentCount *int32 `json:"unresolved_comment_count,omitempty"`
+	// When present, change is marked as private.
 	IsPrivate *bool `json:"is_private,omitempty"`
+	// When present, change is marked as Work In Progress.
 	WorkInProgress *bool `json:"work_in_progress,omitempty"`
+	// When present, change has been marked Ready at some point in time.
 	HasReviewStarted *bool `json:"has_review_started,omitempty"`
+	// The change number of the change that this change reverts.
 	RevertOf *int32 `json:"revert_of,omitempty"`
+	// ID of the submission of this change. Only set if the status is MERGED. This ID is equal to the change number of the change that triggered the submission. If the change that triggered the submission also has a topic, it will be \"<id>-<topic>\" of the change that triggered the submission.
 	SubmissionId *string `json:"submission_id,omitempty"`
+	// The change number of the change that this change was cherry-picked from. Only set if the cherry-pick has been done through the Gerrit REST API (and not if a cherry-picked commit was pushed).
 	CherryPickOfChange *int32 `json:"cherry_pick_of_change,omitempty"`
+	// The patchset number of the change that this change was cherry-picked from. Only set if the cherry-pick has been done through the Gerrit REST API (and not if a cherry-picked commit was pushed).
 	CherryPickOfPatchSet *int32 `json:"cherry_pick_of_patch_set,omitempty"`
+	// The SHA-1 of the NoteDb meta ref.
 	MetaRevId *string `json:"meta_rev_id,omitempty"`
+	// Whether the change contains conflicts. + If true, some of the file contents of the change contain git conflict markers to indicate the conflicts. + Only set if this change info is returned in response to a request that creates a new change or patch set and conflicts are allowed.
 	ContainsGitConflicts *bool `json:"contains_git_conflicts,omitempty"`
+	// The change number. (The underscore is just a relict of a prior attempt to deprecate the change number.)
 	Number *int32 `json:"_number,omitempty"`
+	// The virtual id number is globally unique. For local changes, it is equal to the _number attribute. For imported changes, the original _number is processed through a function designed to prevent conflicts with local change numbers.
 	VirtualIdNumber *int32 `json:"virtual_id_number,omitempty"`
+	// The owner of the change as an AccountInfo entity.
 	Owner *AccountInfo `json:"owner,omitempty"`
+	// Actions the caller might be able to perform on this revision. The information is a map of view name to ActionInfo entities.
 	Actions map[string]ActionInfo `json:"actions,omitempty"`
+	// The labels of the change as a map that maps the label names to LabelInfo entries. + Only set if labels or detailed labels are requested.
 	Labels map[string]LabelInfo `json:"labels,omitempty"`
+	// A map of the permitted labels that maps a label name to the list of values that the current user can vote on. + Only set if detailed labels are requested.
 	PermittedLabels map[string][]string `json:"permitted_labels,omitempty"`
+	// A map of the removable labels that maps a label name to the map of values and reviewers ( AccountInfo entities) that are allowed to be removed from the change. + Only set if labels or detailed labels are requested.
 	RemovableLabels map[string]map[string][]AccountInfo `json:"removable_labels,omitempty"`
+	// The reviewers that can be removed by the calling user as a list of AccountInfo entities. + Only set if labels or detailed labels are requested.
 	RemovableReviewers []AccountInfo `json:"removable_reviewers,omitempty"`
+	// The reviewers as a map that maps a reviewer state to a list of AccountInfo entities. Possible reviewer states are REVIEWER, CC. + REVIEWER: Users with at least one non-zero vote on the change. + CC: Users that were added to the change, but have not voted.
 	Reviewers map[string][]AccountInfo `json:"reviewers,omitempty"`
+	// Updates to reviewers that have been made while the change was in the WIP state. Only present on WIP changes and only if there are pending reviewer updates to report. These are reviewers who have not yet been notified about being added to or removed from the change.
 	PendingReviewers map[string][]AccountInfo `json:"pending_reviewers,omitempty"`
+	// Updates to reviewers set for the change as ReviewerUpdateInfo entities. Only set if reviewer updates are requested.
 	ReviewerUpdates []ReviewerUpdateInfo `json:"reviewer_updates,omitempty"`
+	// Messages associated with the change as a list of ChangeMessageInfo entities. + Only set if messages are requested.
 	Messages []ChangeMessageInfo `json:"messages,omitempty"`
+	// The number of the current patch set of this change. +
 	CurrentRevisionNumber *int32 `json:"current_revision_number,omitempty"`
+	// The commit ID of the current patch set of this change. + Only set if the current revision is requested or if all revisions are requested.
 	CurrentRevision *string `json:"current_revision,omitempty"`
+	// All patch sets of this change as a map that maps the commit ID of the patch set to a RevisionInfo entity. + Only set if the current revision is requested (in which case it will only contain a key for the current revision) or if all revisions are requested.
 	Revisions map[string]RevisionInfo `json:"revisions,omitempty"`
+	// Whether the query would deliver more results if not limited. + Only set on the last change that is returned.
 	MoreChanges *bool `json:"_more_changes,omitempty"`
+	// A list of ProblemInfo entities describing potential problems with this change. Only set if CHECK is set.
 	Problems []ProblemInfo `json:"problems,omitempty"`
 	Plugins []PluginDefinedInfo `json:"plugins,omitempty"`
+	// A list of TrackingIdInfo entities describing references to external tracking systems. Only set if tracking ids are requested.
 	TrackingIds []TrackingIdInfo `json:"tracking_ids,omitempty"`
+	// List of the requirements to be met before this change can be submitted. This field is deprecated in favour of submit_requirements. Only set if SUBMIT_REQUIREMENTS is requested.
 	Requirements []LegacySubmitRequirementInfo `json:"requirements,omitempty"`
+	// List of the SubmitRecordInfo containing the submit records for the change at the latest patchset. This field is deprecated in favour of submit_requirements. Only set if SUBMIT_REQUIREMENTS is requested.
 	SubmitRecords []SubmitRecordInfo `json:"submit_records,omitempty"`
+	// List of the SubmitRequirementResultInfo containing the evaluated submit requirements for the change. Only set if SUBMIT_REQUIREMENTS is requested.
 	SubmitRequirements []SubmitRequirementResultInfo `json:"submit_requirements,omitempty"`
 }
 

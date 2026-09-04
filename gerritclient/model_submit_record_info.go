@@ -19,10 +19,15 @@ var _ MappedNullable = &SubmitRecordInfo{}
 
 // SubmitRecordInfo struct for SubmitRecordInfo
 type SubmitRecordInfo struct {
+	// The name of the submit rule that created this submit record. The submit rule is specified in the form of \"$plugin~$rule\" where $plugin is the plugin name and $rule is the name of the class that implemented the submit rule.
 	RuleName *string `json:"rule_name,omitempty"`
+	// OK, the change can be submitted. + NOT_READY, additional labels are required before submit. + CLOSED, closed changes cannot be submitted. + FORCED, the change was submitted bypassing the submit rule. + RULE_ERROR, rule code failed with an error.
 	Status *SubmitRecordInfoStatus `json:"status,omitempty"`
+	// A list of labels, each containing the following fields. + * label: the label name. + * status: the label status: {OK, REJECT, MAY, NEED, IMPOSSIBLE}. + * appliedBy: the AccountInfo that applied the vote to the label.
 	Labels []Label `json:"labels,omitempty"`
+	// List of the requirements to be met before this change can be submitted.
 	Requirements []LegacySubmitRequirementInfo `json:"requirements,omitempty"`
+	// When status is RULE_ERROR this message provides some text describing the failure of the rule predicate.
 	ErrorMessage *string `json:"error_message,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &HashtagsInput{}
 
 // HashtagsInput struct for HashtagsInput
 type HashtagsInput struct {
+	// The list of hashtags to be added to the change.
 	Add []string `json:"add,omitempty"`
+	// The list of hashtags to be removed from the change.
 	Remove []string `json:"remove,omitempty"`
 }
 

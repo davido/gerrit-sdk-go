@@ -19,10 +19,15 @@ var _ MappedNullable = &ReviewerUpdateInfo{}
 
 // ReviewerUpdateInfo struct for ReviewerUpdateInfo
 type ReviewerUpdateInfo struct {
+	// Timestamp of the update.
 	Updated *string `json:"updated,omitempty"`
+	// The account which modified state of the reviewer in question as AccountInfo entity.
 	UpdatedBy *AccountInfo `json:"updated_by,omitempty"`
+	// The account which actually modified the state of the reviewer in question as AccountInfo entity. This will be different from updated_by in case of impersonation. For example, if Alice impersonates Bob and changes the state of a reviewer, updated_by will be Bob and real_updated_by will be Alice.
 	RealUpdatedBy *AccountInfo `json:"real_updated_by,omitempty"`
+	// The reviewer added or removed from the change as an AccountInfo entity. For reviewers by email the AccountInfo doesn't contain an account ID but only the email and optionally a name.
 	Reviewer *AccountInfo `json:"reviewer,omitempty"`
+	// The reviewer state, one of REVIEWER, CC or REMOVED.
 	State *ReviewerState `json:"state,omitempty"`
 }
 

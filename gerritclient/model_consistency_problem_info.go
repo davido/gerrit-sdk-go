@@ -19,7 +19,9 @@ var _ MappedNullable = &ConsistencyProblemInfo{}
 
 // ConsistencyProblemInfo struct for ConsistencyProblemInfo
 type ConsistencyProblemInfo struct {
+	// The status of the consistency problem. + Possible values are FATAL, ERROR and WARNING.
 	Status *ConsistencyProblemInfoStatus `json:"status,omitempty"`
+	// Message describing the consistency problem.
 	Message *string `json:"message,omitempty"`
 }
 

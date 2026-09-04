@@ -19,6 +19,7 @@ var _ MappedNullable = &ExperimentInfo{}
 
 // ExperimentInfo struct for ExperimentInfo
 type ExperimentInfo struct {
+	// Whether the experiment is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 }
 

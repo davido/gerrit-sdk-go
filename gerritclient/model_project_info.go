@@ -19,14 +19,23 @@ var _ MappedNullable = &ProjectInfo{}
 
 // ProjectInfo struct for ProjectInfo
 type ProjectInfo struct {
+	// The URL encoded project name.
 	Id *string `json:"id,omitempty"`
+	// The name of the project.
 	Name *string `json:"name,omitempty"`
+	// The name of the parent project. + ?-<n> if the parent project is not visible (<n> is a number which is increased for each non-visible project).
 	Parent *string `json:"parent,omitempty"`
+	// The description of the project.
 	Description *string `json:"description,omitempty"`
+	// ACTIVE, READ_ONLY or HIDDEN.
 	State *ProjectState `json:"state,omitempty"`
+	// Map of branch names to HEAD revisions.
 	Branches map[string]string `json:"branches,omitempty"`
+	// Links to the project in external sites as a list of WebLinkInfo entries.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`
+	// Map of label names to LabelTypeInfo entries. This field is filled for Create Project and Get Project calls.
 	Labels map[string]LabelTypeInfo `json:"labels,omitempty"`
+	// Whether the query would deliver more results if not limited. + Only set on the last project that is returned.
 	MoreProjects *bool `json:"_more_projects,omitempty"`
 }
 

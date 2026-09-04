@@ -19,6 +19,7 @@ var _ MappedNullable = &CheckAccountExternalIdsResultInfo{}
 
 // CheckAccountExternalIdsResultInfo struct for CheckAccountExternalIdsResultInfo
 type CheckAccountExternalIdsResultInfo struct {
+	// A list of ConsistencyProblemInfo entities.
 	Problems []ConsistencyProblemInfo `json:"problems,omitempty"`
 }
 

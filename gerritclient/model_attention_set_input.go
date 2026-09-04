@@ -19,9 +19,13 @@ var _ MappedNullable = &AttentionSetInput{}
 
 // AttentionSetInput struct for AttentionSetInput
 type AttentionSetInput struct {
+	// ID of the account that should be added to the attention set. For removals, this field should be empty or the same as the field in the request header.
 	User *string `json:"user,omitempty"`
+	// The reason of for adding or removing the user.
 	Reason *string `json:"reason,omitempty"`
+	// Notify handling that defines to whom email notifications should be sent after the change is created. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is OWNER.
 	Notify *NotifyHandling `json:"notify,omitempty"`
+	// Additional information about whom to notify about the change creation as a map of recipient type to NotifyInfo entity.
 	NotifyDetails map[string]NotifyInfo `json:"notify_details,omitempty"`
 }
 

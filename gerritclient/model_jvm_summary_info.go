@@ -19,15 +19,25 @@ var _ MappedNullable = &JvmSummaryInfo{}
 
 // JvmSummaryInfo struct for JvmSummaryInfo
 type JvmSummaryInfo struct {
+	// The vendor of the virtual machine.
 	VmVendor *string `json:"vm_vendor,omitempty"`
+	// The name of the virtual machine.
 	VmName *string `json:"vm_name,omitempty"`
+	// The version of the virtual machine.
 	VmVersion *string `json:"vm_version,omitempty"`
+	// The name of the operating system.
 	OsName *string `json:"os_name,omitempty"`
+	// The version of the operating system.
 	OsVersion *string `json:"os_version,omitempty"`
+	// The architecture of the operating system.
 	OsArch *string `json:"os_arch,omitempty"`
+	// The user that is running Gerrit.
 	User *string `json:"user,omitempty"`
+	// The host on which Gerrit is running.
 	Host *string `json:"host,omitempty"`
+	// The current working directory.
 	CurrentWorkingDirectory *string `json:"current_working_directory,omitempty"`
+	// The path to the review site.
 	Site *string `json:"site,omitempty"`
 }
 

@@ -19,9 +19,13 @@ var _ MappedNullable = &SummaryInfo{}
 
 // SummaryInfo struct for SummaryInfo
 type SummaryInfo struct {
+	// Summary about current tasks as a TaskSummaryInfo entity.
 	TaskSummary *TaskSummaryInfo `json:"task_summary,omitempty"`
+	// Summary about current memory usage as a MemSummaryInfo entity.
 	MemSummary *MemSummaryInfo `json:"mem_summary,omitempty"`
+	// Summary about current threads as a ThreadSummaryInfo entity.
 	ThreadSummary *ThreadSummaryInfo `json:"thread_summary,omitempty"`
+	// Summary about the JVM JvmSummaryInfo entity. Only set if the jvm option was set.
 	JvmSummary *JvmSummaryInfo `json:"jvm_summary,omitempty"`
 }
 

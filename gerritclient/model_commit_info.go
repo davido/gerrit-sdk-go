@@ -19,13 +19,21 @@ var _ MappedNullable = &CommitInfo{}
 
 // CommitInfo struct for CommitInfo
 type CommitInfo struct {
+	// The commit ID. Not set if included in a RevisionInfo entity that is contained in a map which has the commit ID as key.
 	Commit *string `json:"commit,omitempty"`
+	// The parent commits of this commit as a list of CommitInfo entities. In each parent only the commit and subject fields are populated.
 	Parents []CommitInfo `json:"parents,omitempty"`
+	// The author of the commit as a GitPersonInfo entity.
 	Author *GitPerson `json:"author,omitempty"`
+	// The committer of the commit as a GitPersonInfo entity.
 	Committer *GitPerson `json:"committer,omitempty"`
+	// The subject of the commit (header line of the commit message).
 	Subject *string `json:"subject,omitempty"`
+	// The commit message.
 	Message *string `json:"message,omitempty"`
+	// Links to the patch set in external sites as a list of WebLinkInfo entities.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`
+	// Links to the commit in external sites for resolving conflicts as a list of WebLinkInfo entities.
 	ResolveConflictsWebLinks []WebLinkInfo `json:"resolve_conflicts_web_links,omitempty"`
 }
 

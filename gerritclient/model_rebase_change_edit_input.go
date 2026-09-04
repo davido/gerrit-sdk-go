@@ -19,6 +19,7 @@ var _ MappedNullable = &RebaseChangeEditInput{}
 
 // RebaseChangeEditInput struct for RebaseChangeEditInput
 type RebaseChangeEditInput struct {
+	// If true, the rebase also succeeds if there are conflicts. + If there are conflicts the file contents of the rebased patch set contain git conflict markers to indicate the conflicts.
 	AllowConflicts *bool `json:"allow_conflicts,omitempty"`
 }
 

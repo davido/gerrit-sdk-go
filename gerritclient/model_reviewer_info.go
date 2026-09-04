@@ -19,7 +19,9 @@ var _ MappedNullable = &ReviewerInfo{}
 
 // ReviewerInfo struct for ReviewerInfo
 type ReviewerInfo struct {
+	// The approvals of the reviewer as a map that maps the label names to the approval values (\"-2\", \"-1\", \"0\", \"+1\", \"+2\").
 	Approvals map[string]string `json:"approvals,omitempty"`
+	// This field is inherited from AccountInfo but is optional here if an unregistered reviewer was added by email. See add-reviewer for details.
 	AccountId *int32 `json:"_account_id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`

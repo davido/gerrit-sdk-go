@@ -19,17 +19,29 @@ var _ MappedNullable = &ProjectAccessInfo{}
 
 // ProjectAccessInfo struct for ProjectAccessInfo
 type ProjectAccessInfo struct {
+	// The revision of the refs/meta/config branch from which the access rights were loaded.
 	Revision *string `json:"revision,omitempty"`
+	// The parent project from which permissions are inherited as a ProjectInfo entity.
 	InheritsFrom *ProjectInfo `json:"inherits_from,omitempty"`
+	// The local access rights of the project as a map that maps the refs to AccessSectionInfo entities.
 	Local map[string]AccessSectionInfo `json:"local,omitempty"`
+	// Whether the calling user owns this project.
 	IsOwner *bool `json:"is_owner,omitempty"`
+	// The list of refs owned by the calling user.
 	OwnerOf []string `json:"owner_of,omitempty"`
+	// Whether the calling user can upload to any ref.
 	CanUpload *bool `json:"can_upload,omitempty"`
+	// Whether the calling user can add any ref.
 	CanAdd *bool `json:"can_add,omitempty"`
+	// Whether the calling user can add any tag ref.
 	CanAddTags *bool `json:"can_add_tags,omitempty"`
+	// Whether the calling user can see the refs/meta/config branch of the project.
 	ConfigVisible *bool `json:"config_visible,omitempty"`
+	// Whether the calling user must create a change for updating project config. If true, all API requests which directly update project config are rejected.
 	RequireChangeForConfigUpdate *bool `json:"require_change_for_config_update,omitempty"`
+	// A map of group UUID to GroupInfo objects, with names and URLs for the group UUIDs used in the local map. This will include names for groups that might be invisible to the caller.
 	Groups map[string]GroupInfo `json:"groups,omitempty"`
+	// Links to the history of the configuration file governing this project's access rights as list of WebLinkInfo entities.
 	ConfigWebLinks []WebLinkInfo `json:"config_web_links,omitempty"`
 }
 

@@ -19,9 +19,13 @@ var _ MappedNullable = &TagInput{}
 
 // TagInput struct for TagInput
 type TagInput struct {
+	// The name of the tag. The leading refs/tags/ is optional.
 	Ref *string `json:"ref,omitempty"`
+	// The revision to which the tag should point. If not specified, the project's HEAD will be used.
 	Revision *string `json:"revision,omitempty"`
+	// The tag message. When set, the tag will be created as an annotated tag.
 	Message *string `json:"message,omitempty"`
+	// Creation timestamp for annotated tags. Must not be a date in the future.
 	Date *string `json:"date,omitempty"`
 }
 

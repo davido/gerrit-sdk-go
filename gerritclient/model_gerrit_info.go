@@ -21,13 +21,20 @@ var _ MappedNullable = &GerritInfo{}
 type GerritInfo struct {
 	AllProjects *string `json:"all_projects,omitempty"`
 	AllUsers *string `json:"all_users,omitempty"`
+	// Whether documentation search is available.
 	DocSearch *bool `json:"doc_search,omitempty"`
+	// Custom base URL where Gerrit server documentation is located. (Documentation may still be available at /Documentation relative to the Gerrit base path even if this value is unset.)
 	DocUrl *string `json:"doc_url,omitempty"`
+	// Whether to enable the web UI for editing GPG keys.
 	EditGpgKeys *bool `json:"edit_gpg_keys,omitempty"`
+	// URL to report bugs.
 	ReportBugUrl *string `json:"report_bug_url,omitempty"`
 	PrimaryWeblinkName *string `json:"primary_weblink_name,omitempty"`
+	// Short identifier for this Gerrit installation.
 	InstanceId *string `json:"instance_id,omitempty"`
+	// Name of the default branch to use on the project creation.
 	DefaultBranch *string `json:"default_branch,omitempty"`
+	// Whether the instance supports filtering projects by state.
 	ProjectStatePredicateEnabled *bool `json:"project_state_predicate_enabled,omitempty"`
 }
 

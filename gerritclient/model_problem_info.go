@@ -19,8 +19,11 @@ var _ MappedNullable = &ProblemInfo{}
 
 // ProblemInfo struct for ProblemInfo
 type ProblemInfo struct {
+	// Plaintext message describing the problem with the change.
 	Message *string `json:"message,omitempty"`
+	// The status of fixing the problem (FIXED, FIX_FAILED). Only set if a fix was attempted.
 	Status *ProblemInfoStatus `json:"status,omitempty"`
+	// If status is set, an additional plaintext message describing the outcome of the fix.
 	Outcome *string `json:"outcome,omitempty"`
 }
 

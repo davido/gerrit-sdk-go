@@ -19,8 +19,11 @@ var _ MappedNullable = &FixSuggestionInfo{}
 
 // FixSuggestionInfo struct for FixSuggestionInfo
 type FixSuggestionInfo struct {
+	// The UUID of the suggested fix. It will be generated automatically and hence will be ignored if it's set for input objects.
 	FixId *string `json:"fix_id,omitempty"`
+	// A description of the suggested fix.
 	Description *string `json:"description,omitempty"`
+	// A list of FixReplacementInfo entities indicating how the content of one or several files should be modified. Within a file, they should refer to non-overlapping regions.
 	Replacements []FixReplacementInfo `json:"replacements,omitempty"`
 }
 

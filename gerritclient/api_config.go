@@ -133,7 +133,7 @@ func (r ApiGetConfigServerCachesRequest) IncludeDiskstats(includeDiskstats bool)
 	return r
 }
 
-func (r ApiGetConfigServerCachesRequest) Execute() (*GetConfigServerCaches200Response, *http.Response, error) {
+func (r ApiGetConfigServerCachesRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetConfigServerCachesExecute(r)
 }
 
@@ -153,13 +153,13 @@ func (a *ConfigAPIService) GetConfigServerCaches(ctx context.Context) ApiGetConf
 }
 
 // Execute executes the request
-//  @return GetConfigServerCaches200Response
-func (a *ConfigAPIService) GetConfigServerCachesExecute(r ApiGetConfigServerCachesRequest) (*GetConfigServerCaches200Response, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) GetConfigServerCachesExecute(r ApiGetConfigServerCachesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetConfigServerCaches200Response
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerCaches")
@@ -2303,7 +2303,7 @@ func (r ApiGetConfigServerVersionRequest) Verbose(verbose bool) ApiGetConfigServ
 	return r
 }
 
-func (r ApiGetConfigServerVersionRequest) Execute() (*GetConfigServerVersion200Response, *http.Response, error) {
+func (r ApiGetConfigServerVersionRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetConfigServerVersionExecute(r)
 }
 
@@ -2323,13 +2323,13 @@ func (a *ConfigAPIService) GetConfigServerVersion(ctx context.Context) ApiGetCon
 }
 
 // Execute executes the request
-//  @return GetConfigServerVersion200Response
-func (a *ConfigAPIService) GetConfigServerVersionExecute(r ApiGetConfigServerVersionRequest) (*GetConfigServerVersion200Response, *http.Response, error) {
+//  @return interface{}
+func (a *ConfigAPIService) GetConfigServerVersionExecute(r ApiGetConfigServerVersionRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetConfigServerVersion200Response
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerVersion")

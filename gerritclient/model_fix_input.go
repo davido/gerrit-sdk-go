@@ -19,7 +19,9 @@ var _ MappedNullable = &FixInput{}
 
 // FixInput struct for FixInput
 type FixInput struct {
+	// If true, delete patch sets from the database if they refer to missing commit options.
 	DeletePatchSetIfCommitMissing *bool `json:"delete_patch_set_if_commit_missing,omitempty"`
+	// If set, check that the change is merged into the destination branch as this exact SHA-1. If not, insert a new patch set referring to this commit.
 	ExpectMergedAs *string `json:"expect_merged_as,omitempty"`
 }
 

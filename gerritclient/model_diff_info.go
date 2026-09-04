@@ -19,14 +19,23 @@ var _ MappedNullable = &DiffInfo{}
 
 // DiffInfo struct for DiffInfo
 type DiffInfo struct {
+	// Meta information about the file on side A as a DiffFileMetaInfo entity.
 	MetaA *FileMeta `json:"meta_a,omitempty"`
+	// Meta information about the file on side B as a DiffFileMetaInfo entity.
 	MetaB *FileMeta `json:"meta_b,omitempty"`
+	// Intraline status (OK, ERROR, TIMEOUT).
 	IntralineStatus *IntraLineStatus `json:"intraline_status,omitempty"`
+	// The type of change (ADDED, MODIFIED, DELETED, RENAMED COPIED, REWRITE).
 	ChangeType *ChangeType `json:"change_type,omitempty"`
+	// A list of strings representing the patch set diff header.
 	DiffHeader []string `json:"diff_header,omitempty"`
+	// The content differences in the file as a list of DiffContent entities.
 	Content []ContentEntry `json:"content,omitempty"`
+	// Links to the file diff in external sites as a list of DiffWebLinkInfo entries.
 	WebLinks []DiffWebLinkInfo `json:"web_links,omitempty"`
+	// Links to edit the file in external sites as a list of WebLinkInfo entries.
 	EditWebLinks []WebLinkInfo `json:"edit_web_links,omitempty"`
+	// Whether the file is binary.
 	Binary *bool `json:"binary,omitempty"`
 }
 

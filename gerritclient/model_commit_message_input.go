@@ -19,9 +19,13 @@ var _ MappedNullable = &CommitMessageInput{}
 
 // CommitMessageInput struct for CommitMessageInput
 type CommitMessageInput struct {
+	// New commit message.
 	Message *string `json:"message,omitempty"`
+	// Notify handling that defines to whom email notifications should be sent after the commit message was updated. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is OWNER for WIP changes and ALL otherwise.
 	Notify *NotifyHandling `json:"notify,omitempty"`
+	// Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
 	NotifyDetails map[string]NotifyInfo `json:"notify_details,omitempty"`
+	// New message is committed using this email address. Only the registered emails of the calling user are considered valid.
 	CommitterEmail *string `json:"committer_email,omitempty"`
 }
 

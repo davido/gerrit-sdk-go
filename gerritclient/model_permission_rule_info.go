@@ -19,9 +19,13 @@ var _ MappedNullable = &PermissionRuleInfo{}
 
 // PermissionRuleInfo struct for PermissionRuleInfo
 type PermissionRuleInfo struct {
+	// The action of this rule. For normal permissions this can be ALLOW, DENY or BLOCK. Special values for global capabilities are INTERACTIVE and BATCH.
 	Action *Action `json:"action,omitempty"`
+	// Whether the force flag is set.
 	Force *bool `json:"force,omitempty"`
+	// The min value of the permission range.
 	Min *int32 `json:"min,omitempty"`
+	// The max value of the permission range.
 	Max *int32 `json:"max,omitempty"`
 }
 

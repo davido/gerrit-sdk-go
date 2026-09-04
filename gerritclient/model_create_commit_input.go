@@ -19,9 +19,13 @@ var _ MappedNullable = &CreateCommitInput{}
 
 // CreateCommitInput struct for CreateCommitInput
 type CreateCommitInput struct {
+	// The commit message. Must be non-empty.
 	CommitMessage *string `json:"commit_message,omitempty"`
+	// The commit (SHA-1) the target branch is expected to point at: the request is rejected with \"409 Conflict\" if the branch tip is any other commit (optimistic concurrency).
 	BaseRevision *string `json:"base_revision,omitempty"`
+	// A map of file path to FileChange describing the operation to apply at that path. Applied together as one commit.
 	Files map[string]FileChange `json:"files,omitempty"`
+	// Map with key-value pairs that are forwarded as options to the ref-operation and commit validation listeners (e.g. to skip certain validations). Which options are supported depends on the installed validation listeners; Gerrit core supports none. Unknown options are silently ignored.
 	ValidationOptions map[string]string `json:"validation_options,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &ValidationOptionInfo{}
 
 // ValidationOptionInfo struct for ValidationOptionInfo
 type ValidationOptionInfo struct {
+	// The name of the validation option.
 	Name *string `json:"name,omitempty"`
+	// The description of the validation option.
 	Description *string `json:"description,omitempty"`
 }
 

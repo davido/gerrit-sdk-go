@@ -19,7 +19,9 @@ var _ MappedNullable = &CapabilityInfo{}
 
 // CapabilityInfo struct for CapabilityInfo
 type CapabilityInfo struct {
+	// capability ID
 	Id *string `json:"id,omitempty"`
+	// capability name
 	Name *string `json:"name,omitempty"`
 }
 

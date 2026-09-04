@@ -19,6 +19,7 @@ var _ MappedNullable = &CheckGroupsResultInfo{}
 
 // CheckGroupsResultInfo struct for CheckGroupsResultInfo
 type CheckGroupsResultInfo struct {
+	// A list of ConsistencyProblemInfo entities.
 	Problems []ConsistencyProblemInfo `json:"problems,omitempty"`
 }
 

@@ -19,10 +19,15 @@ var _ MappedNullable = &CacheInfo{}
 
 // CacheInfo struct for CacheInfo
 type CacheInfo struct {
+	// The cache name. If the cache is defined by a plugin the cache name includes the plugin name: \"<plugin-name>-<cache-name>\".
 	Name *string `json:"name,omitempty"`
+	// The type of the cache (MEM: in memory cache, DISK: disk cache).
 	Type *CacheType `json:"type,omitempty"`
+	// Information about the entries in the cache as a EntriesInfo entity.
 	Entries *EntriesInfo `json:"entries,omitempty"`
+	// The average duration of getting one entry from the cache. The value is returned with a standard time unit abbreviation (ns: nanoseconds, us: microseconds, ms: milliseconds, s: seconds).
 	AverageGet *string `json:"average_get,omitempty"`
+	// Information about the hit ratio as a HitRatioInfo entity.
 	HitRatio *HitRatioInfo `json:"hit_ratio,omitempty"`
 }
 

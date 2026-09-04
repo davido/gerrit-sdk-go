@@ -19,9 +19,12 @@ var _ MappedNullable = &EmailInfo{}
 
 // EmailInfo struct for EmailInfo
 type EmailInfo struct {
+	// The email address.
 	Email *string `json:"email,omitempty"`
+	// Whether this is the preferred email address of the user.
 	Preferred *bool `json:"preferred,omitempty"`
 	Avatar *bool `json:"avatar,omitempty"`
+	// Set true if the user must confirm control of the email address by following a verification link before Gerrit will permit use of this address.
 	PendingConfirmation *bool `json:"pending_confirmation,omitempty"`
 }
 

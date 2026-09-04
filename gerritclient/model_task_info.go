@@ -19,13 +19,21 @@ var _ MappedNullable = &TaskInfo{}
 
 // TaskInfo struct for TaskInfo
 type TaskInfo struct {
+	// The ID of the task.
 	Id *string `json:"id,omitempty"`
+	// The state of the task, can be DONE, CANCELLED, RUNNING, READY, SLEEPING and OTHER.
 	State *State `json:"state,omitempty"`
+	// The start time of the task.
 	StartTime *string `json:"start_time,omitempty"`
+	// The remaining delay of the task.
 	Delay *int32 `json:"delay,omitempty"`
+	// The command of the task.
 	Command *string `json:"command,omitempty"`
+	// The remote name. May only be set for tasks that are associated with a project.
 	RemoteName *string `json:"remote_name,omitempty"`
+	// The project the task is associated with.
 	ProjectName *string `json:"project_name,omitempty"`
+	// The work queue the task is associated with.
 	QueueName *string `json:"queue_name,omitempty"`
 }
 

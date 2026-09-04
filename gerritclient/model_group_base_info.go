@@ -19,7 +19,9 @@ var _ MappedNullable = &GroupBaseInfo{}
 
 // GroupBaseInfo struct for GroupBaseInfo
 type GroupBaseInfo struct {
+	// The UUID of the group.
 	Id *string `json:"id,omitempty"`
+	// The name of the group.
 	Name *string `json:"name,omitempty"`
 }
 

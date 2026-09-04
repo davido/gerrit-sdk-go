@@ -19,7 +19,9 @@ var _ MappedNullable = &VotingRangeInfo{}
 
 // VotingRangeInfo struct for VotingRangeInfo
 type VotingRangeInfo struct {
+	// The minimum voting value.
 	Min *int32 `json:"min,omitempty"`
+	// The maximum voting value.
 	Max *int32 `json:"max,omitempty"`
 }
 

@@ -19,8 +19,11 @@ var _ MappedNullable = &ConsistencyCheckInfo{}
 
 // ConsistencyCheckInfo struct for ConsistencyCheckInfo
 type ConsistencyCheckInfo struct {
+	// The result of running the account consistency check as a CheckAccountsResultInfo entity.
 	CheckAccountsResult *CheckAccountsResultInfo `json:"check_accounts_result,omitempty"`
+	// The result of running the account external ID consistency check as a CheckAccountExternalIdsResultInfo entity.
 	CheckAccountExternalIdsResult *CheckAccountExternalIdsResultInfo `json:"check_account_external_ids_result,omitempty"`
+	// The result of running the group consistency check as a CheckGroupsResultInfo entity.
 	CheckGroupsResult *CheckGroupsResultInfo `json:"check_groups_result,omitempty"`
 }
 

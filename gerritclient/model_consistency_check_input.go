@@ -19,8 +19,11 @@ var _ MappedNullable = &ConsistencyCheckInput{}
 
 // ConsistencyCheckInput struct for ConsistencyCheckInput
 type ConsistencyCheckInput struct {
+	// Input for the account consistency check as CheckAccountsInput entity.
 	CheckAccounts map[string]interface{} `json:"check_accounts,omitempty"`
+	// Input for the account external ID consistency check as CheckAccountExternalIdsInput entity.
 	CheckAccountExternalIds map[string]interface{} `json:"check_account_external_ids,omitempty"`
+	// Input for the group consistency check as CheckGroupsInput entity.
 	CheckGroups map[string]interface{} `json:"check_groups,omitempty"`
 }
 

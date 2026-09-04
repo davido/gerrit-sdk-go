@@ -19,11 +19,17 @@ var _ MappedNullable = &ConflictsInfo{}
 
 // ConflictsInfo struct for ConflictsInfo
 type ConflictsInfo struct {
+	// The SHA1 of the commit that was used as the base commit for the Git merge that created the revision. + A base is not set if: + - the merged commits do not have a common ancestor (in this case no_base_reason is NO_COMMON_ANCESTOR).
 	Base *string `json:"base,omitempty"`
+	// The SHA1 of the commit that was used as \"ours\" for the Git merge that created the revision. + - For merge commits that are created by the Create Change REST endpoint \"ours\" is the SHA1 of the change's target branch (the branch that is specified as branch in the ChangeInput).
 	Ours *string `json:"ours,omitempty"`
+	// The SHA1 of the commit that was used as \"theirs\" for the Git merge that created the revision.
 	Theirs *string `json:"theirs,omitempty"`
+	// The merge strategy was used for the Git merge that created the revision. + Possible values: resolve, recursive, simple-two-way-in-core, ours and theirs.
 	MergeStrategy *string `json:"merge_strategy,omitempty"`
+	// Reason why base is not set. + Only set if base is not set. + Possible values are: + - NO_COMMON_ANCESTOR: The merged commits do not have a common ancestor. + - COMPUTED_BASE: The merged commits have multiple merge bases (happens for criss-cross-merges) and the base was computed.
 	NoBaseReason *NoMergeBaseReason `json:"no_base_reason,omitempty"`
+	// Whether any of the files in the revision has a conflict due to merging \"ours\" and \"theirs\". + If \"true\" at least one of the files in the revision has a conflict and contains Git conflict markers. The conflicts occurred while performing a merge between \"ours\" and \"theirs\".
 	ContainsConflicts *bool `json:"contains_conflicts,omitempty"`
 }
 

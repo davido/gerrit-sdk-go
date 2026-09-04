@@ -19,7 +19,9 @@ var _ MappedNullable = &HitRatioInfo{}
 
 // HitRatioInfo struct for HitRatioInfo
 type HitRatioInfo struct {
+	// Hit ratio for cache entries that are held in memory (0 \\<= value \\<= 100).
 	Mem *int32 `json:"mem,omitempty"`
+	// Hit ratio for cache entries that are held on disk (0 \\<= value \\<= 100). Only set for disk caches.
 	Disk *int32 `json:"disk,omitempty"`
 }
 

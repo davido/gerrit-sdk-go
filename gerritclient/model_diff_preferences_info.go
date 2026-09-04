@@ -19,30 +19,51 @@ var _ MappedNullable = &DiffPreferencesInfo{}
 
 // DiffPreferencesInfo struct for DiffPreferencesInfo
 type DiffPreferencesInfo struct {
+	// The number of lines of context when viewing a patch.
 	Context *int32 `json:"context,omitempty"`
+	// Number of spaces that should be used to display one tab.
 	TabSize *int32 `json:"tab_size,omitempty"`
+	// Default font size in pixels for change to be displayed in the diff view.
 	FontSize *int32 `json:"font_size,omitempty"`
+	// Number of characters that should be displayed in one line.
 	LineLength *int32 `json:"line_length,omitempty"`
+	// Half-period in milliseconds used for cursor blinking. Setting it to 0 disables cursor blinking.
 	CursorBlinkRate *int32 `json:"cursor_blink_rate,omitempty"`
+	// Whether all inline comments should be automatically expanded.
 	ExpandAllComments *bool `json:"expand_all_comments,omitempty"`
+	// Whether intraline differences should be highlighted.
 	IntralineDifference *bool `json:"intraline_difference,omitempty"`
+	// Whether the 'Reviewed' flag should not be set automatically on a patch when it is viewed.
 	ManualReview *bool `json:"manual_review,omitempty"`
+	// Whether Windows EOL/Cr-Lf should be displayed as '\\r' in a dotted-line box.
 	ShowLineEndings *bool `json:"show_line_endings,omitempty"`
+	// Whether tabs should be shown.
 	ShowTabs *bool `json:"show_tabs,omitempty"`
+	// Whether whitespace errors should be shown.
 	ShowWhitespaceErrors *bool `json:"show_whitespace_errors,omitempty"`
+	// Whether syntax highlighting should be enabled.
 	SyntaxHighlighting *bool `json:"syntax_highlighting,omitempty"`
+	// If true the top menu header and site header are hidden.
 	HideTopMenu *bool `json:"hide_top_menu,omitempty"`
+	// If true the diff table header is automatically hidden when scrolling down more than half of a page.
 	AutoHideDiffTableHeader *bool `json:"auto_hide_diff_table_header,omitempty"`
+	// If true the line numbers are hidden.
 	HideLineNumbers *bool `json:"hide_line_numbers,omitempty"`
 	RenderEntireFile *bool `json:"render_entire_file,omitempty"`
 	HideEmptyPane *bool `json:"hide_empty_pane,omitempty"`
+	// Whether matching brackets should be highlighted.
 	MatchBrackets *bool `json:"match_brackets,omitempty"`
+	// Whether to enable line wrapping or not.
 	LineWrapping *bool `json:"line_wrapping,omitempty"`
 	ResponsiveMode *ResponsiveMode `json:"responsive_mode,omitempty"`
+	// Whether whitespace changes should be ignored and if yes, which whitespace changes should be ignored. + Allowed values are IGNORE_NONE, IGNORE_TRAILING, IGNORE_LEADING_AND_TRAILING, IGNORE_ALL.
 	IgnoreWhitespace *Whitespace `json:"ignore_whitespace,omitempty"`
+	// Whether the header that is displayed above the patch (that either shows the commit message, the diff preferences, the patch sets or the files) should be retained on file switch.
 	RetainHeader *bool `json:"retain_header,omitempty"`
+	// Whether deleted files should be skipped on file switch.
 	SkipDeleted *bool `json:"skip_deleted,omitempty"`
 	SkipUnchanged *bool `json:"skip_unchanged,omitempty"`
+	// Whether uncommented files should be skipped on file switch.
 	SkipUncommented *bool `json:"skip_uncommented,omitempty"`
 }
 

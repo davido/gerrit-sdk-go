@@ -19,6 +19,7 @@ var _ MappedNullable = &NotifyInfo{}
 
 // NotifyInfo struct for NotifyInfo
 type NotifyInfo struct {
+	// A list of account IDs that identify the accounts that should be should be notified.
 	Accounts []string `json:"accounts,omitempty"`
 }
 

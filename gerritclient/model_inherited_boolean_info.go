@@ -19,8 +19,11 @@ var _ MappedNullable = &InheritedBooleanInfo{}
 
 // InheritedBooleanInfo struct for InheritedBooleanInfo
 type InheritedBooleanInfo struct {
+	// The effective boolean value.
 	Value *bool `json:"value,omitempty"`
+	// The configured value, can be TRUE, FALSE or INHERIT.
 	ConfiguredValue *InheritableBoolean `json:"configured_value,omitempty"`
+	// The boolean value inherited from the parent. + Not set if there is no parent.
 	InheritedValue *bool `json:"inherited_value,omitempty"`
 }
 

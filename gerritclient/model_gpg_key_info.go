@@ -19,11 +19,17 @@ var _ MappedNullable = &GpgKeyInfo{}
 
 // GpgKeyInfo struct for GpgKeyInfo
 type GpgKeyInfo struct {
+	// The 8-char hex GPG key ID.
 	Id *string `json:"id,omitempty"`
+	// The 40-char (plus spaces) hex GPG key fingerprint.
 	Fingerprint *string `json:"fingerprint,omitempty"`
+	// OpenPGP User IDs,role=external,window=_blank associated with the public key.
 	UserIds []string `json:"user_ids,omitempty"`
+	// ASCII armored public key material.
 	Key *string `json:"key,omitempty"`
+	// The result of server-side checks on the key; one of BAD, OK, or TRUSTED. BAD keys have serious problems and should not be used. If a key is OK, inspecting only that key found no problems, but the system does not fully trust the key's origin.
 	Status *GpgKeyInfoStatus `json:"status,omitempty"`
+	// A list of human-readable problem strings found in the course of checking whether the key is valid and trusted.
 	Problems []string `json:"problems,omitempty"`
 }
 

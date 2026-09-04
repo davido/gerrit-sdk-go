@@ -19,9 +19,13 @@ var _ MappedNullable = &WebLinkInfo{}
 
 // WebLinkInfo struct for WebLinkInfo
 type WebLinkInfo struct {
+	// The text to be linkified.
 	Name *string `json:"name,omitempty"`
+	// Tooltip to show when hovering over the link. Using \"Open in $NAME_OF_EXTERNAL_TOOL\" is a good option here.
 	Tooltip *string `json:"tooltip,omitempty"`
+	// URL to the icon of the link.
 	ImageUrl *string `json:"image_url,omitempty"`
+	// The link URL.
 	Url *string `json:"url,omitempty"`
 }
 

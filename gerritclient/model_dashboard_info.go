@@ -19,16 +19,27 @@ var _ MappedNullable = &DashboardInfo{}
 
 // DashboardInfo struct for DashboardInfo
 type DashboardInfo struct {
+	// The ID of the dashboard. The ID has the format '<ref>:<path>', where ref and path are URL encoded.
 	Id *string `json:"id,omitempty"`
+	// The name of the project for which this dashboard is returned.
 	Project *string `json:"project,omitempty"`
+	// The name of the project in which this dashboard is defined. This is different from project if the dashboard is inherited from a parent project.
 	DefiningProject *string `json:"defining_project,omitempty"`
+	// The name of the ref in which the dashboard is defined, without the refs/meta/dashboards/ prefix, which is common for all dashboard refs.
 	Ref *string `json:"ref,omitempty"`
+	// The path of the file in which the dashboard is defined.
 	Path *string `json:"path,omitempty"`
+	// The description of the dashboard.
 	Description *string `json:"description,omitempty"`
+	// Subquery that applies to all sections in the dashboard. + Tokens such as ${project} are not resolved.
 	Foreach *string `json:"foreach,omitempty"`
+	// The URL under which the dashboard can be opened in the Gerrit Web UI. + The URL is relative to the canonical web URL. + Tokens in the queries such as ${project} are resolved.
 	Url *string `json:"url,omitempty"`
+	// Whether this is the default dashboard of the project.
 	IsDefault *bool `json:"is_default,omitempty"`
+	// The title of the dashboard.
 	Title *string `json:"title,omitempty"`
+	// The list of sections in the dashboard.
 	Sections []DashboardSectionInfo `json:"sections,omitempty"`
 }
 

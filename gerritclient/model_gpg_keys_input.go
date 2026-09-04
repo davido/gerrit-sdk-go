@@ -19,7 +19,9 @@ var _ MappedNullable = &GpgKeysInput{}
 
 // GpgKeysInput struct for GpgKeysInput
 type GpgKeysInput struct {
+	// List of ASCII armored public key strings to add.
 	Add []string `json:"add,omitempty"`
+	// List of \\{gpg-key-id\\}s to delete.
 	Delete []string `json:"delete,omitempty"`
 }
 

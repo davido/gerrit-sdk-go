@@ -19,8 +19,11 @@ var _ MappedNullable = &MoveInput{}
 
 // MoveInput struct for MoveInput
 type MoveInput struct {
+	// A message to be posted in this change's comments
 	Message *string `json:"message,omitempty"`
+	// Destination branch
 	DestinationBranch *string `json:"destination_branch,omitempty"`
+	// By default, only veto votes that are blocking the change from submission are moved to the destination branch. Using this option is only allowed for administrators, because it can affect the submission behaviour of the change (depending on the label access configuration and submissions rules).
 	KeepAllVotes *bool `json:"keep_all_votes,omitempty"`
 }
 

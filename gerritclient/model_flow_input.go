@@ -19,6 +19,7 @@ var _ MappedNullable = &FlowInput{}
 
 // FlowInput struct for FlowInput
 type FlowInput struct {
+	// The expressions for the stages of the flow (sorted by execution order) as a list of FlowExpressionInfo entities.
 	StageExpressions []FlowExpressionInfo `json:"stage_expressions,omitempty"`
 }
 

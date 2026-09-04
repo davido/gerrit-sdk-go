@@ -19,11 +19,17 @@ var _ MappedNullable = &GroupInput{}
 
 // GroupInput struct for GroupInput
 type GroupInput struct {
+	// The name of the group (not encoded). + If set, must match the group name in the URL.
 	Name *string `json:"name,omitempty"`
+	// The UUID of the group.
 	Uuid *string `json:"uuid,omitempty"`
+	// The description of the group.
 	Description *string `json:"description,omitempty"`
+	// Whether the group is visible to all registered users. + false if not set.
 	VisibleToAll *bool `json:"visible_to_all,omitempty"`
+	// The URL encoded ID of the owner group. + This can be a group UUID, a legacy numeric group ID or a unique group name. + If not set, the new group will be self-owned.
 	OwnerId *string `json:"owner_id,omitempty"`
+	// The initial members in a list of + account ids.
 	Members []string `json:"members,omitempty"`
 }
 

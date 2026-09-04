@@ -19,16 +19,27 @@ var _ MappedNullable = &LabelDefinitionInfo{}
 
 // LabelDefinitionInfo struct for LabelDefinitionInfo
 type LabelDefinitionInfo struct {
+	// The name of the label.
 	Name *string `json:"name,omitempty"`
+	// The description of the label.
 	Description *string `json:"description,omitempty"`
+	// The name of the project in which this label is defined. Not set for globally defined labels.
 	ProjectName *string `json:"project_name,omitempty"`
+	// The function of the label (can be MaxWithBlock, AnyWithBlock, MaxNoBlock, NoBlock, NoOp and PatchSetLock.
 	Function *string `json:"function,omitempty"`
+	// The values of the label as a map of label value to value description. The label values are formatted strings, e.g. \"+1\" instead of \"1\", \" 0\" instead of \"0\".
 	Values map[string]string `json:"values,omitempty"`
+	// The default value of the label (as integer).
 	DefaultValue *int32 `json:"default_value,omitempty"`
+	// A list of branches for which the label applies. A branch can be a ref, a ref pattern or a regular expression. If not set, the label applies for all branches.
 	Branches []string `json:"branches,omitempty"`
+	// Whether this label can be overridden by child projects.
 	CanOverride *bool `json:"can_override,omitempty"`
+	// See copyCondition.
 	CopyCondition *string `json:"copy_condition,omitempty"`
+	// Whether allowPostSubmit is set on the label.
 	AllowPostSubmit *bool `json:"allow_post_submit,omitempty"`
+	// Whether ignoreSelfApproval is set on the label.
 	IgnoreSelfApproval *bool `json:"ignore_self_approval,omitempty"`
 }
 

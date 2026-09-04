@@ -19,12 +19,19 @@ var _ MappedNullable = &ChangeConfigInfo{}
 
 // ChangeConfigInfo struct for ChangeConfigInfo
 type ChangeConfigInfo struct {
+	// Whether blame on side by side diff is allowed.
 	AllowBlame *bool `json:"allow_blame,omitempty"`
+	// Returns true if private changes are disabled.
 	DisablePrivateChanges *bool `json:"disable_private_changes,omitempty"`
+	// How often in seconds the web interface should poll for updates to the currently open change.
 	UpdateDelay *int32 `json:"update_delay,omitempty"`
+	// A configuration if the whole topic is submitted.
 	SubmitWholeTopic *bool `json:"submit_whole_topic,omitempty"`
+	// Value of the configuration parameter that controls whether the mergeability bit in ChangeInfo will never be set and if the bit is indexed.
 	MergeabilityComputationBehavior *string `json:"mergeability_computation_behavior,omitempty"`
+	// Are conflicts enabled?.
 	ConflictsPredicateEnabled *bool `json:"conflicts_predicate_enabled,omitempty"`
+	// Are markdown base64 images in comments allowed?.
 	AllowMarkdownBase64ImagesInComments *bool `json:"allow_markdown_base64_images_in_comments,omitempty"`
 }
 

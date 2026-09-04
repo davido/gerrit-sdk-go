@@ -19,9 +19,13 @@ var _ MappedNullable = &ProjectAccessInput{}
 
 // ProjectAccessInput struct for ProjectAccessInput
 type ProjectAccessInput struct {
+	// A map of deductions to be applied to the project access, mapping refs to AccessSectionInfo entities.
 	Remove map[string]AccessSectionInfo `json:"remove,omitempty"`
+	// A map of additions to be applied to the project access, mapping refs to AccessSectionInfo entities.
 	Add map[string]AccessSectionInfo `json:"add,omitempty"`
+	// A new parent for the project to inherit from. Changing the parent project requires administrative privileges.
 	Parent *string `json:"parent,omitempty"`
+	// A commit message for this change.
 	Message *string `json:"message,omitempty"`
 }
 

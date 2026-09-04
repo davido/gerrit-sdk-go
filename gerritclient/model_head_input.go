@@ -19,6 +19,7 @@ var _ MappedNullable = &HeadInput{}
 
 // HeadInput struct for HeadInput
 type HeadInput struct {
+	// The ref to which HEAD should be set, the refs/heads prefix can be omitted.
 	Ref *string `json:"ref,omitempty"`
 }
 

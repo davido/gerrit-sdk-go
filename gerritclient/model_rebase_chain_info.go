@@ -19,7 +19,9 @@ var _ MappedNullable = &RebaseChainInfo{}
 
 // RebaseChainInfo struct for RebaseChainInfo
 type RebaseChainInfo struct {
+	// List of the unsubmitted ancestors, as ChangeInfo entities. Includes both rebased changes, and previously up-to-date ancestors. The list is ordered by ancestry, where the oldest ancestor is the first.
 	RebasedChanges []ChangeInfo `json:"rebased_changes,omitempty"`
+	// Whether any of the rebased changes has conflicts due to rebasing.
 	ContainsGitConflicts *bool `json:"contains_git_conflicts,omitempty"`
 }
 

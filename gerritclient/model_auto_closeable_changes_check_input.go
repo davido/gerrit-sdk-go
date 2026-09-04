@@ -19,9 +19,13 @@ var _ MappedNullable = &AutoCloseableChangesCheckInput{}
 
 // AutoCloseableChangesCheckInput struct for AutoCloseableChangesCheckInput
 type AutoCloseableChangesCheckInput struct {
+	// Whether auto-closeable changes should be closed automatically.
 	Fix *bool `json:"fix,omitempty"`
+	// The branch for which the AutoCloseableChangesCheck should be performed. The 'refs/heads/' prefix for the branch name can be omitted.
 	Branch *string `json:"branch,omitempty"`
+	// Number of commits that should be skipped when walking the commits of the branch.
 	SkipCommits *int32 `json:"skip_commits,omitempty"`
+	// Maximum number of commits to walk. If not specified this defaults to 10,000 commits. 10,000 is also the maximum that can be set. Auto-closing changes is an expensive operation and the more commits are walked the slower it gets. This is why you should avoid walking too many commits.
 	MaxCommits *int32 `json:"max_commits,omitempty"`
 }
 

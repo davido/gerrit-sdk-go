@@ -19,7 +19,9 @@ var _ MappedNullable = &MigrateLabelsReviewInfo{}
 
 // MigrateLabelsReviewInfo struct for MigrateLabelsReviewInfo
 type MigrateLabelsReviewInfo struct {
+	// The status of the migration. Takes one of the following values: MIGRATED, HAS_PROLOG, PREVIOUSLY_MIGRATED, NO_CHANGE
 	Status *MigrateLabelFunctionsToSubmitRequirementStatus `json:"status,omitempty"`
+	// The change created. It is a ChangeInfo entity and is set only when the status value is MIGRATED.
 	Change *ChangeInfo `json:"change,omitempty"`
 }
 

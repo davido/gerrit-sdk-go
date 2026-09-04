@@ -19,7 +19,9 @@ var _ MappedNullable = &ApplyPatchInput{}
 
 // ApplyPatchInput struct for ApplyPatchInput
 type ApplyPatchInput struct {
+	// The patch to be applied. Must be compatible with git diff output. For example, Get Patch output. The patch must be provided as UTF-8 text, either directly or base64-encoded.
 	Patch *string `json:"patch,omitempty"`
+	// If true, tolerate conflicts and add conflict markers where required.
 	AllowConflicts *bool `json:"allow_conflicts,omitempty"`
 }
 

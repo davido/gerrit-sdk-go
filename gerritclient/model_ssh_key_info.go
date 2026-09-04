@@ -19,11 +19,17 @@ var _ MappedNullable = &SshKeyInfo{}
 
 // SshKeyInfo struct for SshKeyInfo
 type SshKeyInfo struct {
+	// The sequence number of the SSH key.
 	Seq *int32 `json:"seq,omitempty"`
+	// The complete public SSH key.
 	SshPublicKey *string `json:"ssh_public_key,omitempty"`
+	// The encoded key.
 	EncodedKey *string `json:"encoded_key,omitempty"`
+	// The algorithm of the SSH key.
 	Algorithm *string `json:"algorithm,omitempty"`
+	// The comment of the SSH key.
 	Comment *string `json:"comment,omitempty"`
+	// Whether the SSH key is valid.
 	Valid *bool `json:"valid,omitempty"`
 }
 

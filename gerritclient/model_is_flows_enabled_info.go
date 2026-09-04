@@ -19,6 +19,7 @@ var _ MappedNullable = &IsFlowsEnabledInfo{}
 
 // IsFlowsEnabledInfo struct for IsFlowsEnabledInfo
 type IsFlowsEnabledInfo struct {
+	// A boolean indicating whether the feature is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 }
 

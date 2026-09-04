@@ -19,8 +19,11 @@ var _ MappedNullable = &IncludedInInfo{}
 
 // IncludedInInfo struct for IncludedInInfo
 type IncludedInInfo struct {
+	// The list of branches this change was merged into. Each branch is listed without the 'refs/head/' prefix.
 	Branches []string `json:"branches,omitempty"`
+	// The list of tags this change was tagged with. Each tag is listed without the 'refs/tags/' prefix.
 	Tags []string `json:"tags,omitempty"`
+	// A map that maps a name to a list of external systems that include this change, e.g. a list of servers on which this change is deployed.
 	External map[string][]string `json:"external,omitempty"`
 }
 

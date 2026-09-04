@@ -19,12 +19,19 @@ var _ MappedNullable = &ParentInfo{}
 
 // ParentInfo struct for ParentInfo
 type ParentInfo struct {
+	// Name of the target branch into which the parent commit is merged.
 	BranchName *string `json:"branch_name,omitempty"`
+	// The commit SHA-1 of the parent commit, or null if the current commit is root.
 	CommitId *string `json:"commit_id,omitempty"`
+	// Set to true if the parent commit is merged into the target branch.
 	IsMergedInTargetBranch *bool `json:"is_merged_in_target_branch,omitempty"`
+	// If the parent commit is a patch-set of another gerrit change, this field will hold the change ID of the parent change. Otherwise, will be null.
 	ChangeId *string `json:"change_id,omitempty"`
+	// If the parent commit is a patch-set of another gerrit change, this field will hold the change number of the parent change. Otherwise, will be null.
 	ChangeNumber *int32 `json:"change_number,omitempty"`
+	// If the parent commit is a patch-set of another gerrit change, this field will hold the patch-set number of the parent change. Otherwise, will be null.
 	PatchSetNumber *int32 `json:"patch_set_number,omitempty"`
+	// If the parent commit is a patch-set of another gerrit change, this field will hold the change status of the parent change. Otherwise, will be null.
 	ChangeStatus *string `json:"change_status,omitempty"`
 }
 

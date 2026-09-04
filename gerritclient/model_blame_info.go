@@ -19,10 +19,15 @@ var _ MappedNullable = &BlameInfo{}
 
 // BlameInfo struct for BlameInfo
 type BlameInfo struct {
+	// The author of the commit.
 	Author *string `json:"author,omitempty"`
+	// The id of the commit.
 	Id *string `json:"id,omitempty"`
+	// Commit time.
 	Time *int32 `json:"time,omitempty"`
+	// The commit message.
 	CommitMsg *string `json:"commit_msg,omitempty"`
+	// The blame row coordinates as RangeInfo entities.
 	Ranges []RangeInfo `json:"ranges,omitempty"`
 }
 

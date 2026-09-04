@@ -19,17 +19,29 @@ var _ MappedNullable = &CherryPickInput{}
 
 // CherryPickInput struct for CherryPickInput
 type CherryPickInput struct {
+	// Commit message for the cherry-pick change. If not set, the commit message of the cherry-picked commit is used.
 	Message *string `json:"message,omitempty"`
+	// Destination branch
 	Destination *string `json:"destination,omitempty"`
+	// 40-hex digit SHA-1 of the commit which will be the parent commit of the newly created change. If set, it must be a merged commit or a change revision on the destination branch.
 	Base *string `json:"base,omitempty"`
+	// Number of the parent relative to which the cherry-pick should be considered.
 	Parent *int32 `json:"parent,omitempty"`
+	// Notify handling that defines to whom email notifications should be sent after the cherry-pick. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is ALL.
 	Notify *NotifyHandling `json:"notify,omitempty"`
+	// Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
 	NotifyDetails map[string]NotifyInfo `json:"notify_details,omitempty"`
+	// If true, carries reviewers and ccs over from original change to newly created one.
 	KeepReviewers *bool `json:"keep_reviewers,omitempty"`
+	// If true, the cherry-pick uses content merge and succeeds also if there are conflicts. If there are conflicts the file contents of the created change contain git conflict markers to indicate the conflicts.
 	AllowConflicts *bool `json:"allow_conflicts,omitempty"`
+	// The topic of the created cherry-picked change. If not set, the default depends on the source. If the source is a change with a topic, the resulting topic of the cherry-picked change will be {source_change_topic}-{destination_branch}.
 	Topic *string `json:"topic,omitempty"`
+	// If true, the cherry-pick succeeds also if the created commit will be empty. If false, a cherry-pick that would create an empty commit fails without creating the commit.
 	AllowEmpty *bool `json:"allow_empty,omitempty"`
+	// Map with key-value pairs that are forwarded as options to the commit validation listeners (e.g. can be used to skip certain validations). Which validation options are supported depends on the installed commit validation listeners.
 	ValidationOptions map[string]string `json:"validation_options,omitempty"`
+	// Cherry-pick is committed using this email address. Only the registered emails of the calling user are considered valid. Defaults to source commit's committer email if it is a registered email of the calling user, else defaults to calling user's preferred email.
 	CommitterEmail *string `json:"committer_email,omitempty"`
 }
 

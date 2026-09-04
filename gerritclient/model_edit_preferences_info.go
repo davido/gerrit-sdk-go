@@ -19,19 +19,33 @@ var _ MappedNullable = &EditPreferencesInfo{}
 
 // EditPreferencesInfo struct for EditPreferencesInfo
 type EditPreferencesInfo struct {
+	// Number of spaces that should be used to display one tab.
 	TabSize *int32 `json:"tab_size,omitempty"`
+	// Number of characters that should be displayed per line.
 	LineLength *int32 `json:"line_length,omitempty"`
+	// Number of spaces that should be used for auto-indent.
 	IndentUnit *int32 `json:"indent_unit,omitempty"`
+	// Half-period in milliseconds used for cursor blinking. Setting it to 0 disables cursor blinking.
 	CursorBlinkRate *int32 `json:"cursor_blink_rate,omitempty"`
+	// If true the top menu header and site header is hidden.
 	HideTopMenu *bool `json:"hide_top_menu,omitempty"`
+	// Whether tabs should be shown.
 	ShowTabs *bool `json:"show_tabs,omitempty"`
+	// Whether whitespace errors should be shown.
 	ShowWhitespaceErrors *bool `json:"show_whitespace_errors,omitempty"`
+	// Whether syntax highlighting should be enabled.
 	SyntaxHighlighting *bool `json:"syntax_highlighting,omitempty"`
+	// Whether line numbers should be hidden.
 	HideLineNumbers *bool `json:"hide_line_numbers,omitempty"`
+	// Whether matching brackets should be highlighted.
 	MatchBrackets *bool `json:"match_brackets,omitempty"`
+	// Whether to enable line wrapping or not.
 	LineWrapping *bool `json:"line_wrapping,omitempty"`
+	// Whether to indent with tabs or not.
 	IndentWithTabs *bool `json:"indent_with_tabs,omitempty"`
+	// Whether brackets and quotes should be auto-closed during typing.
 	AutoCloseBrackets *bool `json:"auto_close_brackets,omitempty"`
+	// Whether to show the inline edit base version or not.
 	ShowBase *bool `json:"show_base,omitempty"`
 }
 

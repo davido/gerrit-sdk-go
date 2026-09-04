@@ -19,6 +19,7 @@ var _ MappedNullable = &DisplayNameInput{}
 
 // DisplayNameInput struct for DisplayNameInput
 type DisplayNameInput struct {
+	// The new display name of the account.
 	DisplayName *string `json:"display_name,omitempty"`
 }
 

@@ -19,8 +19,11 @@ var _ MappedNullable = &CommitMessageInfo{}
 
 // CommitMessageInfo struct for CommitMessageInfo
 type CommitMessageInfo struct {
+	// The subject of the change (first line of the commit message).
 	Subject *string `json:"subject,omitempty"`
+	// Full commit message of the change.
 	FullMessage *string `json:"full_message,omitempty"`
+	// The footers from the commit message as a map of key-value pairs. If there are multiple footers with the same key, only the last footer with that key is returned.
 	Footers map[string]string `json:"footers,omitempty"`
 }
 

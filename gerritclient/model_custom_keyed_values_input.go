@@ -19,7 +19,9 @@ var _ MappedNullable = &CustomKeyedValuesInput{}
 
 // CustomKeyedValuesInput struct for CustomKeyedValuesInput
 type CustomKeyedValuesInput struct {
+	// The map of custom keyed values to be added to the change.
 	Add map[string]string `json:"add,omitempty"`
+	// The list of custom keys to be removed from the change.
 	Remove []string `json:"remove,omitempty"`
 }
 

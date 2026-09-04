@@ -19,7 +19,9 @@ var _ MappedNullable = &PluginConfigInfo{}
 
 // PluginConfigInfo struct for PluginConfigInfo
 type PluginConfigInfo struct {
+	// Whether an avatar provider is registered.
 	HasAvatars *bool `json:"has_avatars,omitempty"`
+	// A list of relative paths (strings). Each path points to a frontend plugin that should be loaded, e.g. plugins/codemirror_editor/static/codemirror_editor.js.
 	JsResourcePaths []string `json:"js_resource_paths,omitempty"`
 }
 

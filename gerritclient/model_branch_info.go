@@ -20,9 +20,13 @@ var _ MappedNullable = &BranchInfo{}
 // BranchInfo struct for BranchInfo
 type BranchInfo struct {
 	Actions map[string]ActionInfo `json:"actions,omitempty"`
+	// Links to the branch in external sites as a list of WebLinkInfo entries.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`
+	// The ref of the branch.
 	Ref *string `json:"ref,omitempty"`
+	// The revision to which the branch points.
 	Revision *string `json:"revision,omitempty"`
+	// Whether the calling user can delete this branch.
 	CanDelete *bool `json:"can_delete,omitempty"`
 }
 

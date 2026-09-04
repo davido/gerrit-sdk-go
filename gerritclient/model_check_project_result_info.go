@@ -19,6 +19,7 @@ var _ MappedNullable = &CheckProjectResultInfo{}
 
 // CheckProjectResultInfo struct for CheckProjectResultInfo
 type CheckProjectResultInfo struct {
+	// Results for the AutoCloseableChangesCheck as AutoCloseableChangesCheckResult entity.
 	AutoCloseableChangesCheckResult *AutoCloseableChangesCheckResult `json:"auto_closeable_changes_check_result,omitempty"`
 }
 

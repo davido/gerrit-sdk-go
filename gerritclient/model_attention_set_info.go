@@ -19,9 +19,13 @@ var _ MappedNullable = &AttentionSetInfo{}
 
 // AttentionSetInfo struct for AttentionSetInfo
 type AttentionSetInfo struct {
+	// AccountInfo entity.
 	Account *AccountInfo `json:"account,omitempty"`
+	// The timestamp of the last update.
 	LastUpdate *string `json:"last_update,omitempty"`
+	// The reason for adding or removing the user. If the update was caused by another user, that account is represented by account ID in reason as <GERRIT_ACCOUNT_18419> and the corresponding AccountInfo can be found in reason_account field.
 	Reason *string `json:"reason,omitempty"`
+	// AccountInfo of the user who caused the update.
 	ReasonAccount *AccountInfo `json:"reason_account,omitempty"`
 }
 

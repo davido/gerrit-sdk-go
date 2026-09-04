@@ -19,9 +19,13 @@ var _ MappedNullable = &BatchLabelInput{}
 
 // BatchLabelInput struct for BatchLabelInput
 type BatchLabelInput struct {
+	// Message that should be used to commit the label updates in the project.config file to the refs/meta/config branch.
 	CommitMessage *string `json:"commit_message,omitempty"`
+	// List of labels that should be deleted.
 	Delete []string `json:"delete,omitempty"`
+	// List of LabelDefinitionInput entities that describe labels that should be created.
 	Create []LabelDefinitionInput `json:"create,omitempty"`
+	// Map of label names to LabelDefinitionInput entities that describe the updates that should be done for the labels. The given inputs only need to set the properties that are being changed.
 	Update map[string]LabelDefinitionInput `json:"update,omitempty"`
 }
 

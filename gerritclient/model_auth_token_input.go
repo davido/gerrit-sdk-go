@@ -19,8 +19,11 @@ var _ MappedNullable = &AuthTokenInput{}
 
 // AuthTokenInput struct for AuthTokenInput
 type AuthTokenInput struct {
+	// Must be the same as the id used in the URL.
 	Id *string `json:"id,omitempty"`
+	// The new token. Only Gerrit administrators may set the token directly.
 	Token *string `json:"token,omitempty"`
+	// Lifetime of the token. After the given duration the token will be invalid.
 	Lifetime *string `json:"lifetime,omitempty"`
 }
 

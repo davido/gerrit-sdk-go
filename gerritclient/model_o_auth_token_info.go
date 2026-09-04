@@ -19,11 +19,17 @@ var _ MappedNullable = &OAuthTokenInfo{}
 
 // OAuthTokenInfo struct for OAuthTokenInfo
 type OAuthTokenInfo struct {
+	// The owner of the OAuth access token.
 	Username *string `json:"username,omitempty"`
+	// The host of the Gerrit instance.
 	ResourceHost *string `json:"resource_host,omitempty"`
+	// The actual token value.
 	AccessToken *string `json:"access_token,omitempty"`
+	// The identifier of the OAuth provider in the form plugin-name:provider-name.
 	ProviderId *string `json:"provider_id,omitempty"`
+	// Time of expiration of this token in milliseconds.
 	ExpiresAt *string `json:"expires_at,omitempty"`
+	// The type of the OAuth access token, always bearer.
 	Type *string `json:"type,omitempty"`
 }
 

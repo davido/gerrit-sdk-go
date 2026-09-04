@@ -19,9 +19,13 @@ var _ MappedNullable = &MetadataInfo{}
 
 // MetadataInfo struct for MetadataInfo
 type MetadataInfo struct {
+	// The metadata name. Not guaranteed to be unique, e.g. multiple metadata entries with the same name may be returned.
 	Name *string `json:"name,omitempty"`
+	// The metadata value.
 	Value *string `json:"value,omitempty"`
+	// A description of the metadata.
 	Description *string `json:"description,omitempty"`
+	// A list of web links as WebLinkInfo entities.
 	WebLinks []WebLinkInfo `json:"web_links,omitempty"`
 }
 

@@ -19,8 +19,11 @@ var _ MappedNullable = &AccessCheckInfo{}
 
 // AccessCheckInfo struct for AccessCheckInfo
 type AccessCheckInfo struct {
+	// A clarifying message if status is not 200.
 	Message *string `json:"message,omitempty"`
+	// The HTTP status code for the access. 200 means success and 403 means denied.
 	Status *int32 `json:"status,omitempty"`
+	// Debug logs that may help to understand why a permission is denied or allowed.
 	DebugLogs []string `json:"debug_logs,omitempty"`
 }
 

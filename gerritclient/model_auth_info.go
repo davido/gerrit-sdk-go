@@ -20,17 +20,29 @@ var _ MappedNullable = &AuthInfo{}
 // AuthInfo struct for AuthInfo
 type AuthInfo struct {
 	AuthType *AuthType `json:"auth_type,omitempty"`
+	// Whether contributor agreements are required.
 	UseContributorAgreements *bool `json:"use_contributor_agreements,omitempty"`
+	// List of contributor agreements as ContributorAgreementInfo entities.
 	ContributorAgreements []AgreementInfo `json:"contributor_agreements,omitempty"`
+	// List of account fields that are editable. Possible values are FULL_NAME, USER_NAME and REGISTER_NEW_EMAIL.
 	EditableAccountFields []AccountFieldName `json:"editable_account_fields,omitempty"`
+	// The login URL. Only set if authentication type is HTTP or HTTP_LDAP.
 	LoginUrl *string `json:"login_url,omitempty"`
+	// The login text. Only set if authentication type is HTTP or HTTP_LDAP.
 	LoginText *string `json:"login_text,omitempty"`
+	// The URL to switch accounts.
 	SwitchAccountUrl *string `json:"switch_account_url,omitempty"`
+	// The register URL. Only set if authentication type is LDAP, LDAP_BIND or CUSTOM_EXTENSION.
 	RegisterUrl *string `json:"register_url,omitempty"`
+	// The register text. Only set if authentication type is LDAP, LDAP_BIND or CUSTOM_EXTENSION.
 	RegisterText *string `json:"register_text,omitempty"`
+	// The URL to edit the full name. Only set if authentication type is LDAP, LDAP_BIND or CUSTOM_EXTENSION.
 	EditFullNameUrl *string `json:"edit_full_name_url,omitempty"`
+	// The URL to obtain an HTTP password. Only set if authentication type is CUSTOM_EXTENSION.
 	HttpPasswordUrl *string `json:"http_password_url,omitempty"`
+	// The policy to authenticate Git over HTTP and REST API requests when authentication type is LDAP, LDAP_BIND or OAUTH. Can be HTTP, LDAP, HTTP_LDAP or OAUTH.
 	GitBasicAuthPolicy *GitBasicAuthPolicy `json:"git_basic_auth_policy,omitempty"`
+	// The maximum lifetime of authentication tokens.
 	MaxTokenLifetime *int32 `json:"max_token_lifetime,omitempty"`
 }
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &RestoreInput{}
 
 // RestoreInput struct for RestoreInput
 type RestoreInput struct {
+	// Message to be added as review comment to the change when restoring the change.
 	Message *string `json:"message,omitempty"`
 }
 

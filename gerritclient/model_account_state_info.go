@@ -19,10 +19,15 @@ var _ MappedNullable = &AccountStateInfo{}
 
 // AccountStateInfo struct for AccountStateInfo
 type AccountStateInfo struct {
+	// The account details as AccountDetailInfo entity.
 	Account *AccountDetailInfo `json:"account,omitempty"`
+	// The global capabilities of the account as a CapabilityInfo entity. Not set if the permission backend doesn't use default capabilities.
 	Capabilities map[string]map[string]interface{} `json:"capabilities,omitempty"`
+	// The groups that contain the account as a member as a list of GroupInfo entries.
 	Groups []GroupInfo `json:"groups,omitempty"`
+	// The external IDs of the account as a list of AccountExternalIdInfo entities.
 	ExternalIds []AccountExternalIdInfo `json:"external_ids,omitempty"`
+	// Optional account metadata as a list of MetadataInfo entities. If and which metadata is provided depends on the Gerrit setup.
 	Metadata []MetadataInfo `json:"metadata,omitempty"`
 }
 

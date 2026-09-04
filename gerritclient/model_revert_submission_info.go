@@ -19,6 +19,7 @@ var _ MappedNullable = &RevertSubmissionInfo{}
 
 // RevertSubmissionInfo struct for RevertSubmissionInfo
 type RevertSubmissionInfo struct {
+	// A list of ChangeInfo that describes the revert changes. Each entity in that list is a revert change that was created in that revert submission.
 	RevertChanges []ChangeInfo `json:"revert_changes,omitempty"`
 }
 

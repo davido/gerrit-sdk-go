@@ -19,7 +19,9 @@ var _ MappedNullable = &AvatarInfo{}
 
 // AvatarInfo struct for AvatarInfo
 type AvatarInfo struct {
+	// The URL to the avatar image.
 	Url *string `json:"url,omitempty"`
+	// The height of the avatar image in pixels.
 	Height *int32 `json:"height,omitempty"`
 }
 

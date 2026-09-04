@@ -19,11 +19,17 @@ var _ MappedNullable = &DiffWebLinkInfo{}
 
 // DiffWebLinkInfo struct for DiffWebLinkInfo
 type DiffWebLinkInfo struct {
+	// Whether the web link should be shown on the side-by-side diff screen.
 	ShowOnSideBySideDiffView *bool `json:"show_on_side_by_side_diff_view,omitempty"`
+	// Whether the web link should be shown on the unified diff screen.
 	ShowOnUnifiedDiffView *bool `json:"show_on_unified_diff_view,omitempty"`
+	// See WebLinkInfo
 	Name *string `json:"name,omitempty"`
+	// See WebLinkInfo
 	Tooltip *string `json:"tooltip,omitempty"`
+	// See WebLinkInfo
 	ImageUrl *string `json:"image_url,omitempty"`
+	// See WebLinkInfo
 	Url *string `json:"url,omitempty"`
 }
 

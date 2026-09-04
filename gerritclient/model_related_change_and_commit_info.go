@@ -19,14 +19,23 @@ var _ MappedNullable = &RelatedChangeAndCommitInfo{}
 
 // RelatedChangeAndCommitInfo struct for RelatedChangeAndCommitInfo
 type RelatedChangeAndCommitInfo struct {
+	// The project of the change or commit.
 	Project *string `json:"project,omitempty"`
+	// The Change-Id of the change.
 	ChangeId *string `json:"change_id,omitempty"`
+	// The commit as a CommitInfo entity.
 	Commit *CommitInfo `json:"commit,omitempty"`
+	// The change number.
 	ChangeNumber *int32 `json:"_change_number,omitempty"`
+	// The revision number.
 	RevisionNumber *int32 `json:"_revision_number,omitempty"`
+	// The current revision number.
 	CurrentRevisionNumber *int32 `json:"_current_revision_number,omitempty"`
+	// The status of the change. The status of the change is one of (NEW, MERGED, ABANDONED).
 	Status *string `json:"status,omitempty"`
+	// Boolean indicating whether the change is submittable. + Only populated if requested.
 	Submittable *bool `json:"submittable,omitempty"`
+	// Boolean indicating whether the change is work in progress.
 	WorkInProgress *bool `json:"work_in_progress,omitempty"`
 }
 

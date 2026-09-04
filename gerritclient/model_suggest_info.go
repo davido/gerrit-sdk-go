@@ -19,6 +19,7 @@ var _ MappedNullable = &SuggestInfo{}
 
 // SuggestInfo struct for SuggestInfo
 type SuggestInfo struct {
+	// The number of characters that a user must have typed before suggestions are provided.
 	From *int32 `json:"from,omitempty"`
 }
 

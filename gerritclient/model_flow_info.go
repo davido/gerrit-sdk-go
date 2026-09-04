@@ -19,10 +19,15 @@ var _ MappedNullable = &FlowInfo{}
 
 // FlowInfo struct for FlowInfo
 type FlowInfo struct {
+	// The universally unique identifier that identifies the flow.
 	Uuid *string `json:"uuid,omitempty"`
+	// The owner of the flow as an AccountInfo entity.
 	Owner *AccountInfo `json:"owner,omitempty"`
+	// The timestamp of when the flow was created.
 	Created *string `json:"created,omitempty"`
+	// The stages of this flow as a list of FlowStageInfo entities (sorted by execution order).
 	Stages []FlowStageInfo `json:"stages,omitempty"`
+	// The timestamp of when the flow was last evaluated. Not set if the flow has not been evaluated yet.
 	LastEvaluated *string `json:"last_evaluated,omitempty"`
 }
 

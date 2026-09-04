@@ -19,7 +19,9 @@ var _ MappedNullable = &DownloadInfo{}
 
 // DownloadInfo struct for DownloadInfo
 type DownloadInfo struct {
+	// The supported download schemes as a map which maps the scheme name to a of DownloadSchemeInfo entity.
 	Schemes map[string]DownloadSchemeInfo `json:"schemes,omitempty"`
+	// List of supported archive formats. Possible values are tgz, tar, tbz2 and txz.
 	Archives []string `json:"archives,omitempty"`
 }
 

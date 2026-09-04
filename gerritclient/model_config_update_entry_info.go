@@ -19,8 +19,11 @@ var _ MappedNullable = &ConfigUpdateEntryInfo{}
 
 // ConfigUpdateEntryInfo struct for ConfigUpdateEntryInfo
 type ConfigUpdateEntryInfo struct {
+	// The config key that contains the value.
 	ConfigKey *string `json:"config_key,omitempty"`
+	// The old config value. + Missing if value was not previously configured.
 	OldValue *string `json:"old_value,omitempty"`
+	// The new config value, picked up after reload.
 	NewValue *string `json:"new_value,omitempty"`
 }
 

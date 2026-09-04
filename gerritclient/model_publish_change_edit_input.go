@@ -19,7 +19,9 @@ var _ MappedNullable = &PublishChangeEditInput{}
 
 // PublishChangeEditInput struct for PublishChangeEditInput
 type PublishChangeEditInput struct {
+	// Notify handling that defines to whom email notifications should be sent after the change edit is published. + Allowed values are NONE and ALL. + If not set, the default is ALL.
 	Notify *NotifyHandling `json:"notify,omitempty"`
+	// Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
 	NotifyDetails map[string]NotifyInfo `json:"notify_details,omitempty"`
 }
 

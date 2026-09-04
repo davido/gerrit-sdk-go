@@ -19,16 +19,27 @@ var _ MappedNullable = &ConfigParameterInfo{}
 
 // ConfigParameterInfo struct for ConfigParameterInfo
 type ConfigParameterInfo struct {
+	// The display name of the configuration parameter.
 	DisplayName *string `json:"display_name,omitempty"`
+	// The description of the configuration parameter.
 	Description *string `json:"description,omitempty"`
+	// Warning message for the configuration parameter.
 	Warning *string `json:"warning,omitempty"`
+	// The type of the configuration parameter. Can be STRING, INT, LONG, BOOLEAN, LIST or ARRAY.
 	Type *ProjectConfigEntryType `json:"type,omitempty"`
+	// The value of the configuration parameter as string. If the parameter is inheritable this is the effective value which is deduced from configured_value and inherited_value.
 	Value *string `json:"value,omitempty"`
+	// Whether the value is editable.
 	Editable *bool `json:"editable,omitempty"`
+	// Whether the configuration parameter can be inherited.
 	Inheritable *bool `json:"inheritable,omitempty"`
+	// The value of the configuration parameter that is configured on this project, only set if inheritable is true.
 	ConfiguredValue *string `json:"configured_value,omitempty"`
+	// The inherited value of the configuration parameter, only set if inheritable is true.
 	InheritedValue *string `json:"inherited_value,omitempty"`
+	// The list of permitted values. Only set if the type is LIST.
 	PermittedValues []string `json:"permitted_values,omitempty"`
+	// The list of values. Only set if the type is ARRAY.
 	Values []string `json:"values,omitempty"`
 }
 

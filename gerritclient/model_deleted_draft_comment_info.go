@@ -19,7 +19,9 @@ var _ MappedNullable = &DeletedDraftCommentInfo{}
 
 // DeletedDraftCommentInfo struct for DeletedDraftCommentInfo
 type DeletedDraftCommentInfo struct {
+	// ChangeInfo entity describing the change on which one or more comments was deleted. Populated with no change list options.
 	Change *ChangeInfo `json:"change,omitempty"`
+	// List of CommentInfo entities for each comment that was deleted.
 	Deleted []CommentInfo `json:"deleted,omitempty"`
 }
 

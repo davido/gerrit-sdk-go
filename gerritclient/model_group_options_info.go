@@ -19,6 +19,7 @@ var _ MappedNullable = &GroupOptionsInfo{}
 
 // GroupOptionsInfo struct for GroupOptionsInfo
 type GroupOptionsInfo struct {
+	// Whether the group is visible to all registered users.
 	VisibleToAll *bool `json:"visible_to_all,omitempty"`
 }
 

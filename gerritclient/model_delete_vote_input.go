@@ -19,10 +19,15 @@ var _ MappedNullable = &DeleteVoteInput{}
 
 // DeleteVoteInput struct for DeleteVoteInput
 type DeleteVoteInput struct {
+	// The label for which the vote should be deleted. + If set, must match the label in the URL.
 	Label *string `json:"label,omitempty"`
+	// Notify handling that defines to whom email notifications should be sent after the vote is deleted. + Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL. + If not set, the default is ALL.
 	Notify *NotifyHandling `json:"notify,omitempty"`
+	// Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
 	NotifyDetails map[string]NotifyInfo `json:"notify_details,omitempty"`
+	// If set to true, ignore all automatic attention set rules described in the attention set. When not set, the default is false.
 	IgnoreAutomaticAttentionSetRules *bool `json:"ignore_automatic_attention_set_rules,omitempty"`
+	// The reason why this vote is deleted. Will + go into the change message.
 	Reason *string `json:"reason,omitempty"`
 }
 

@@ -19,12 +19,19 @@ var _ MappedNullable = &EditInfo{}
 
 // EditInfo struct for EditInfo
 type EditInfo struct {
+	// The commit of change edit as CommitInfo entity.
 	Commit *CommitInfo `json:"commit,omitempty"`
+	// The patch set number of the patch set the change edit is based on.
 	BasePatchSetNumber *int32 `json:"base_patch_set_number,omitempty"`
+	// The revision of the patch set the change edit is based on.
 	BaseRevision *string `json:"base_revision,omitempty"`
+	// The ref of the change edit.
 	Ref *string `json:"ref,omitempty"`
+	// Information about how to fetch this patch set. The fetch information is provided as a map that maps the protocol name (\"git\", \"http\", \"ssh\") to FetchInfo entities.
 	Fetch map[string]FetchInfo `json:"fetch,omitempty"`
+	// The files of the change edit as a map that maps the file names to FileInfo entities.
 	Files map[string]CommonFileInfo `json:"files,omitempty"`
+	// Whether the change edit contains conflicts. + If true, some of the file contents of the change edit contain git conflict markers to indicate the conflicts. + Only set if this edit info is returned in response to a request that rebases the change edit and conflicts are allowed.
 	ContainsGitConflicts *bool `json:"contains_git_conflicts,omitempty"`
 }
 

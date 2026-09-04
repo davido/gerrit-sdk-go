@@ -19,6 +19,7 @@ var _ MappedNullable = &AccessSectionInfo{}
 
 // AccessSectionInfo struct for AccessSectionInfo
 type AccessSectionInfo struct {
+	// The permissions assigned on the ref of this access section as a map that maps the permission names to PermissionInfo entities.
 	Permissions map[string]PermissionInfo `json:"permissions,omitempty"`
 }
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &UserConfigInfo{}
 
 // UserConfigInfo struct for UserConfigInfo
 type UserConfigInfo struct {
+	// Username that is displayed in the Gerrit Web UI and in e-mail notifications if the full name of the user is not set.
 	AnonymousCowardName *string `json:"anonymous_coward_name,omitempty"`
 }
 

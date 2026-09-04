@@ -19,7 +19,9 @@ var _ MappedNullable = &IndexProjectInput{}
 
 // IndexProjectInput struct for IndexProjectInput
 type IndexProjectInput struct {
+	// If children should be indexed recursively.
 	IndexChildren *bool `json:"index_children,omitempty"`
+	// If projects should be indexed asynchronously.
 	Async *bool `json:"async,omitempty"`
 }
 

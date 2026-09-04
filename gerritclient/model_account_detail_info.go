@@ -19,6 +19,7 @@ var _ MappedNullable = &AccountDetailInfo{}
 
 // AccountDetailInfo struct for AccountDetailInfo
 type AccountDetailInfo struct {
+	// The timestamp of when the account was registered.
 	RegisteredOn *string `json:"registered_on,omitempty"`
 	AccountId *int32 `json:"_account_id,omitempty"`
 	Name *string `json:"name,omitempty"`

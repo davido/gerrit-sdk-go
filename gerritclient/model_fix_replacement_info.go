@@ -19,8 +19,11 @@ var _ MappedNullable = &FixReplacementInfo{}
 
 // FixReplacementInfo struct for FixReplacementInfo
 type FixReplacementInfo struct {
+	// The path of the file which should be modified. Any file in the repository may be modified. The commit message can be modified via the magic file /COMMIT_MSG though only the part below the generated header of that magic file can be modified.
 	Path *string `json:"path,omitempty"`
+	// A CommentRange indicating which content of the file should be replaced. Lines in the file are assumed to be separated by the line feed character.
 	Range *Range `json:"range,omitempty"`
+	// The content which should be used instead of the current one.
 	Replacement *string `json:"replacement,omitempty"`
 }
 

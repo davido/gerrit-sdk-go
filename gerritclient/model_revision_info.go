@@ -19,21 +19,37 @@ var _ MappedNullable = &RevisionInfo{}
 
 // RevisionInfo struct for RevisionInfo
 type RevisionInfo struct {
+	// The change kind. Valid values are REWORK, TRIVIAL_REBASE, TRIVIAL_REBASE_WITH_MESSAGE_UPDATE, MERGE_FIRST_PARENT_UPDATE, NO_CODE_CHANGE, and NO_CHANGE.
 	Kind *ChangeKind `json:"kind,omitempty"`
+	// The patch set number, or edit if the patch set is an edit.
 	Number *int32 `json:"_number,omitempty"`
+	// The timestamp of when the patch set was created.
 	Created *string `json:"created,omitempty"`
+	// The uploader of the patch set as an AccountInfo entity.
 	Uploader *AccountInfo `json:"uploader,omitempty"`
+	// The real uploader of the patch set as an AccountInfo entity. + Only set if the upload was done on behalf of another user.
 	RealUploader *AccountInfo `json:"real_uploader,omitempty"`
+	// The Git reference for the patch set.
 	Ref *string `json:"ref,omitempty"`
+	// Information about how to fetch this patch set. The fetch information is provided as a map that maps the protocol name (\"git\", \"http\", \"ssh\") to FetchInfo entities. This information is only included if a plugin implementing the download commands interface is installed.
 	Fetch map[string]FetchInfo `json:"fetch,omitempty"`
+	// The commit of the patch set as CommitInfo entity.
 	Commit *CommitInfo `json:"commit,omitempty"`
+	// The parent commits of this patch-set commit as a list of ParentInfo entities. In each parent, we include the target branch name if the parent is a merged commit in the target branch. Otherwise, we include the change and patch-set numbers of the parent change. + Only set if the PARENTS option is set.
 	ParentsData []ParentInfo `json:"parents_data,omitempty"`
+	// The name of the target branch that this revision is set to be merged into. + Note that if the change is moved with the Move Change endpoint, this field can be different for different patchsets.
 	Branch *string `json:"branch,omitempty"`
+	// The files of the patch set as a map that maps the file names to FileInfo entities. Only set if CURRENT_FILES or ALL_FILES option is requested.
 	Files map[string]CommonFileInfo `json:"files,omitempty"`
+	// Actions the caller might be able to perform on this revision. The information is a map of view name to ActionInfo entities.
 	Actions map[string]ActionInfo `json:"actions,omitempty"`
+	// If the COMMIT_FOOTERS option is requested and this is the current patch set, contains the full commit message with Gerrit-specific commit footers, as if this revision were submitted using the Cherry Pick submit type.
 	CommitWithFooters *string `json:"commit_with_footers,omitempty"`
+	// If the PUSH_CERTIFICATES option is requested, contains the push certificate provided by the user when uploading this patch set as a PushCertificateInfo entity. This field is always set if the option is requested; if no push certificate was provided, it is set to an empty object.
 	PushCertificate *PushCertificateInfo `json:"push_certificate,omitempty"`
+	// The description of this patchset, as displayed in the patchset selector menu. May be null if no description is set.
 	Description *string `json:"description,omitempty"`
+	// Information about conflicts in this revision as a ConflictsInfo entity.
 	Conflicts *ConflictsInfo `json:"conflicts,omitempty"`
 }
 

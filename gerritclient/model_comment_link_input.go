@@ -19,11 +19,17 @@ var _ MappedNullable = &CommentLinkInput{}
 
 // CommentLinkInput struct for CommentLinkInput
 type CommentLinkInput struct {
+	// A JavaScript regular expression to match positions to be replaced with a hyperlink, as documented in commentlink.name.match.
 	Match *string `json:"match,omitempty"`
+	// The URL to direct the user to whenever the regular expression is matched, as documented in commentlink.name.link.
 	Link *string `json:"link,omitempty"`
+	// Text inserted before the link.
 	Prefix *string `json:"prefix,omitempty"`
+	// Text inserted after the link.
 	Suffix *string `json:"suffix,omitempty"`
+	// Text of the link.
 	Text *string `json:"text,omitempty"`
+	// Whether the commentlink is enabled, as documented in commentlink.name.enabled. If not set the commentlink is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 }
 

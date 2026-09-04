@@ -19,6 +19,7 @@ var _ MappedNullable = &MigrateLabelsInfo{}
 
 // MigrateLabelsInfo struct for MigrateLabelsInfo
 type MigrateLabelsInfo struct {
+	// The status of the migration. Takes one of the following values: MIGRATED, HAS_PROLOG, PREVIOUSLY_MIGRATED, NO_CHANGE
 	Status *SchemaMigrateLabelFunctionsToSubmitRequirementStatus `json:"status,omitempty"`
 }
 

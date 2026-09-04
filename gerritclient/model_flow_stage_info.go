@@ -19,8 +19,11 @@ var _ MappedNullable = &FlowStageInfo{}
 
 // FlowStageInfo struct for FlowStageInfo
 type FlowStageInfo struct {
+	// The expression defining the condition and the action of this stage as a FlowExpressionInfo entity.
 	Expression *FlowExpressionInfo `json:"expression,omitempty"`
+	// The state for this stage. Can be PENDING (the condition of the stage is not satisfied yet or the action has not been executed yet), DONE (the condition of the stage is satisfied and the action has been executed), FAILED (the stage has a non-recoverable error, e.g.
 	State *FlowStageState `json:"state,omitempty"`
+	// Optional message for the stage.
 	Message *string `json:"message,omitempty"`
 }
 

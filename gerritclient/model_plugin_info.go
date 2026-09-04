@@ -19,11 +19,17 @@ var _ MappedNullable = &PluginInfo{}
 
 // PluginInfo struct for PluginInfo
 type PluginInfo struct {
+	// The ID of the plugin.
 	Id *string `json:"id,omitempty"`
+	// The version of the plugin.
 	Version *string `json:"version,omitempty"`
+	// The version of the Gerrit Api used by the plugin.
 	ApiVersion *string `json:"api_version,omitempty"`
+	// URL of the plugin's default page.
 	IndexUrl *string `json:"index_url,omitempty"`
+	// The plugin's filename.
 	Filename *string `json:"filename,omitempty"`
+	// Whether the plugin is disabled.
 	Disabled *bool `json:"disabled,omitempty"`
 }
 

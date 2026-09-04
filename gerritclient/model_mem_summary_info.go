@@ -19,11 +19,17 @@ var _ MappedNullable = &MemSummaryInfo{}
 
 // MemSummaryInfo struct for MemSummaryInfo
 type MemSummaryInfo struct {
+	// The total size of the memory. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
 	Total *string `json:"total,omitempty"`
+	// The size of used memory. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
 	Used *string `json:"used,omitempty"`
+	// The size of free memory. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
 	Free *string `json:"free,omitempty"`
+	// The size of memory used for JGit buffers. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
 	Buffers *string `json:"buffers,omitempty"`
+	// The maximal memory size. The value is returned with a unit abbreviation (k: kilobytes, m: megabytes, g: gigabytes).
 	Max *string `json:"max,omitempty"`
+	// The number of open files.
 	OpenFiles *int32 `json:"open_files,omitempty"`
 }
 

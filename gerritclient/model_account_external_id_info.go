@@ -19,9 +19,13 @@ var _ MappedNullable = &AccountExternalIdInfo{}
 
 // AccountExternalIdInfo struct for AccountExternalIdInfo
 type AccountExternalIdInfo struct {
+	// The account external id.
 	Identity *string `json:"identity,omitempty"`
+	// The email address for the external id.
 	EmailAddress *string `json:"email_address,omitempty"`
+	// Whether the external id is trusted.
 	Trusted *bool `json:"trusted,omitempty"`
+	// Whether the external id can be deleted by the calling user.
 	CanDelete *bool `json:"can_delete,omitempty"`
 }
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &TopicInput{}
 
 // TopicInput struct for TopicInput
 type TopicInput struct {
+	// The topic. + The topic will be deleted if not set. Topic can't contain quotation marks.
 	Topic *string `json:"topic,omitempty"`
 }
 

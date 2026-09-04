@@ -716,7 +716,7 @@ func (r ApiGetProjectsRequest) Type_(type_ string) ApiGetProjectsRequest {
 	return r
 }
 
-func (r ApiGetProjectsRequest) Execute() (*GetProjectsDefaultResponse, *http.Response, error) {
+func (r ApiGetProjectsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetProjectsExecute(r)
 }
 
@@ -736,13 +736,13 @@ func (a *ProjectsAPIService) GetProjects(ctx context.Context) ApiGetProjectsRequ
 }
 
 // Execute executes the request
-//  @return GetProjectsDefaultResponse
-func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (*GetProjectsDefaultResponse, *http.Response, error) {
+//  @return interface{}
+func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetProjectsDefaultResponse
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjects")
@@ -845,7 +845,7 @@ func (a *ProjectsAPIService) GetProjectsExecute(r ApiGetProjectsRequest) (*GetPr
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GetProjectsDefaultResponse
+			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

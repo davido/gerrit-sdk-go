@@ -19,16 +19,27 @@ var _ MappedNullable = &LabelInfo{}
 
 // LabelInfo struct for LabelInfo
 type LabelInfo struct {
+	// One user who approved this label on the change (voted the maximum value) as an AccountInfo entity.
 	Approved *AccountInfo `json:"approved,omitempty"`
+	// One user who rejected this label on the change (voted the minimum value) as an AccountInfo entity.
 	Rejected *AccountInfo `json:"rejected,omitempty"`
+	// One user who recommended this label on the change (voted positively, but not the maximum value) as an AccountInfo entity.
 	Recommended *AccountInfo `json:"recommended,omitempty"`
+	// One user who disliked this label on the change (voted negatively, but not the minimum value) as an AccountInfo entity.
 	Disliked *AccountInfo `json:"disliked,omitempty"`
+	// List of all approvals for this label as a list of ApprovalInfo entities. Items in this list may not represent actual votes cast by users; if a user votes on any label, a corresponding ApprovalInfo will appear in this list for all labels.
 	All []ApprovalInfo `json:"all,omitempty"`
+	// A map of all values that are allowed for this label. The map maps the values (\"-2\", \"-1\", \" 0\", \"+1\", \"+2\") to the value descriptions.
 	Values map[string]string `json:"values,omitempty"`
+	// The description of the label.
 	Description *string `json:"description,omitempty"`
+	// The voting value of the user who recommended/disliked this label on the change if it is not \"+1\"/\"-1\".
 	Value *int32 `json:"value,omitempty"`
+	// The default voting value for the label. This value may be outside the range specified in permitted_labels.
 	DefaultValue *int32 `json:"default_value,omitempty"`
+	// Whether the label is optional. Optional means the label may be set, but it's neither necessary for submission nor does it block submission if set.
 	Optional *bool `json:"optional,omitempty"`
+	// If true, the label blocks submit operation. If not set, the default is false.
 	Blocking *bool `json:"blocking,omitempty"`
 }
 

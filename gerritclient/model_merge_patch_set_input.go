@@ -19,11 +19,17 @@ var _ MappedNullable = &MergePatchSetInput{}
 
 // MergePatchSetInput struct for MergePatchSetInput
 type MergePatchSetInput struct {
+	// The new subject for the change, if not specified, will reuse the current patch set's subject
 	Subject *string `json:"subject,omitempty"`
+	// Use the current patch set's first parent as the merge tip when set to true.
 	InheritParent *bool `json:"inherit_parent,omitempty"`
+	// A \\{change-id\\} that identifies a change. When inherit_parent is false, the merge tip will be the current patch set of the base_change if it's set. Otherwise, the current branch tip of the destination branch will be used.
 	BaseChange *string `json:"base_change,omitempty"`
+	// The detail of the source commit for merge as a MergeInput entity.
 	Merge *MergeInput `json:"merge,omitempty"`
+	// The author of the commit to create. Must be an AccountInput entity with at least the name and email fields set. The caller needs \"Forge Author\" permission when using this field. This field does not affect the owner or the committer of the change, which will continue to use the identity of the caller.
 	Author *AccountInput `json:"author,omitempty"`
+	// Map with key-value pairs that are forwarded as options to the commit validation listeners (e.g. can be used to skip certain validations). Which validation options are supported depends on the installed commit validation listeners.
 	ValidationOptions map[string]string `json:"validation_options,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &TrackingIdInfo{}
 
 // TrackingIdInfo struct for TrackingIdInfo
 type TrackingIdInfo struct {
+	// The name of the external tracking system.
 	System *string `json:"system,omitempty"`
+	// The tracking id.
 	Id *string `json:"id,omitempty"`
 }
 

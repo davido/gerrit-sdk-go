@@ -19,8 +19,11 @@ var _ MappedNullable = &SubmitTypeInfo{}
 
 // SubmitTypeInfo struct for SubmitTypeInfo
 type SubmitTypeInfo struct {
+	// The effective submit type value. Never INHERIT.
 	Value *SubmitType `json:"value,omitempty"`
+	// The configured value, can be one of the submit types, or INHERIT to inherit from the parent project.
 	ConfiguredValue *SubmitType `json:"configured_value,omitempty"`
+	// The effective value that would be inherited from the parent. Never INHERIT.
 	InheritedValue *SubmitType `json:"inherited_value,omitempty"`
 }
 
