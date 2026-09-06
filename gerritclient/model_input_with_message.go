@@ -19,6 +19,7 @@ var _ MappedNullable = &InputWithMessage{}
 
 // InputWithMessage struct for InputWithMessage
 type InputWithMessage struct {
+	// The message to use.
 	Message *string `json:"message,omitempty"`
 }
 

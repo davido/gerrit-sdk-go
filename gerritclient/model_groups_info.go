@@ -19,6 +19,7 @@ var _ MappedNullable = &GroupsInfo{}
 
 // GroupsInfo struct for GroupsInfo
 type GroupsInfo struct {
+	// gerrit.config.
 	EnableDeleteGroup *bool `json:"enable_delete_group,omitempty"`
 }
 

@@ -19,6 +19,7 @@ var _ MappedNullable = &DeleteChangesInput{}
 
 // DeleteChangesInput struct for DeleteChangesInput
 type DeleteChangesInput struct {
+	// A list of changes (Change-Id or Change-Number) that identify the changes that should be deleted.
 	Changes []string `json:"changes,omitempty"`
 }
 

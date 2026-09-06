@@ -19,6 +19,7 @@ var _ MappedNullable = &StatusInput{}
 
 // StatusInput struct for StatusInput
 type StatusInput struct {
+	// The new status of the account. + If not set or if set to an empty string, the account status is deleted.
 	Status *string `json:"status,omitempty"`
 }
 

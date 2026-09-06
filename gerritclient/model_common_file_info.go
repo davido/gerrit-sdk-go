@@ -41,6 +41,7 @@ type CommonFileInfo struct {
 	SizeDelta *int32 `json:"size_delta,omitempty"`
 	// File size in bytes.
 	Size *int32 `json:"size,omitempty"`
+	// Whether the diff of the file is too expensive to compute; when set the diff content is omitted.
 	DiffsTooExpensiveToCompute *bool `json:"diffs_too_expensive_to_compute,omitempty"`
 }
 

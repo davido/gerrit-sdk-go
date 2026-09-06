@@ -19,7 +19,9 @@ var _ MappedNullable = &ParentInput{}
 
 // ParentInput struct for ParentInput
 type ParentInput struct {
+	// The name of the parent project.
 	Parent *string `json:"parent,omitempty"`
+	// Message that should be used to commit the change of the project parent in the project.config file to the refs/meta/config branch.
 	CommitMessage *string `json:"commit_message,omitempty"`
 }
 

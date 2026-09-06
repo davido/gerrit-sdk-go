@@ -19,6 +19,7 @@ var _ MappedNullable = &NameInput{}
 
 // NameInput struct for NameInput
 type NameInput struct {
+	// The new full name of the account. + If not set or if set to an empty string, the account name is deleted.
 	Name *string `json:"name,omitempty"`
 }
 

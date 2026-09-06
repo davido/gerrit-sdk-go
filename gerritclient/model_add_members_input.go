@@ -19,7 +19,9 @@ var _ MappedNullable = &AddMembersInput{}
 
 // AddMembersInput struct for AddMembersInput
 type AddMembersInput struct {
+	// The id of one account that should be added or deleted.
 	OneMember *string `json:"_one_member,omitempty"`
+	// A list of account ids that identify the accounts that should be added or deleted.
 	Members []string `json:"members,omitempty"`
 }
 

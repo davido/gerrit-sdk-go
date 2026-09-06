@@ -19,6 +19,7 @@ var _ MappedNullable = &DeleteBranchesInput{}
 
 // DeleteBranchesInput struct for DeleteBranchesInput
 type DeleteBranchesInput struct {
+	// A list of branch names that identify the branches that should be deleted.
 	Branches []string `json:"branches,omitempty"`
 }
 

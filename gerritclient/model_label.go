@@ -19,8 +19,11 @@ var _ MappedNullable = &Label{}
 
 // Label struct for Label
 type Label struct {
+	// The name of the label.
 	Label *string `json:"label,omitempty"`
+	// The status of the label, one of OK, REJECT, NEED, MAY or IMPOSSIBLE.
 	Status *LabelStatus `json:"status,omitempty"`
+	// The AccountInfo of the user that applied the vote to the label.
 	AppliedBy *AccountInfo `json:"applied_by,omitempty"`
 }
 

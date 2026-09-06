@@ -19,7 +19,9 @@ var _ MappedNullable = &AccountsInfo{}
 
 // AccountsInfo struct for AccountsInfo
 type AccountsInfo struct {
+	// Visibility setting for accounts.
 	Visibility *AccountVisibility `json:"visibility,omitempty"`
+	// The default strategy for choosing the display name in the UI, see also gerrit.config.
 	DefaultDisplayName *AccountDefaultDisplayName `json:"default_display_name,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &BanCommitInput{}
 
 // BanCommitInput struct for BanCommitInput
 type BanCommitInput struct {
+	// List of commits to be banned.
 	Commits []string `json:"commits,omitempty"`
+	// Reason for banning the commits.
 	Reason *string `json:"reason,omitempty"`
 }
 

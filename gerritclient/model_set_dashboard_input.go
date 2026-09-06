@@ -19,7 +19,9 @@ var _ MappedNullable = &SetDashboardInput{}
 
 // SetDashboardInput struct for SetDashboardInput
 type SetDashboardInput struct {
+	// URL encoded ID of a dashboard to which this dashboard should link to.
 	Id *string `json:"id,omitempty"`
+	// Message that should be used to commit the change of the dashboard.
 	CommitMessage *string `json:"commit_message,omitempty"`
 }
 

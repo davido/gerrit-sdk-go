@@ -19,6 +19,7 @@ var _ MappedNullable = &ConfirmEmailInput{}
 
 // ConfirmEmailInput struct for ConfirmEmailInput
 type ConfirmEmailInput struct {
+	// The token that was sent by mail to a newly registered email address.
 	Token *string `json:"token,omitempty"`
 }
 

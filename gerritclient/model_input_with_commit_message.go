@@ -19,6 +19,7 @@ var _ MappedNullable = &InputWithCommitMessage{}
 
 // InputWithCommitMessage struct for InputWithCommitMessage
 type InputWithCommitMessage struct {
+	// The commit message to use.
 	CommitMessage *string `json:"commit_message,omitempty"`
 }
 

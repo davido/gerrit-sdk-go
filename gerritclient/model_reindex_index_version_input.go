@@ -19,7 +19,9 @@ var _ MappedNullable = &ReindexIndexVersionInput{}
 
 // ReindexIndexVersionInput struct for ReindexIndexVersionInput
 type ReindexIndexVersionInput struct {
+	// Whether existing documents may be reused instead of being recomputed while reindexing.
 	Reuse *bool `json:"reuse,omitempty"`
+	// Whether index listeners should be notified about the reindex progress.
 	NotifyListeners *bool `json:"notify_listeners,omitempty"`
 }
 

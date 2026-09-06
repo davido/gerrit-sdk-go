@@ -19,7 +19,9 @@ var _ MappedNullable = &MenuEntry{}
 
 // MenuEntry struct for MenuEntry
 type MenuEntry struct {
+	// Name of the top menu entry.
 	Name *string `json:"name,omitempty"`
+	// List of menu items.
 	Items []MenuItem `json:"items,omitempty"`
 }
 

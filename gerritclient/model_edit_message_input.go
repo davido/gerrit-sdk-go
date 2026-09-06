@@ -19,6 +19,7 @@ var _ MappedNullable = &EditMessageInput{}
 
 // EditMessageInput struct for EditMessageInput
 type EditMessageInput struct {
+	// New commit message.
 	Message *string `json:"message,omitempty"`
 }
 

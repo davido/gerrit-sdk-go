@@ -19,6 +19,7 @@ var _ MappedNullable = &GetMetaFileInfo{}
 
 // GetMetaFileInfo struct for GetMetaFileInfo
 type GetMetaFileInfo struct {
+	// Links to the file in external sites as a list of DiffWebLinkInfo entities.
 	WebLinks []DiffWebLinkInfo `json:"web_links,omitempty"`
 }
 

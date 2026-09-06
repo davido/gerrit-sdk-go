@@ -19,6 +19,7 @@ var _ MappedNullable = &DeleteTagsInput{}
 
 // DeleteTagsInput struct for DeleteTagsInput
 type DeleteTagsInput struct {
+	// A list of tag names that identify the tags that should be deleted.
 	Tags []string `json:"tags,omitempty"`
 }
 

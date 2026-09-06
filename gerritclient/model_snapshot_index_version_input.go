@@ -19,6 +19,7 @@ var _ MappedNullable = &SnapshotIndexVersionInput{}
 
 // SnapshotIndexVersionInput struct for SnapshotIndexVersionInput
 type SnapshotIndexVersionInput struct {
+	// A string ID that will be used as the folder name containing the snapshot. Defaults to current timestamp.
 	Id *string `json:"id,omitempty"`
 }
 

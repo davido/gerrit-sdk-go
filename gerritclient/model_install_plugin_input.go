@@ -19,7 +19,9 @@ var _ MappedNullable = &InstallPluginInput{}
 
 // InstallPluginInput struct for InstallPluginInput
 type InstallPluginInput struct {
+	// URL to the plugin jar.
 	Url *string `json:"url,omitempty"`
+	// The raw plugin content (the plugin jar) uploaded in the request body, as an alternative to url.
 	Raw map[string]interface{} `json:"raw,omitempty"`
 }
 

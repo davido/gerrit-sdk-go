@@ -19,6 +19,7 @@ var _ MappedNullable = &CommonDescriptionInput{}
 
 // CommonDescriptionInput struct for CommonDescriptionInput
 type CommonDescriptionInput struct {
+	// The description text.
 	Description *string `json:"description,omitempty"`
 }
 

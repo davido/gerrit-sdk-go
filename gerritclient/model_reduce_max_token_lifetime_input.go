@@ -19,6 +19,7 @@ var _ MappedNullable = &ReduceMaxTokenLifetimeInput{}
 
 // ReduceMaxTokenLifetimeInput struct for ReduceMaxTokenLifetimeInput
 type ReduceMaxTokenLifetimeInput struct {
+	// The new maximum lifetime that will be applied to authentication tokens.
 	Lifetime *string `json:"lifetime,omitempty"`
 }
 

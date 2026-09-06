@@ -19,6 +19,7 @@ var _ MappedNullable = &AgreementInput{}
 
 // AgreementInput struct for AgreementInput
 type AgreementInput struct {
+	// The name of the agreement.
 	Name *string `json:"name,omitempty"`
 }
 

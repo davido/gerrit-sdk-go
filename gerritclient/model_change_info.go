@@ -55,6 +55,7 @@ type ChangeInfo struct {
 	Submitter *AccountInfo `json:"submitter,omitempty"`
 	// Whether the calling user has starred this change. Only set if requested.
 	Starred *bool `json:"starred,omitempty"`
+	// List of star labels that are applied by the calling user to this change.
 	Stars []string `json:"stars,omitempty"`
 	// Whether the change was reviewed by the calling user. Only set if reviewed is requested.
 	Reviewed *bool `json:"reviewed,omitempty"`

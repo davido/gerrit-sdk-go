@@ -19,7 +19,9 @@ var _ MappedNullable = &ContextLineInfo{}
 
 // ContextLineInfo struct for ContextLineInfo
 type ContextLineInfo struct {
+	// The line number of the source line.
 	LineNumber *int32 `json:"line_number,omitempty"`
+	// The text of the context line.
 	ContextLine *string `json:"context_line,omitempty"`
 }
 

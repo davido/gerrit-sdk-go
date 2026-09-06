@@ -19,7 +19,9 @@ var _ MappedNullable = &ConfigValue{}
 
 // ConfigValue struct for ConfigValue
 type ConfigValue struct {
+	// The new single value for the configuration parameter.
 	Value *string `json:"value,omitempty"`
+	// The new list of values for a multi-valued configuration parameter.
 	Values []string `json:"values,omitempty"`
 }
 

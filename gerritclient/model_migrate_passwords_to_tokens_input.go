@@ -19,6 +19,7 @@ var _ MappedNullable = &MigratePasswordsToTokensInput{}
 
 // MigratePasswordsToTokensInput struct for MigratePasswordsToTokensInput
 type MigratePasswordsToTokensInput struct {
+	// Lifetime of the migrated token.
 	Lifetime *string `json:"lifetime,omitempty"`
 }
 

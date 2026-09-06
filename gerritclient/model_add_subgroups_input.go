@@ -19,7 +19,9 @@ var _ MappedNullable = &AddSubgroupsInput{}
 
 // AddSubgroupsInput struct for AddSubgroupsInput
 type AddSubgroupsInput struct {
+	// The id of one group that should be included or deleted.
 	OneGroup *string `json:"_one_group,omitempty"`
+	// A list of group ids that identify the groups that should be included or deleted.
 	Groups []string `json:"groups,omitempty"`
 }
 

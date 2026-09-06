@@ -3358,7 +3358,7 @@ func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdReindexRequest) E
 /*
 PostConfigServerIndexesIndexIdVersionsIndexVersionIdReindex Reindex an Index Version
 
-This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not.
+This endpoint allows to trigger background reindexing of an index version. It is also supported to specify whether to reuse existing up-to-date (non-stale) index documents and whether to notifyListeners or not. The options are provided in the request body as a ReindexIndexVersion.Input entity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param indexId
@@ -3473,7 +3473,7 @@ func (r ApiPostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshotRequest) 
 /*
 PostConfigServerIndexesIndexIdVersionsIndexVersionIdSnapshot Create Snapshot of one Index Version
 
-This creates a snapshot of one index version of the specified index.
+This creates a snapshot of one index version of the specified index. The snapshot id may be provided in the request body as a SnapshotIndexVersion.Input entity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param indexId
@@ -3894,6 +3894,8 @@ func (r ApiPostConfigServerSnapshotIndexesRequest) Execute() (interface{}, *http
 
 /*
 PostConfigServerSnapshotIndexes Create Snapshot of All Indexes
+
+This creates a snapshot of all write index versions. The snapshot id may be provided in the request body as a SnapshotIndexes.Input entity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostConfigServerSnapshotIndexesRequest

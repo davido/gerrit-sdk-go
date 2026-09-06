@@ -19,8 +19,11 @@ var _ MappedNullable = &LegacySubmitRequirementInfo{}
 
 // LegacySubmitRequirementInfo struct for LegacySubmitRequirementInfo
 type LegacySubmitRequirementInfo struct {
+	// The status of the submit requirement, for example OK or NOT_READY.
 	Status *string `json:"status,omitempty"`
+	// A human readable description of the submit requirement.
 	FallbackText *string `json:"fallback_text,omitempty"`
+	// The type of the submit requirement.
 	Type *string `json:"type,omitempty"`
 }
 

@@ -19,7 +19,9 @@ var _ MappedNullable = &WorkInProgressOpInput{}
 
 // WorkInProgressOpInput struct for WorkInProgressOpInput
 type WorkInProgressOpInput struct {
+	// Notify handling that defines to whom email notifications should be sent after the change is set to WorkInProgress/ReadyForReview. Allowed values are NONE, OWNER, OWNER_REVIEWERS and ALL.
 	Notify *NotifyHandling `json:"notify,omitempty"`
+	// Message to be added as a review comment to the change being set WorkInProgress/ReadyForReview.
 	Message *string `json:"message,omitempty"`
 }
 
