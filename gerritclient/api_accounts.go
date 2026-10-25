@@ -5301,7 +5301,9 @@ func (r ApiPutAccountsAccountIdEmailsEmailIdAvatarRequest) Execute() (string, *h
 }
 
 /*
-PutAccountsAccountIdEmailsEmailIdAvatar Method for PutAccountsAccountIdEmailsEmailIdAvatar
+PutAccountsAccountIdEmailsEmailIdAvatar Set Avatar Email
+
+Sets an email address as the avatar email address for an account. The avatar email address is used for avatar lookup, e.g. via Gravatar.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param accountId

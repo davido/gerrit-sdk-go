@@ -1243,7 +1243,9 @@ func (r ApiDeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequest) E
 }
 
 /*
-DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerId Method for DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerId
+DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerId Delete Reviewer
+
+'POST /changes/\{change-id\}/reviewers/\{account-id\}/delete' --
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -1342,7 +1344,9 @@ func (r ApiDeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteI
 }
 
 /*
-DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteId Method for DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteId
+DeleteChangesChangeIdRevisionsRevisionIdReviewersReviewerIdVotesVoteId Delete Vote
+
+'POST /changes/\{change-id\}/reviewers/\{account-id\}/votes/\{label-id\}/delete' --
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -2683,7 +2687,9 @@ func (r ApiGetChangesChangeIdEditChangeEditIdRequest) Execute() (*os.File, *http
 }
 
 /*
-GetChangesChangeIdEditChangeEditId Method for GetChangesChangeIdEditChangeEditId
+GetChangesChangeIdEditChangeEditId Retrieve file content from Change Edit
+
+Retrieves content of a file from a change edit.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -2791,7 +2797,9 @@ func (r ApiGetChangesChangeIdEditChangeEditIdMetaRequest) Execute() (*GetMetaFil
 }
 
 /*
-GetChangesChangeIdEditChangeEditIdMeta Method for GetChangesChangeIdEditChangeEditIdMeta
+GetChangesChangeIdEditChangeEditIdMeta Retrieve meta data of a file from Change Edit
+
+Retrieves meta data of a file from a change edit. Currently only web links are returned.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -2901,7 +2909,9 @@ func (r ApiGetChangesChangeIdEditMessageRequest) Execute() (*os.File, *http.Resp
 }
 
 /*
-GetChangesChangeIdEditMessage Method for GetChangesChangeIdEditMessage
+GetChangesChangeIdEditMessage Retrieve commit message from Change Edit or current patch set of the change
+
+Retrieves commit message from change edit.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -7377,7 +7387,9 @@ func (r ApiGetChangesChangeIdRevisionsRevisionIdReviewersReviewerIdRequest) Exec
 }
 
 /*
-GetChangesChangeIdRevisionsRevisionIdReviewersReviewerId Method for GetChangesChangeIdRevisionsRevisionIdReviewersReviewerId
+GetChangesChangeIdRevisionsRevisionIdReviewersReviewerId Get Reviewer
+
+Retrieves a reviewer of a change.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -9410,7 +9422,9 @@ func (r ApiPostChangesChangeIdEditPublishRequest) Execute() (*http.Response, err
 }
 
 /*
-PostChangesChangeIdEditPublish Method for PostChangesChangeIdEditPublish
+PostChangesChangeIdEditPublish Publish Change Edit
+
+Promotes change edit to a regular patch set.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -10492,7 +10506,9 @@ func (r ApiPostChangesChangeIdPrivateDeleteRequest) Execute() (*http.Response, e
 }
 
 /*
-PostChangesChangeIdPrivateDelete Method for PostChangesChangeIdPrivateDelete
+PostChangesChangeIdPrivateDelete Unmark Private
+
+Marks the change to be non-private. Note users can only unmark own private changes.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -12401,7 +12417,9 @@ func (r ApiPostChangesChangeIdRevisionsRevisionIdReviewersRequest) Execute() (*R
 }
 
 /*
-PostChangesChangeIdRevisionsRevisionIdReviewers Method for PostChangesChangeIdRevisionsRevisionIdReviewers
+PostChangesChangeIdRevisionsRevisionIdReviewers Add Reviewer
+
+Adds one user or all members of one group as reviewer to the change.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId
@@ -12523,7 +12541,9 @@ func (r ApiPostChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDeleteReques
 }
 
 /*
-PostChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDelete Method for PostChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDelete
+PostChangesChangeIdRevisionsRevisionIdReviewersReviewerIdDelete Delete Reviewer
+
+Deletes a reviewer from a change. Deleting a reviewer also removes that user from the attention set.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param changeId

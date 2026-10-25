@@ -19,7 +19,7 @@ var _ MappedNullable = &OwnerInput{}
 
 // OwnerInput struct for OwnerInput
 type OwnerInput struct {
-	// The id of the group that should own this group.
+	// The group id of the group that should own this group. The group can be specified by UUID, legacy numeric ID, or unique name.
 	Owner *string `json:"owner,omitempty"`
 }
 

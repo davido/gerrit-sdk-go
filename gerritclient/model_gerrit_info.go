@@ -39,6 +39,7 @@ type GerritInfo struct {
 	DefaultBranch *string `json:"default_branch,omitempty"`
 	// Whether the instance supports filtering projects by state.
 	ProjectStatePredicateEnabled *bool `json:"project_state_predicate_enabled,omitempty"`
+	SubmitCommitUrl *string `json:"submit_commit_url,omitempty"`
 }
 
 // NewGerritInfo instantiates a new GerritInfo object
@@ -378,6 +379,38 @@ func (o *GerritInfo) SetProjectStatePredicateEnabled(v bool) {
 	o.ProjectStatePredicateEnabled = &v
 }
 
+// GetSubmitCommitUrl returns the SubmitCommitUrl field value if set, zero value otherwise.
+func (o *GerritInfo) GetSubmitCommitUrl() string {
+	if o == nil || IsNil(o.SubmitCommitUrl) {
+		var ret string
+		return ret
+	}
+	return *o.SubmitCommitUrl
+}
+
+// GetSubmitCommitUrlOk returns a tuple with the SubmitCommitUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GerritInfo) GetSubmitCommitUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.SubmitCommitUrl) {
+		return nil, false
+	}
+	return o.SubmitCommitUrl, true
+}
+
+// HasSubmitCommitUrl returns a boolean if a field has been set.
+func (o *GerritInfo) HasSubmitCommitUrl() bool {
+	if o != nil && !IsNil(o.SubmitCommitUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubmitCommitUrl gets a reference to the given string and assigns it to the SubmitCommitUrl field.
+func (o *GerritInfo) SetSubmitCommitUrl(v string) {
+	o.SubmitCommitUrl = &v
+}
+
 func (o GerritInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -417,6 +450,9 @@ func (o GerritInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ProjectStatePredicateEnabled) {
 		toSerialize["project_state_predicate_enabled"] = o.ProjectStatePredicateEnabled
+	}
+	if !IsNil(o.SubmitCommitUrl) {
+		toSerialize["submit_commit_url"] = o.SubmitCommitUrl
 	}
 	return toSerialize, nil
 }

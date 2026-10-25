@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the FieldJson type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FieldJson{}
+// checks if the MetricFieldInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricFieldInfo{}
 
-// FieldJson struct for FieldJson
-type FieldJson struct {
+// MetricFieldInfo struct for MetricFieldInfo
+type MetricFieldInfo struct {
 	// The name of the field.
 	Name *string `json:"name,omitempty"`
 	// The type of the field, set only for enum-valued fields.
@@ -27,25 +27,25 @@ type FieldJson struct {
 	Description *string `json:"description,omitempty"`
 }
 
-// NewFieldJson instantiates a new FieldJson object
+// NewMetricFieldInfo instantiates a new MetricFieldInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFieldJson() *FieldJson {
-	this := FieldJson{}
+func NewMetricFieldInfo() *MetricFieldInfo {
+	this := MetricFieldInfo{}
 	return &this
 }
 
-// NewFieldJsonWithDefaults instantiates a new FieldJson object
+// NewMetricFieldInfoWithDefaults instantiates a new MetricFieldInfo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFieldJsonWithDefaults() *FieldJson {
-	this := FieldJson{}
+func NewMetricFieldInfoWithDefaults() *MetricFieldInfo {
+	this := MetricFieldInfo{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *FieldJson) GetName() string {
+func (o *MetricFieldInfo) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -55,7 +55,7 @@ func (o *FieldJson) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FieldJson) GetNameOk() (*string, bool) {
+func (o *MetricFieldInfo) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *FieldJson) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *FieldJson) HasName() bool {
+func (o *MetricFieldInfo) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -72,12 +72,12 @@ func (o *FieldJson) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *FieldJson) SetName(v string) {
+func (o *MetricFieldInfo) SetName(v string) {
 	o.Name = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *FieldJson) GetType() string {
+func (o *MetricFieldInfo) GetType() string {
 	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *FieldJson) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FieldJson) GetTypeOk() (*string, bool) {
+func (o *MetricFieldInfo) GetTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *FieldJson) GetTypeOk() (*string, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *FieldJson) HasType() bool {
+func (o *MetricFieldInfo) HasType() bool {
 	if o != nil && !IsNil(o.Type) {
 		return true
 	}
@@ -104,12 +104,12 @@ func (o *FieldJson) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *FieldJson) SetType(v string) {
+func (o *MetricFieldInfo) SetType(v string) {
 	o.Type = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *FieldJson) GetDescription() string {
+func (o *MetricFieldInfo) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -119,7 +119,7 @@ func (o *FieldJson) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FieldJson) GetDescriptionOk() (*string, bool) {
+func (o *MetricFieldInfo) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *FieldJson) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *FieldJson) HasDescription() bool {
+func (o *MetricFieldInfo) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -136,11 +136,11 @@ func (o *FieldJson) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *FieldJson) SetDescription(v string) {
+func (o *MetricFieldInfo) SetDescription(v string) {
 	o.Description = &v
 }
 
-func (o FieldJson) MarshalJSON() ([]byte, error) {
+func (o MetricFieldInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -148,7 +148,7 @@ func (o FieldJson) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FieldJson) ToMap() (map[string]interface{}, error) {
+func (o MetricFieldInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -162,38 +162,38 @@ func (o FieldJson) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableFieldJson struct {
-	value *FieldJson
+type NullableMetricFieldInfo struct {
+	value *MetricFieldInfo
 	isSet bool
 }
 
-func (v NullableFieldJson) Get() *FieldJson {
+func (v NullableMetricFieldInfo) Get() *MetricFieldInfo {
 	return v.value
 }
 
-func (v *NullableFieldJson) Set(val *FieldJson) {
+func (v *NullableMetricFieldInfo) Set(val *MetricFieldInfo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFieldJson) IsSet() bool {
+func (v NullableMetricFieldInfo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFieldJson) Unset() {
+func (v *NullableMetricFieldInfo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFieldJson(val *FieldJson) *NullableFieldJson {
-	return &NullableFieldJson{value: val, isSet: true}
+func NewNullableMetricFieldInfo(val *MetricFieldInfo) *NullableMetricFieldInfo {
+	return &NullableMetricFieldInfo{value: val, isSet: true}
 }
 
-func (v NullableFieldJson) MarshalJSON() ([]byte, error) {
+func (v NullableMetricFieldInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFieldJson) UnmarshalJSON(src []byte) error {
+func (v *NullableMetricFieldInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

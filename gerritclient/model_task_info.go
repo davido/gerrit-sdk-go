@@ -21,7 +21,7 @@ var _ MappedNullable = &TaskInfo{}
 type TaskInfo struct {
 	// The ID of the task.
 	Id *string `json:"id,omitempty"`
-	// The state of the task, can be DONE, CANCELLED, RUNNING, READY, SLEEPING and OTHER.
+	// The state of the task, can be DONE, CANCELLED, STOPPING, RUNNING, STARTING, PARKED, READY, SLEEPING and OTHER.
 	State *State `json:"state,omitempty"`
 	// The start time of the task.
 	StartTime *string `json:"start_time,omitempty"`

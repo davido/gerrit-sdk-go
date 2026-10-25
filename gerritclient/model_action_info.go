@@ -27,7 +27,7 @@ type ActionInfo struct {
 	Title *string `json:"title,omitempty"`
 	// If true the action is permitted at this time and the caller is likely allowed to execute it. This may change if state is updated at the server or permissions are modified. Not present if false.
 	Enabled *bool `json:"enabled,omitempty"`
-	// Optional list of enabled options. + See the list of suppported options below.
+	// Optional list of enabled options. + See the list of supported options below.
 	EnabledOptions []string `json:"enabled_options,omitempty"`
 }
 

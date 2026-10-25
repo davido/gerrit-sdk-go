@@ -41,7 +41,7 @@ type CommonFileInfo struct {
 	SizeDelta *int32 `json:"size_delta,omitempty"`
 	// File size in bytes.
 	Size *int32 `json:"size,omitempty"`
-	// Whether the diff of the file is too expensive to compute; when set the diff content is omitted.
+	// Whether Gerrit skipped expensive diff data for this file because diff computation timed out. This can only be set when the GerritBackendFeature__timeout_file_diff_computation experiment is enabled; when the experiment is disabled, file diffs are computed without this timeout and the field is not set.
 	DiffsTooExpensiveToCompute *bool `json:"diffs_too_expensive_to_compute,omitempty"`
 }
 

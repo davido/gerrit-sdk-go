@@ -1471,7 +1471,9 @@ func (r ApiGetProjectsProjectIdBranchesBranchIdFilesFileIdDiffRequest) Execute()
 }
 
 /*
-GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff Method for GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff
+GetProjectsProjectIdBranchesBranchIdFilesFileIdDiff Get Diff for File
+
+Gets the diff for a single file between two commits. The base query parameter is required (same as Diff Between Commits).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -4490,6 +4492,216 @@ func (a *ProjectsAPIService) GetProjectsProjectIdSubmitRequirementsSubmitRequire
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetProjectsProjectIdSubmitRequirementsTemplatesRequest struct {
+	ctx context.Context
+	ApiService *ProjectsAPIService
+	projectId string
+}
+
+func (r ApiGetProjectsProjectIdSubmitRequirementsTemplatesRequest) Execute() ([]SubmitRequirementInfo, *http.Response, error) {
+	return r.ApiService.GetProjectsProjectIdSubmitRequirementsTemplatesExecute(r)
+}
+
+/*
+GetProjectsProjectIdSubmitRequirementsTemplates Get Submit Requirement Templates
+
+Retrieves submit requirement templates configured in project.config and in its parent projects.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @return ApiGetProjectsProjectIdSubmitRequirementsTemplatesRequest
+*/
+func (a *ProjectsAPIService) GetProjectsProjectIdSubmitRequirementsTemplates(ctx context.Context, projectId string) ApiGetProjectsProjectIdSubmitRequirementsTemplatesRequest {
+	return ApiGetProjectsProjectIdSubmitRequirementsTemplatesRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+// Execute executes the request
+//  @return []SubmitRequirementInfo
+func (a *ProjectsAPIService) GetProjectsProjectIdSubmitRequirementsTemplatesExecute(r ApiGetProjectsProjectIdSubmitRequirementsTemplatesRequest) ([]SubmitRequirementInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SubmitRequirementInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjectsProjectIdSubmitRequirementsTemplates")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project-id}/submit_requirements_templates"
+	localVarPath = strings.Replace(localVarPath, "{"+"project-id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest struct {
+	ctx context.Context
+	ApiService *ProjectsAPIService
+	projectId string
+	submitRequirementTemplateId string
+}
+
+func (r ApiGetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest) Execute() (*SubmitRequirementInfo, *http.Response, error) {
+	return r.ApiService.GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdExecute(r)
+}
+
+/*
+GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId Get Submit Requirement Template
+
+Retrieves a single effective submit requirement template for a project. The returned template may be defined in the project itself or inherited from one of its parent projects.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @param submitRequirementTemplateId
+ @return ApiGetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest
+*/
+func (a *ProjectsAPIService) GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId(ctx context.Context, projectId string, submitRequirementTemplateId string) ApiGetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest {
+	return ApiGetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+		submitRequirementTemplateId: submitRequirementTemplateId,
+	}
+}
+
+// Execute executes the request
+//  @return SubmitRequirementInfo
+func (a *ProjectsAPIService) GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdExecute(r ApiGetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateIdRequest) (*SubmitRequirementInfo, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *SubmitRequirementInfo
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.GetProjectsProjectIdSubmitRequirementsTemplatesSubmitRequirementTemplateId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project-id}/submit_requirements_templates/{submit-requirement-template-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"project-id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"submit-requirement-template-id"+"}", url.PathEscape(parameterValueToString(r.submitRequirementTemplateId, "submitRequirementTemplateId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetProjectsProjectIdTagsRequest struct {
 	ctx context.Context
 	ApiService *ProjectsAPIService
@@ -5208,7 +5420,9 @@ func (r ApiPostProjectsProjectIdCheckRequest) Execute() (*CheckProjectResultInfo
 }
 
 /*
-PostProjectsProjectIdCheck Method for PostProjectsProjectIdCheck
+PostProjectsProjectIdCheck Check project consistency
+
+Performs consistency checks on the project.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -5432,7 +5646,9 @@ func (r ApiPostProjectsProjectIdCreateChangeRequest) Execute() (*ChangeInfo, *ht
 }
 
 /*
-PostProjectsProjectIdCreateChange Method for PostProjectsProjectIdCreateChange
+PostProjectsProjectIdCreateChange Create Change for review
+
+This endpoint is functionally equivalent to create change in the change API, but it has the project name in the URL, which is easier to route in sharded deployments.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -5660,7 +5876,9 @@ func (r ApiPostProjectsProjectIdIndexRequest) Execute() (interface{}, *http.Resp
 }
 
 /*
-PostProjectsProjectIdIndex Method for PostProjectsProjectIdIndex
+PostProjectsProjectIdIndex Index project
+
+Adds or updates the current project (and children, if specified) in the secondary index. The indexing task is executed asynchronously in background and this command returns immediately if async is specified in the input.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -5763,7 +5981,9 @@ func (r ApiPostProjectsProjectIdIndexChangesRequest) Execute() (interface{}, *ht
 }
 
 /*
-PostProjectsProjectIdIndexChanges Method for PostProjectsProjectIdIndexChanges
+PostProjectsProjectIdIndexChanges Index all changes in a project
+
+Adds or updates all the changes belonging to a project in the secondary index. The indexing task is executed asynchronously in background, so this command returns immediately.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId
@@ -6755,7 +6975,9 @@ func (r ApiPutProjectsProjectIdAccessReviewRequest) Execute() (*ChangeInfo, *htt
 }
 
 /*
-PutProjectsProjectIdAccessReview Method for PutProjectsProjectIdAccessReview
+PutProjectsProjectIdAccessReview Create Access Rights Change for review
+
+Sets access rights for the project using the diff schema provided by ProjectAccessInput
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param projectId

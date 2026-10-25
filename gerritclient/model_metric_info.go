@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the MetricJson type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MetricJson{}
+// checks if the MetricInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricInfo{}
 
-// MetricJson struct for MetricJson
-type MetricJson struct {
+// MetricInfo struct for MetricInfo
+type MetricInfo struct {
 	// The description of the metric.
 	Description *string `json:"description,omitempty"`
 	// The unit of measurement of the recorded values.
@@ -65,31 +65,31 @@ type MetricJson struct {
 	Sum *float32 `json:"sum,omitempty"`
 	// The standard deviation of the recorded values.
 	StdDev *float32 `json:"std_dev,omitempty"`
-	// The fields of the metric as a list of FieldJson entities.
-	Fields []FieldJson `json:"fields,omitempty"`
+	// The fields of the metric as a list of MetricFieldInfo entities.
+	Fields []MetricFieldInfo `json:"fields,omitempty"`
 	// The per-field-value breakdown of the metric, as a map of field values to the recorded value for that combination.
 	Buckets map[string]map[string]interface{} `json:"buckets,omitempty"`
 }
 
-// NewMetricJson instantiates a new MetricJson object
+// NewMetricInfo instantiates a new MetricInfo object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetricJson() *MetricJson {
-	this := MetricJson{}
+func NewMetricInfo() *MetricInfo {
+	this := MetricInfo{}
 	return &this
 }
 
-// NewMetricJsonWithDefaults instantiates a new MetricJson object
+// NewMetricInfoWithDefaults instantiates a new MetricInfo object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMetricJsonWithDefaults() *MetricJson {
-	this := MetricJson{}
+func NewMetricInfoWithDefaults() *MetricInfo {
+	this := MetricInfo{}
 	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *MetricJson) GetDescription() string {
+func (o *MetricInfo) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -99,7 +99,7 @@ func (o *MetricJson) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetDescriptionOk() (*string, bool) {
+func (o *MetricInfo) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -107,7 +107,7 @@ func (o *MetricJson) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *MetricJson) HasDescription() bool {
+func (o *MetricInfo) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -116,12 +116,12 @@ func (o *MetricJson) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *MetricJson) SetDescription(v string) {
+func (o *MetricInfo) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *MetricJson) GetUnit() string {
+func (o *MetricInfo) GetUnit() string {
 	if o == nil || IsNil(o.Unit) {
 		var ret string
 		return ret
@@ -131,7 +131,7 @@ func (o *MetricJson) GetUnit() string {
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetUnitOk() (*string, bool) {
+func (o *MetricInfo) GetUnitOk() (*string, bool) {
 	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
@@ -139,7 +139,7 @@ func (o *MetricJson) GetUnitOk() (*string, bool) {
 }
 
 // HasUnit returns a boolean if a field has been set.
-func (o *MetricJson) HasUnit() bool {
+func (o *MetricInfo) HasUnit() bool {
 	if o != nil && !IsNil(o.Unit) {
 		return true
 	}
@@ -148,12 +148,12 @@ func (o *MetricJson) HasUnit() bool {
 }
 
 // SetUnit gets a reference to the given string and assigns it to the Unit field.
-func (o *MetricJson) SetUnit(v string) {
+func (o *MetricInfo) SetUnit(v string) {
 	o.Unit = &v
 }
 
 // GetConstant returns the Constant field value if set, zero value otherwise.
-func (o *MetricJson) GetConstant() bool {
+func (o *MetricInfo) GetConstant() bool {
 	if o == nil || IsNil(o.Constant) {
 		var ret bool
 		return ret
@@ -163,7 +163,7 @@ func (o *MetricJson) GetConstant() bool {
 
 // GetConstantOk returns a tuple with the Constant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetConstantOk() (*bool, bool) {
+func (o *MetricInfo) GetConstantOk() (*bool, bool) {
 	if o == nil || IsNil(o.Constant) {
 		return nil, false
 	}
@@ -171,7 +171,7 @@ func (o *MetricJson) GetConstantOk() (*bool, bool) {
 }
 
 // HasConstant returns a boolean if a field has been set.
-func (o *MetricJson) HasConstant() bool {
+func (o *MetricInfo) HasConstant() bool {
 	if o != nil && !IsNil(o.Constant) {
 		return true
 	}
@@ -180,12 +180,12 @@ func (o *MetricJson) HasConstant() bool {
 }
 
 // SetConstant gets a reference to the given bool and assigns it to the Constant field.
-func (o *MetricJson) SetConstant(v bool) {
+func (o *MetricInfo) SetConstant(v bool) {
 	o.Constant = &v
 }
 
 // GetRate returns the Rate field value if set, zero value otherwise.
-func (o *MetricJson) GetRate() bool {
+func (o *MetricInfo) GetRate() bool {
 	if o == nil || IsNil(o.Rate) {
 		var ret bool
 		return ret
@@ -195,7 +195,7 @@ func (o *MetricJson) GetRate() bool {
 
 // GetRateOk returns a tuple with the Rate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetRateOk() (*bool, bool) {
+func (o *MetricInfo) GetRateOk() (*bool, bool) {
 	if o == nil || IsNil(o.Rate) {
 		return nil, false
 	}
@@ -203,7 +203,7 @@ func (o *MetricJson) GetRateOk() (*bool, bool) {
 }
 
 // HasRate returns a boolean if a field has been set.
-func (o *MetricJson) HasRate() bool {
+func (o *MetricInfo) HasRate() bool {
 	if o != nil && !IsNil(o.Rate) {
 		return true
 	}
@@ -212,12 +212,12 @@ func (o *MetricJson) HasRate() bool {
 }
 
 // SetRate gets a reference to the given bool and assigns it to the Rate field.
-func (o *MetricJson) SetRate(v bool) {
+func (o *MetricInfo) SetRate(v bool) {
 	o.Rate = &v
 }
 
 // GetGauge returns the Gauge field value if set, zero value otherwise.
-func (o *MetricJson) GetGauge() bool {
+func (o *MetricInfo) GetGauge() bool {
 	if o == nil || IsNil(o.Gauge) {
 		var ret bool
 		return ret
@@ -227,7 +227,7 @@ func (o *MetricJson) GetGauge() bool {
 
 // GetGaugeOk returns a tuple with the Gauge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetGaugeOk() (*bool, bool) {
+func (o *MetricInfo) GetGaugeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Gauge) {
 		return nil, false
 	}
@@ -235,7 +235,7 @@ func (o *MetricJson) GetGaugeOk() (*bool, bool) {
 }
 
 // HasGauge returns a boolean if a field has been set.
-func (o *MetricJson) HasGauge() bool {
+func (o *MetricInfo) HasGauge() bool {
 	if o != nil && !IsNil(o.Gauge) {
 		return true
 	}
@@ -244,12 +244,12 @@ func (o *MetricJson) HasGauge() bool {
 }
 
 // SetGauge gets a reference to the given bool and assigns it to the Gauge field.
-func (o *MetricJson) SetGauge(v bool) {
+func (o *MetricInfo) SetGauge(v bool) {
 	o.Gauge = &v
 }
 
 // GetCumulative returns the Cumulative field value if set, zero value otherwise.
-func (o *MetricJson) GetCumulative() bool {
+func (o *MetricInfo) GetCumulative() bool {
 	if o == nil || IsNil(o.Cumulative) {
 		var ret bool
 		return ret
@@ -259,7 +259,7 @@ func (o *MetricJson) GetCumulative() bool {
 
 // GetCumulativeOk returns a tuple with the Cumulative field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetCumulativeOk() (*bool, bool) {
+func (o *MetricInfo) GetCumulativeOk() (*bool, bool) {
 	if o == nil || IsNil(o.Cumulative) {
 		return nil, false
 	}
@@ -267,7 +267,7 @@ func (o *MetricJson) GetCumulativeOk() (*bool, bool) {
 }
 
 // HasCumulative returns a boolean if a field has been set.
-func (o *MetricJson) HasCumulative() bool {
+func (o *MetricInfo) HasCumulative() bool {
 	if o != nil && !IsNil(o.Cumulative) {
 		return true
 	}
@@ -276,12 +276,12 @@ func (o *MetricJson) HasCumulative() bool {
 }
 
 // SetCumulative gets a reference to the given bool and assigns it to the Cumulative field.
-func (o *MetricJson) SetCumulative(v bool) {
+func (o *MetricInfo) SetCumulative(v bool) {
 	o.Cumulative = &v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *MetricJson) GetCount() int32 {
+func (o *MetricInfo) GetCount() int32 {
 	if o == nil || IsNil(o.Count) {
 		var ret int32
 		return ret
@@ -291,7 +291,7 @@ func (o *MetricJson) GetCount() int32 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetCountOk() (*int32, bool) {
+func (o *MetricInfo) GetCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.Count) {
 		return nil, false
 	}
@@ -299,7 +299,7 @@ func (o *MetricJson) GetCountOk() (*int32, bool) {
 }
 
 // HasCount returns a boolean if a field has been set.
-func (o *MetricJson) HasCount() bool {
+func (o *MetricInfo) HasCount() bool {
 	if o != nil && !IsNil(o.Count) {
 		return true
 	}
@@ -308,12 +308,12 @@ func (o *MetricJson) HasCount() bool {
 }
 
 // SetCount gets a reference to the given int32 and assigns it to the Count field.
-func (o *MetricJson) SetCount(v int32) {
+func (o *MetricInfo) SetCount(v int32) {
 	o.Count = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *MetricJson) GetValue() map[string]interface{} {
+func (o *MetricInfo) GetValue() map[string]interface{} {
 	if o == nil || IsNil(o.Value) {
 		var ret map[string]interface{}
 		return ret
@@ -323,7 +323,7 @@ func (o *MetricJson) GetValue() map[string]interface{} {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetValueOk() (map[string]interface{}, bool) {
+func (o *MetricInfo) GetValueOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Value) {
 		return map[string]interface{}{}, false
 	}
@@ -331,7 +331,7 @@ func (o *MetricJson) GetValueOk() (map[string]interface{}, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *MetricJson) HasValue() bool {
+func (o *MetricInfo) HasValue() bool {
 	if o != nil && !IsNil(o.Value) {
 		return true
 	}
@@ -340,12 +340,12 @@ func (o *MetricJson) HasValue() bool {
 }
 
 // SetValue gets a reference to the given map[string]interface{} and assigns it to the Value field.
-func (o *MetricJson) SetValue(v map[string]interface{}) {
+func (o *MetricInfo) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
 // GetRate1m returns the Rate1m field value if set, zero value otherwise.
-func (o *MetricJson) GetRate1m() float32 {
+func (o *MetricInfo) GetRate1m() float32 {
 	if o == nil || IsNil(o.Rate1m) {
 		var ret float32
 		return ret
@@ -355,7 +355,7 @@ func (o *MetricJson) GetRate1m() float32 {
 
 // GetRate1mOk returns a tuple with the Rate1m field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetRate1mOk() (*float32, bool) {
+func (o *MetricInfo) GetRate1mOk() (*float32, bool) {
 	if o == nil || IsNil(o.Rate1m) {
 		return nil, false
 	}
@@ -363,7 +363,7 @@ func (o *MetricJson) GetRate1mOk() (*float32, bool) {
 }
 
 // HasRate1m returns a boolean if a field has been set.
-func (o *MetricJson) HasRate1m() bool {
+func (o *MetricInfo) HasRate1m() bool {
 	if o != nil && !IsNil(o.Rate1m) {
 		return true
 	}
@@ -372,12 +372,12 @@ func (o *MetricJson) HasRate1m() bool {
 }
 
 // SetRate1m gets a reference to the given float32 and assigns it to the Rate1m field.
-func (o *MetricJson) SetRate1m(v float32) {
+func (o *MetricInfo) SetRate1m(v float32) {
 	o.Rate1m = &v
 }
 
 // GetRate5m returns the Rate5m field value if set, zero value otherwise.
-func (o *MetricJson) GetRate5m() float32 {
+func (o *MetricInfo) GetRate5m() float32 {
 	if o == nil || IsNil(o.Rate5m) {
 		var ret float32
 		return ret
@@ -387,7 +387,7 @@ func (o *MetricJson) GetRate5m() float32 {
 
 // GetRate5mOk returns a tuple with the Rate5m field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetRate5mOk() (*float32, bool) {
+func (o *MetricInfo) GetRate5mOk() (*float32, bool) {
 	if o == nil || IsNil(o.Rate5m) {
 		return nil, false
 	}
@@ -395,7 +395,7 @@ func (o *MetricJson) GetRate5mOk() (*float32, bool) {
 }
 
 // HasRate5m returns a boolean if a field has been set.
-func (o *MetricJson) HasRate5m() bool {
+func (o *MetricInfo) HasRate5m() bool {
 	if o != nil && !IsNil(o.Rate5m) {
 		return true
 	}
@@ -404,12 +404,12 @@ func (o *MetricJson) HasRate5m() bool {
 }
 
 // SetRate5m gets a reference to the given float32 and assigns it to the Rate5m field.
-func (o *MetricJson) SetRate5m(v float32) {
+func (o *MetricInfo) SetRate5m(v float32) {
 	o.Rate5m = &v
 }
 
 // GetRate15m returns the Rate15m field value if set, zero value otherwise.
-func (o *MetricJson) GetRate15m() float32 {
+func (o *MetricInfo) GetRate15m() float32 {
 	if o == nil || IsNil(o.Rate15m) {
 		var ret float32
 		return ret
@@ -419,7 +419,7 @@ func (o *MetricJson) GetRate15m() float32 {
 
 // GetRate15mOk returns a tuple with the Rate15m field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetRate15mOk() (*float32, bool) {
+func (o *MetricInfo) GetRate15mOk() (*float32, bool) {
 	if o == nil || IsNil(o.Rate15m) {
 		return nil, false
 	}
@@ -427,7 +427,7 @@ func (o *MetricJson) GetRate15mOk() (*float32, bool) {
 }
 
 // HasRate15m returns a boolean if a field has been set.
-func (o *MetricJson) HasRate15m() bool {
+func (o *MetricInfo) HasRate15m() bool {
 	if o != nil && !IsNil(o.Rate15m) {
 		return true
 	}
@@ -436,12 +436,12 @@ func (o *MetricJson) HasRate15m() bool {
 }
 
 // SetRate15m gets a reference to the given float32 and assigns it to the Rate15m field.
-func (o *MetricJson) SetRate15m(v float32) {
+func (o *MetricInfo) SetRate15m(v float32) {
 	o.Rate15m = &v
 }
 
 // GetRateMean returns the RateMean field value if set, zero value otherwise.
-func (o *MetricJson) GetRateMean() float32 {
+func (o *MetricInfo) GetRateMean() float32 {
 	if o == nil || IsNil(o.RateMean) {
 		var ret float32
 		return ret
@@ -451,7 +451,7 @@ func (o *MetricJson) GetRateMean() float32 {
 
 // GetRateMeanOk returns a tuple with the RateMean field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetRateMeanOk() (*float32, bool) {
+func (o *MetricInfo) GetRateMeanOk() (*float32, bool) {
 	if o == nil || IsNil(o.RateMean) {
 		return nil, false
 	}
@@ -459,7 +459,7 @@ func (o *MetricJson) GetRateMeanOk() (*float32, bool) {
 }
 
 // HasRateMean returns a boolean if a field has been set.
-func (o *MetricJson) HasRateMean() bool {
+func (o *MetricInfo) HasRateMean() bool {
 	if o != nil && !IsNil(o.RateMean) {
 		return true
 	}
@@ -468,12 +468,12 @@ func (o *MetricJson) HasRateMean() bool {
 }
 
 // SetRateMean gets a reference to the given float32 and assigns it to the RateMean field.
-func (o *MetricJson) SetRateMean(v float32) {
+func (o *MetricInfo) SetRateMean(v float32) {
 	o.RateMean = &v
 }
 
 // GetP50 returns the P50 field value if set, zero value otherwise.
-func (o *MetricJson) GetP50() float32 {
+func (o *MetricInfo) GetP50() float32 {
 	if o == nil || IsNil(o.P50) {
 		var ret float32
 		return ret
@@ -483,7 +483,7 @@ func (o *MetricJson) GetP50() float32 {
 
 // GetP50Ok returns a tuple with the P50 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetP50Ok() (*float32, bool) {
+func (o *MetricInfo) GetP50Ok() (*float32, bool) {
 	if o == nil || IsNil(o.P50) {
 		return nil, false
 	}
@@ -491,7 +491,7 @@ func (o *MetricJson) GetP50Ok() (*float32, bool) {
 }
 
 // HasP50 returns a boolean if a field has been set.
-func (o *MetricJson) HasP50() bool {
+func (o *MetricInfo) HasP50() bool {
 	if o != nil && !IsNil(o.P50) {
 		return true
 	}
@@ -500,12 +500,12 @@ func (o *MetricJson) HasP50() bool {
 }
 
 // SetP50 gets a reference to the given float32 and assigns it to the P50 field.
-func (o *MetricJson) SetP50(v float32) {
+func (o *MetricInfo) SetP50(v float32) {
 	o.P50 = &v
 }
 
 // GetP75 returns the P75 field value if set, zero value otherwise.
-func (o *MetricJson) GetP75() float32 {
+func (o *MetricInfo) GetP75() float32 {
 	if o == nil || IsNil(o.P75) {
 		var ret float32
 		return ret
@@ -515,7 +515,7 @@ func (o *MetricJson) GetP75() float32 {
 
 // GetP75Ok returns a tuple with the P75 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetP75Ok() (*float32, bool) {
+func (o *MetricInfo) GetP75Ok() (*float32, bool) {
 	if o == nil || IsNil(o.P75) {
 		return nil, false
 	}
@@ -523,7 +523,7 @@ func (o *MetricJson) GetP75Ok() (*float32, bool) {
 }
 
 // HasP75 returns a boolean if a field has been set.
-func (o *MetricJson) HasP75() bool {
+func (o *MetricInfo) HasP75() bool {
 	if o != nil && !IsNil(o.P75) {
 		return true
 	}
@@ -532,12 +532,12 @@ func (o *MetricJson) HasP75() bool {
 }
 
 // SetP75 gets a reference to the given float32 and assigns it to the P75 field.
-func (o *MetricJson) SetP75(v float32) {
+func (o *MetricInfo) SetP75(v float32) {
 	o.P75 = &v
 }
 
 // GetP95 returns the P95 field value if set, zero value otherwise.
-func (o *MetricJson) GetP95() float32 {
+func (o *MetricInfo) GetP95() float32 {
 	if o == nil || IsNil(o.P95) {
 		var ret float32
 		return ret
@@ -547,7 +547,7 @@ func (o *MetricJson) GetP95() float32 {
 
 // GetP95Ok returns a tuple with the P95 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetP95Ok() (*float32, bool) {
+func (o *MetricInfo) GetP95Ok() (*float32, bool) {
 	if o == nil || IsNil(o.P95) {
 		return nil, false
 	}
@@ -555,7 +555,7 @@ func (o *MetricJson) GetP95Ok() (*float32, bool) {
 }
 
 // HasP95 returns a boolean if a field has been set.
-func (o *MetricJson) HasP95() bool {
+func (o *MetricInfo) HasP95() bool {
 	if o != nil && !IsNil(o.P95) {
 		return true
 	}
@@ -564,12 +564,12 @@ func (o *MetricJson) HasP95() bool {
 }
 
 // SetP95 gets a reference to the given float32 and assigns it to the P95 field.
-func (o *MetricJson) SetP95(v float32) {
+func (o *MetricInfo) SetP95(v float32) {
 	o.P95 = &v
 }
 
 // GetP98 returns the P98 field value if set, zero value otherwise.
-func (o *MetricJson) GetP98() float32 {
+func (o *MetricInfo) GetP98() float32 {
 	if o == nil || IsNil(o.P98) {
 		var ret float32
 		return ret
@@ -579,7 +579,7 @@ func (o *MetricJson) GetP98() float32 {
 
 // GetP98Ok returns a tuple with the P98 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetP98Ok() (*float32, bool) {
+func (o *MetricInfo) GetP98Ok() (*float32, bool) {
 	if o == nil || IsNil(o.P98) {
 		return nil, false
 	}
@@ -587,7 +587,7 @@ func (o *MetricJson) GetP98Ok() (*float32, bool) {
 }
 
 // HasP98 returns a boolean if a field has been set.
-func (o *MetricJson) HasP98() bool {
+func (o *MetricInfo) HasP98() bool {
 	if o != nil && !IsNil(o.P98) {
 		return true
 	}
@@ -596,12 +596,12 @@ func (o *MetricJson) HasP98() bool {
 }
 
 // SetP98 gets a reference to the given float32 and assigns it to the P98 field.
-func (o *MetricJson) SetP98(v float32) {
+func (o *MetricInfo) SetP98(v float32) {
 	o.P98 = &v
 }
 
 // GetP99 returns the P99 field value if set, zero value otherwise.
-func (o *MetricJson) GetP99() float32 {
+func (o *MetricInfo) GetP99() float32 {
 	if o == nil || IsNil(o.P99) {
 		var ret float32
 		return ret
@@ -611,7 +611,7 @@ func (o *MetricJson) GetP99() float32 {
 
 // GetP99Ok returns a tuple with the P99 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetP99Ok() (*float32, bool) {
+func (o *MetricInfo) GetP99Ok() (*float32, bool) {
 	if o == nil || IsNil(o.P99) {
 		return nil, false
 	}
@@ -619,7 +619,7 @@ func (o *MetricJson) GetP99Ok() (*float32, bool) {
 }
 
 // HasP99 returns a boolean if a field has been set.
-func (o *MetricJson) HasP99() bool {
+func (o *MetricInfo) HasP99() bool {
 	if o != nil && !IsNil(o.P99) {
 		return true
 	}
@@ -628,12 +628,12 @@ func (o *MetricJson) HasP99() bool {
 }
 
 // SetP99 gets a reference to the given float32 and assigns it to the P99 field.
-func (o *MetricJson) SetP99(v float32) {
+func (o *MetricInfo) SetP99(v float32) {
 	o.P99 = &v
 }
 
 // GetP999 returns the P999 field value if set, zero value otherwise.
-func (o *MetricJson) GetP999() float32 {
+func (o *MetricInfo) GetP999() float32 {
 	if o == nil || IsNil(o.P999) {
 		var ret float32
 		return ret
@@ -643,7 +643,7 @@ func (o *MetricJson) GetP999() float32 {
 
 // GetP999Ok returns a tuple with the P999 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetP999Ok() (*float32, bool) {
+func (o *MetricInfo) GetP999Ok() (*float32, bool) {
 	if o == nil || IsNil(o.P999) {
 		return nil, false
 	}
@@ -651,7 +651,7 @@ func (o *MetricJson) GetP999Ok() (*float32, bool) {
 }
 
 // HasP999 returns a boolean if a field has been set.
-func (o *MetricJson) HasP999() bool {
+func (o *MetricInfo) HasP999() bool {
 	if o != nil && !IsNil(o.P999) {
 		return true
 	}
@@ -660,12 +660,12 @@ func (o *MetricJson) HasP999() bool {
 }
 
 // SetP999 gets a reference to the given float32 and assigns it to the P999 field.
-func (o *MetricJson) SetP999(v float32) {
+func (o *MetricInfo) SetP999(v float32) {
 	o.P999 = &v
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
-func (o *MetricJson) GetMin() float32 {
+func (o *MetricInfo) GetMin() float32 {
 	if o == nil || IsNil(o.Min) {
 		var ret float32
 		return ret
@@ -675,7 +675,7 @@ func (o *MetricJson) GetMin() float32 {
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetMinOk() (*float32, bool) {
+func (o *MetricInfo) GetMinOk() (*float32, bool) {
 	if o == nil || IsNil(o.Min) {
 		return nil, false
 	}
@@ -683,7 +683,7 @@ func (o *MetricJson) GetMinOk() (*float32, bool) {
 }
 
 // HasMin returns a boolean if a field has been set.
-func (o *MetricJson) HasMin() bool {
+func (o *MetricInfo) HasMin() bool {
 	if o != nil && !IsNil(o.Min) {
 		return true
 	}
@@ -692,12 +692,12 @@ func (o *MetricJson) HasMin() bool {
 }
 
 // SetMin gets a reference to the given float32 and assigns it to the Min field.
-func (o *MetricJson) SetMin(v float32) {
+func (o *MetricInfo) SetMin(v float32) {
 	o.Min = &v
 }
 
 // GetAvg returns the Avg field value if set, zero value otherwise.
-func (o *MetricJson) GetAvg() float32 {
+func (o *MetricInfo) GetAvg() float32 {
 	if o == nil || IsNil(o.Avg) {
 		var ret float32
 		return ret
@@ -707,7 +707,7 @@ func (o *MetricJson) GetAvg() float32 {
 
 // GetAvgOk returns a tuple with the Avg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetAvgOk() (*float32, bool) {
+func (o *MetricInfo) GetAvgOk() (*float32, bool) {
 	if o == nil || IsNil(o.Avg) {
 		return nil, false
 	}
@@ -715,7 +715,7 @@ func (o *MetricJson) GetAvgOk() (*float32, bool) {
 }
 
 // HasAvg returns a boolean if a field has been set.
-func (o *MetricJson) HasAvg() bool {
+func (o *MetricInfo) HasAvg() bool {
 	if o != nil && !IsNil(o.Avg) {
 		return true
 	}
@@ -724,12 +724,12 @@ func (o *MetricJson) HasAvg() bool {
 }
 
 // SetAvg gets a reference to the given float32 and assigns it to the Avg field.
-func (o *MetricJson) SetAvg(v float32) {
+func (o *MetricInfo) SetAvg(v float32) {
 	o.Avg = &v
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
-func (o *MetricJson) GetMax() float32 {
+func (o *MetricInfo) GetMax() float32 {
 	if o == nil || IsNil(o.Max) {
 		var ret float32
 		return ret
@@ -739,7 +739,7 @@ func (o *MetricJson) GetMax() float32 {
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetMaxOk() (*float32, bool) {
+func (o *MetricInfo) GetMaxOk() (*float32, bool) {
 	if o == nil || IsNil(o.Max) {
 		return nil, false
 	}
@@ -747,7 +747,7 @@ func (o *MetricJson) GetMaxOk() (*float32, bool) {
 }
 
 // HasMax returns a boolean if a field has been set.
-func (o *MetricJson) HasMax() bool {
+func (o *MetricInfo) HasMax() bool {
 	if o != nil && !IsNil(o.Max) {
 		return true
 	}
@@ -756,12 +756,12 @@ func (o *MetricJson) HasMax() bool {
 }
 
 // SetMax gets a reference to the given float32 and assigns it to the Max field.
-func (o *MetricJson) SetMax(v float32) {
+func (o *MetricInfo) SetMax(v float32) {
 	o.Max = &v
 }
 
 // GetSum returns the Sum field value if set, zero value otherwise.
-func (o *MetricJson) GetSum() float32 {
+func (o *MetricInfo) GetSum() float32 {
 	if o == nil || IsNil(o.Sum) {
 		var ret float32
 		return ret
@@ -771,7 +771,7 @@ func (o *MetricJson) GetSum() float32 {
 
 // GetSumOk returns a tuple with the Sum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetSumOk() (*float32, bool) {
+func (o *MetricInfo) GetSumOk() (*float32, bool) {
 	if o == nil || IsNil(o.Sum) {
 		return nil, false
 	}
@@ -779,7 +779,7 @@ func (o *MetricJson) GetSumOk() (*float32, bool) {
 }
 
 // HasSum returns a boolean if a field has been set.
-func (o *MetricJson) HasSum() bool {
+func (o *MetricInfo) HasSum() bool {
 	if o != nil && !IsNil(o.Sum) {
 		return true
 	}
@@ -788,12 +788,12 @@ func (o *MetricJson) HasSum() bool {
 }
 
 // SetSum gets a reference to the given float32 and assigns it to the Sum field.
-func (o *MetricJson) SetSum(v float32) {
+func (o *MetricInfo) SetSum(v float32) {
 	o.Sum = &v
 }
 
 // GetStdDev returns the StdDev field value if set, zero value otherwise.
-func (o *MetricJson) GetStdDev() float32 {
+func (o *MetricInfo) GetStdDev() float32 {
 	if o == nil || IsNil(o.StdDev) {
 		var ret float32
 		return ret
@@ -803,7 +803,7 @@ func (o *MetricJson) GetStdDev() float32 {
 
 // GetStdDevOk returns a tuple with the StdDev field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetStdDevOk() (*float32, bool) {
+func (o *MetricInfo) GetStdDevOk() (*float32, bool) {
 	if o == nil || IsNil(o.StdDev) {
 		return nil, false
 	}
@@ -811,7 +811,7 @@ func (o *MetricJson) GetStdDevOk() (*float32, bool) {
 }
 
 // HasStdDev returns a boolean if a field has been set.
-func (o *MetricJson) HasStdDev() bool {
+func (o *MetricInfo) HasStdDev() bool {
 	if o != nil && !IsNil(o.StdDev) {
 		return true
 	}
@@ -820,14 +820,14 @@ func (o *MetricJson) HasStdDev() bool {
 }
 
 // SetStdDev gets a reference to the given float32 and assigns it to the StdDev field.
-func (o *MetricJson) SetStdDev(v float32) {
+func (o *MetricInfo) SetStdDev(v float32) {
 	o.StdDev = &v
 }
 
 // GetFields returns the Fields field value if set, zero value otherwise.
-func (o *MetricJson) GetFields() []FieldJson {
+func (o *MetricInfo) GetFields() []MetricFieldInfo {
 	if o == nil || IsNil(o.Fields) {
-		var ret []FieldJson
+		var ret []MetricFieldInfo
 		return ret
 	}
 	return o.Fields
@@ -835,7 +835,7 @@ func (o *MetricJson) GetFields() []FieldJson {
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetFieldsOk() ([]FieldJson, bool) {
+func (o *MetricInfo) GetFieldsOk() ([]MetricFieldInfo, bool) {
 	if o == nil || IsNil(o.Fields) {
 		return nil, false
 	}
@@ -843,7 +843,7 @@ func (o *MetricJson) GetFieldsOk() ([]FieldJson, bool) {
 }
 
 // HasFields returns a boolean if a field has been set.
-func (o *MetricJson) HasFields() bool {
+func (o *MetricInfo) HasFields() bool {
 	if o != nil && !IsNil(o.Fields) {
 		return true
 	}
@@ -851,13 +851,13 @@ func (o *MetricJson) HasFields() bool {
 	return false
 }
 
-// SetFields gets a reference to the given []FieldJson and assigns it to the Fields field.
-func (o *MetricJson) SetFields(v []FieldJson) {
+// SetFields gets a reference to the given []MetricFieldInfo and assigns it to the Fields field.
+func (o *MetricInfo) SetFields(v []MetricFieldInfo) {
 	o.Fields = v
 }
 
 // GetBuckets returns the Buckets field value if set, zero value otherwise.
-func (o *MetricJson) GetBuckets() map[string]map[string]interface{} {
+func (o *MetricInfo) GetBuckets() map[string]map[string]interface{} {
 	if o == nil || IsNil(o.Buckets) {
 		var ret map[string]map[string]interface{}
 		return ret
@@ -867,7 +867,7 @@ func (o *MetricJson) GetBuckets() map[string]map[string]interface{} {
 
 // GetBucketsOk returns a tuple with the Buckets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricJson) GetBucketsOk() (map[string]map[string]interface{}, bool) {
+func (o *MetricInfo) GetBucketsOk() (map[string]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Buckets) {
 		return map[string]map[string]interface{}{}, false
 	}
@@ -875,7 +875,7 @@ func (o *MetricJson) GetBucketsOk() (map[string]map[string]interface{}, bool) {
 }
 
 // HasBuckets returns a boolean if a field has been set.
-func (o *MetricJson) HasBuckets() bool {
+func (o *MetricInfo) HasBuckets() bool {
 	if o != nil && !IsNil(o.Buckets) {
 		return true
 	}
@@ -884,11 +884,11 @@ func (o *MetricJson) HasBuckets() bool {
 }
 
 // SetBuckets gets a reference to the given map[string]map[string]interface{} and assigns it to the Buckets field.
-func (o *MetricJson) SetBuckets(v map[string]map[string]interface{}) {
+func (o *MetricInfo) SetBuckets(v map[string]map[string]interface{}) {
 	o.Buckets = v
 }
 
-func (o MetricJson) MarshalJSON() ([]byte, error) {
+func (o MetricInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -896,7 +896,7 @@ func (o MetricJson) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MetricJson) ToMap() (map[string]interface{}, error) {
+func (o MetricInfo) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -976,38 +976,38 @@ func (o MetricJson) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableMetricJson struct {
-	value *MetricJson
+type NullableMetricInfo struct {
+	value *MetricInfo
 	isSet bool
 }
 
-func (v NullableMetricJson) Get() *MetricJson {
+func (v NullableMetricInfo) Get() *MetricInfo {
 	return v.value
 }
 
-func (v *NullableMetricJson) Set(val *MetricJson) {
+func (v *NullableMetricInfo) Set(val *MetricInfo) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMetricJson) IsSet() bool {
+func (v NullableMetricInfo) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMetricJson) Unset() {
+func (v *NullableMetricInfo) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMetricJson(val *MetricJson) *NullableMetricJson {
-	return &NullableMetricJson{value: val, isSet: true}
+func NewNullableMetricInfo(val *MetricInfo) *NullableMetricInfo {
+	return &NullableMetricInfo{value: val, isSet: true}
 }
 
-func (v NullableMetricJson) MarshalJSON() ([]byte, error) {
+func (v NullableMetricInfo) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMetricJson) UnmarshalJSON(src []byte) error {
+func (v *NullableMetricInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

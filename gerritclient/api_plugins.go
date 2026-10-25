@@ -395,6 +395,8 @@ func (r ApiPostPluginsPluginIdGerritDisableRequest) Execute() (*PluginInfo, *htt
 /*
 PostPluginsPluginIdGerritDisable Disable Plugin
 
+Disables a plugin on the Gerrit server.
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param pluginId
  @return ApiPostPluginsPluginIdGerritDisableRequest

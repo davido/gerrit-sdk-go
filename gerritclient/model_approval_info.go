@@ -27,6 +27,8 @@ type ApprovalInfo struct {
 	Date *string `json:"date,omitempty"`
 	// If true, this vote was made after the change was submitted.
 	PostSubmit *bool `json:"post_submit,omitempty"`
+	// If true, this vote was created by an AI agent.
+	IsAi *bool `json:"is_ai,omitempty"`
 	// The VotingRangeInfo the user is authorized to vote on that label. If present, the user is permitted to vote on the label regarding the range values. If absent, the user is not permitted to vote on that label.
 	PermittedVotingRange *VotingRangeInfo `json:"permitted_voting_range,omitempty"`
 	// The numeric ID of the account.
@@ -198,6 +200,38 @@ func (o *ApprovalInfo) HasPostSubmit() bool {
 // SetPostSubmit gets a reference to the given bool and assigns it to the PostSubmit field.
 func (o *ApprovalInfo) SetPostSubmit(v bool) {
 	o.PostSubmit = &v
+}
+
+// GetIsAi returns the IsAi field value if set, zero value otherwise.
+func (o *ApprovalInfo) GetIsAi() bool {
+	if o == nil || IsNil(o.IsAi) {
+		var ret bool
+		return ret
+	}
+	return *o.IsAi
+}
+
+// GetIsAiOk returns a tuple with the IsAi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApprovalInfo) GetIsAiOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsAi) {
+		return nil, false
+	}
+	return o.IsAi, true
+}
+
+// HasIsAi returns a boolean if a field has been set.
+func (o *ApprovalInfo) HasIsAi() bool {
+	if o != nil && !IsNil(o.IsAi) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAi gets a reference to the given bool and assigns it to the IsAi field.
+func (o *ApprovalInfo) SetIsAi(v bool) {
+	o.IsAi = &v
 }
 
 // GetPermittedVotingRange returns the PermittedVotingRange field value if set, zero value otherwise.
@@ -637,6 +671,9 @@ func (o ApprovalInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PostSubmit) {
 		toSerialize["post_submit"] = o.PostSubmit
+	}
+	if !IsNil(o.IsAi) {
+		toSerialize["is_ai"] = o.IsAi
 	}
 	if !IsNil(o.PermittedVotingRange) {
 		toSerialize["permitted_voting_range"] = o.PermittedVotingRange

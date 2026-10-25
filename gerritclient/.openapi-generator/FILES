@@ -70,7 +70,6 @@ docs/CheckGroupsResultInfo.md
 docs/CheckProjectInput.md
 docs/CheckProjectResultInfo.md
 docs/CherryPickInput.md
-docs/CleanupChangesInput.md
 docs/CommentInfo.md
 docs/CommentInput.md
 docs/CommentLinkInfo.md
@@ -130,7 +129,6 @@ docs/EntriesInfo.md
 docs/EvaluateChangeQueryExpressionResultInfo.md
 docs/ExperimentInfo.md
 docs/FetchInfo.md
-docs/FieldJson.md
 docs/FileChange.md
 docs/FileContentInput.md
 docs/FileMeta.md
@@ -194,7 +192,8 @@ docs/MergeInput.md
 docs/MergePatchSetInput.md
 docs/MergeableInfo.md
 docs/MetadataInfo.md
-docs/MetricJson.md
+docs/MetricFieldInfo.md
+docs/MetricInfo.md
 docs/MigrateLabelFunctionsToSubmitRequirementStatus.md
 docs/MigrateLabelsInfo.md
 docs/MigrateLabelsReviewInfo.md
@@ -355,7 +354,6 @@ model_check_groups_result_info.go
 model_check_project_input.go
 model_check_project_result_info.go
 model_cherry_pick_input.go
-model_cleanup_changes_input.go
 model_comment_info.go
 model_comment_input.go
 model_comment_link_info.go
@@ -414,7 +412,6 @@ model_entries_info.go
 model_evaluate_change_query_expression_result_info.go
 model_experiment_info.go
 model_fetch_info.go
-model_field_json.go
 model_file_change.go
 model_file_content_input.go
 model_file_meta.go
@@ -477,7 +474,8 @@ model_merge_input.go
 model_merge_patch_set_input.go
 model_mergeable_info.go
 model_metadata_info.go
-model_metric_json.go
+model_metric_field_info.go
+model_metric_info.go
 model_migrate_label_functions_to_submit_requirement_status.go
 model_migrate_labels_info.go
 model_migrate_labels_review_info.go

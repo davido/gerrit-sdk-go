@@ -554,7 +554,9 @@ func (r ApiGetConfigServerExperimentsExperimentIdRequest) Execute() (*Experiment
 }
 
 /*
-GetConfigServerExperimentsExperimentId Method for GetConfigServerExperimentsExperimentId
+GetConfigServerExperimentsExperimentId Get Experiment
+
+Retrieves the details of the experiment with the given name.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param experimentId
@@ -1167,7 +1169,7 @@ func (r ApiGetConfigServerLabelsRequest) Execute() ([]LabelDefinitionInfo, *http
 /*
 GetConfigServerLabels List Global Labels
 
-Lists the globally defined labels (labels that are added programatically via the LabelType extension point).
+Lists the globally defined labels (labels that are added programmatically via the LabelType extension point).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetConfigServerLabelsRequest
@@ -1271,14 +1273,14 @@ func (r ApiGetConfigServerMetricsRequest) Prefix(prefix []string) ApiGetConfigSe
 	return r
 }
 
-func (r ApiGetConfigServerMetricsRequest) Execute() (*map[string]MetricJson, *http.Response, error) {
+func (r ApiGetConfigServerMetricsRequest) Execute() (*map[string]MetricInfo, *http.Response, error) {
 	return r.ApiService.GetConfigServerMetricsExecute(r)
 }
 
 /*
 GetConfigServerMetrics List Metrics
 
-Lists the metrics of the server, returning a map of metric name to a MetricJson entity.
+Lists the metrics of the server, returning a map of metric name to a MetricInfo entity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetConfigServerMetricsRequest
@@ -1291,13 +1293,13 @@ func (a *ConfigAPIService) GetConfigServerMetrics(ctx context.Context) ApiGetCon
 }
 
 // Execute executes the request
-//  @return map[string]MetricJson
-func (a *ConfigAPIService) GetConfigServerMetricsExecute(r ApiGetConfigServerMetricsRequest) (*map[string]MetricJson, *http.Response, error) {
+//  @return map[string]MetricInfo
+func (a *ConfigAPIService) GetConfigServerMetricsExecute(r ApiGetConfigServerMetricsRequest) (*map[string]MetricInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *map[string]MetricJson
+		localVarReturnValue  *map[string]MetricInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerMetrics")
@@ -1391,7 +1393,7 @@ func (r ApiGetConfigServerMetricsMetricIdRequest) DataOnly(dataOnly bool) ApiGet
 	return r
 }
 
-func (r ApiGetConfigServerMetricsMetricIdRequest) Execute() (*MetricJson, *http.Response, error) {
+func (r ApiGetConfigServerMetricsMetricIdRequest) Execute() (*MetricInfo, *http.Response, error) {
 	return r.ApiService.GetConfigServerMetricsMetricIdExecute(r)
 }
 
@@ -1413,13 +1415,13 @@ func (a *ConfigAPIService) GetConfigServerMetricsMetricId(ctx context.Context, m
 }
 
 // Execute executes the request
-//  @return MetricJson
-func (a *ConfigAPIService) GetConfigServerMetricsMetricIdExecute(r ApiGetConfigServerMetricsMetricIdRequest) (*MetricJson, *http.Response, error) {
+//  @return MetricInfo
+func (a *ConfigAPIService) GetConfigServerMetricsMetricIdExecute(r ApiGetConfigServerMetricsMetricIdRequest) (*MetricInfo, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MetricJson
+		localVarReturnValue  *MetricInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.GetConfigServerMetricsMetricId")
@@ -1800,7 +1802,7 @@ func (r ApiGetConfigServerSubmitRequirementsRequest) Execute() ([]SubmitRequirem
 /*
 GetConfigServerSubmitRequirements List Global Submit Requirements
 
-Lists the globally defined submit requirements (submit requirements that are added programatically via the SubmitRequirement extension point).
+Lists the globally defined submit requirements (submit requirements that are added programmatically via the SubmitRequirement extension point).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetConfigServerSubmitRequirementsRequest
@@ -1998,6 +2000,12 @@ func (a *ConfigAPIService) GetConfigServerSummaryExecute(r ApiGetConfigServerSum
 type ApiGetConfigServerTasksRequest struct {
 	ctx context.Context
 	ApiService *ConfigAPIService
+	state *[]string
+}
+
+func (r ApiGetConfigServerTasksRequest) State(state []string) ApiGetConfigServerTasksRequest {
+	r.state = &state
+	return r
 }
 
 func (r ApiGetConfigServerTasksRequest) Execute() ([]TaskInfo, *http.Response, error) {
@@ -2040,6 +2048,17 @@ func (a *ConfigAPIService) GetConfigServerTasksExecute(r ApiGetConfigServerTasks
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.state != nil {
+		t := *r.state
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				parameterAddToHeaderOrQuery(localVarQueryParams, "state", s.Index(i).Interface(), "form", "multi")
+			}
+		} else {
+			parameterAddToHeaderOrQuery(localVarQueryParams, "state", t, "form", "multi")
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2721,111 +2740,6 @@ func (a *ConfigAPIService) PostConfigServerCheckConsistencyExecute(r ApiPostConf
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostConfigServerCleanupChangesRequest struct {
-	ctx context.Context
-	ApiService *ConfigAPIService
-	cleanupChangesInput *CleanupChangesInput
-}
-
-func (r ApiPostConfigServerCleanupChangesRequest) CleanupChangesInput(cleanupChangesInput CleanupChangesInput) ApiPostConfigServerCleanupChangesRequest {
-	r.cleanupChangesInput = &cleanupChangesInput
-	return r
-}
-
-func (r ApiPostConfigServerCleanupChangesRequest) Execute() (interface{}, *http.Response, error) {
-	return r.ApiService.PostConfigServerCleanupChangesExecute(r)
-}
-
-/*
-PostConfigServerCleanupChanges Method for PostConfigServerCleanupChanges
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPostConfigServerCleanupChangesRequest
-*/
-func (a *ConfigAPIService) PostConfigServerCleanupChanges(ctx context.Context) ApiPostConfigServerCleanupChangesRequest {
-	return ApiPostConfigServerCleanupChangesRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return interface{}
-func (a *ConfigAPIService) PostConfigServerCleanupChangesExecute(r ApiPostConfigServerCleanupChangesRequest) (interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConfigAPIService.PostConfigServerCleanupChanges")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/config/server/cleanup.changes"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.cleanupChangesInput
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiPostConfigServerCleanupDraftCommentsRequest struct {
 	ctx context.Context
 	ApiService *ConfigAPIService
@@ -2836,7 +2750,9 @@ func (r ApiPostConfigServerCleanupDraftCommentsRequest) Execute() (interface{}, 
 }
 
 /*
-PostConfigServerCleanupDraftComments Method for PostConfigServerCleanupDraftComments
+PostConfigServerCleanupDraftComments Cleanup of already published draft comments
+
+This endpoint allows Gerrit administrators to cleanup already published draft comments that were not deleted.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostConfigServerCleanupDraftCommentsRequest
@@ -3038,7 +2954,9 @@ func (r ApiPostConfigServerIndexChangesRequest) Execute() (string, *http.Respons
 }
 
 /*
-PostConfigServerIndexChanges Method for PostConfigServerIndexChanges
+PostConfigServerIndexChanges Index a set of changes
+
+This endpoint allows Gerrit admins to index a set of changes with one request by providing a IndexChangesInput entity.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostConfigServerIndexChangesRequest
@@ -3584,7 +3502,9 @@ func (r ApiPostConfigServerPasswordsToTokensRequest) Execute() (interface{}, *ht
 }
 
 /*
-PostConfigServerPasswordsToTokens Method for PostConfigServerPasswordsToTokens
+PostConfigServerPasswordsToTokens Migration of HTTP passwords to authentication tokens
+
+This endpoint allows Gerrit administrators to migrate remaining HTTP passwords to authentication tokens. For the user the migration is invisible, i.e. the same credential is still valid.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostConfigServerPasswordsToTokensRequest
@@ -3689,7 +3609,9 @@ func (r ApiPostConfigServerReduceTokenLifetimeRequest) Execute() (interface{}, *
 }
 
 /*
-PostConfigServerReduceTokenLifetime Method for PostConfigServerReduceTokenLifetime
+PostConfigServerReduceTokenLifetime Apply maximum lifetime to authentication tokens
+
+This endpoint allows Gerrit administrators to apply a shorter maximum lifetime to existing authentication tokens. This is required, when a shorter maximum lifetime is enforced. Changing the configuration will not apply that maximum to existing tokens.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiPostConfigServerReduceTokenLifetimeRequest
