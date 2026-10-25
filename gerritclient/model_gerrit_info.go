@@ -39,6 +39,7 @@ type GerritInfo struct {
 	DefaultBranch *string `json:"default_branch,omitempty"`
 	// Whether the instance supports filtering projects by state.
 	ProjectStatePredicateEnabled *bool `json:"project_state_predicate_enabled,omitempty"`
+	// URL used to link commit hashes in submit messages.
 	SubmitCommitUrl *string `json:"submit_commit_url,omitempty"`
 }
 
