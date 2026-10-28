@@ -201,7 +201,7 @@ func (a *PluginsAPIService) GetPluginsExecute(r ApiGetPluginsRequest) (*map[stri
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/plugins"
+	localVarPath := localBasePath + "/plugins/"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

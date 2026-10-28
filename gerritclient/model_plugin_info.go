@@ -31,6 +31,8 @@ type PluginInfo struct {
 	Filename *string `json:"filename,omitempty"`
 	// Whether the plugin is disabled.
 	Disabled *bool `json:"disabled,omitempty"`
+	// List of capabilities the plugin advertises in its manifest (the Gerrit-Capabilities header), for example openapi when the plugin serves an OpenAPI document at Documentation/rest-api-openapi.json. Not set when the plugin declares no capabilities.
+	Capabilities []string `json:"capabilities,omitempty"`
 }
 
 // NewPluginInfo instantiates a new PluginInfo object
@@ -242,6 +244,38 @@ func (o *PluginInfo) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
+// GetCapabilities returns the Capabilities field value if set, zero value otherwise.
+func (o *PluginInfo) GetCapabilities() []string {
+	if o == nil || IsNil(o.Capabilities) {
+		var ret []string
+		return ret
+	}
+	return o.Capabilities
+}
+
+// GetCapabilitiesOk returns a tuple with the Capabilities field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PluginInfo) GetCapabilitiesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Capabilities) {
+		return nil, false
+	}
+	return o.Capabilities, true
+}
+
+// HasCapabilities returns a boolean if a field has been set.
+func (o *PluginInfo) HasCapabilities() bool {
+	if o != nil && !IsNil(o.Capabilities) {
+		return true
+	}
+
+	return false
+}
+
+// SetCapabilities gets a reference to the given []string and assigns it to the Capabilities field.
+func (o *PluginInfo) SetCapabilities(v []string) {
+	o.Capabilities = v
+}
+
 func (o PluginInfo) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -269,6 +303,9 @@ func (o PluginInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Disabled) {
 		toSerialize["disabled"] = o.Disabled
+	}
+	if !IsNil(o.Capabilities) {
+		toSerialize["capabilities"] = o.Capabilities
 	}
 	return toSerialize, nil
 }
