@@ -1,0 +1,46 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # The generator is Java-based and invoked through npx, so both a Node
+      # runtime and a JDK are required alongside this repo's own Go toolchain.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      # Regen-drift gate: regenerate the SDK from the committed spec
+      # (self-contained default: ./rest-api-openapi.json, no spec fetch), then
+      # fail if the working tree differs from what is committed.
+      - name: Regenerate SDK from the committed spec
+        run: ./generate.sh
+
+      - name: Fail on regeneration drift
+        run: git diff --exit-code
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test
+        run: go test ./...

@@ -42,4 +42,20 @@ echo "2/2 drop non-shipped generator scaffolding"
 # test/docs stubs carry placeholder GIT_USER_ID/GIT_REPO_ID imports; the rest is noise.
 (cd gerritclient && rm -rf test docs api .travis.yml git_push.sh .openapi-generator-ignore README.md .gitignore)
 
+# README is protected by .openapi-generator-ignore, so the generator never rewrites it.
+# Keep the Gerrit-version tokens in sync with the spec's info.version ($VERSION, derived
+# above) so a version bump can't silently rot the README (the 3.15->3.16 class of drift).
+# The substitutions are deliberately anchored to the Gerrit-version context so they only
+# ever touch the two Gerrit-version token shapes and nothing else:
+#   - "Gerrit X.Y.Z[-SNAPSHOT]"  (the prose generation line)
+#   - "vX.Y.Z[-SNAPSHOT]"        (the mirrored git tag and the @version in go run/get)
+# Requiring the full dotted X.Y.Z form means the bare "/v3/" and "/v3@" module-path
+# majors are never matched, and unrelated versions (OkHttp, pydantic, generator-cli,
+# "OpenAPI 3.1", Go toolchain) carry no "Gerrit "/"v" anchor + dotted-triplet shape.
+sed -E -i.bak \
+  -e "s/Gerrit [0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?/Gerrit ${VERSION}/g" \
+  -e "s/v[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?/v${VERSION}/g" \
+  README.md
+rm -f README.md.bak
+
 echo "done: gerritclient/ regenerated from $SPEC"
