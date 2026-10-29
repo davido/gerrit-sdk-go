@@ -31,13 +31,13 @@ Swagger from OpenApi for REST API").
 
 ## Version
 
-Generated from **Gerrit 3.15.0-SNAPSHOT** and tagged **`v3.15.0-SNAPSHOT`** — the tag
+Generated from **Gerrit 3.16.0-SNAPSHOT** and tagged **`v3.16.0-SNAPSHOT`** — the tag
 mirrors the Gerrit version, so consumers pin the exact server generation they target.
 
 ## What's in this repo
 
-- `gerritclient/` — the generated package: **341 operations** across **7 API services**
-  and **278 model types**, over `net/http`.
+- `gerritclient/` — the generated package: **338 operations** across **7 API services**
+  and **279 model types**, over `net/http`.
 - `gerritxssi/` — a tiny hand-written `http.RoundTripper` that strips Gerrit's `)]}'`
   XSSI guard (the one Gerrit-specific step; see below). Lives outside the generated
   code, so regeneration never touches it.
@@ -101,7 +101,7 @@ Once the repo is pushed and tagged, the **same import path** is fetched from the
 any consumer, anywhere:
 
 ```bash
-go run github.com/davido/gerrit-sdk-go/v3/examples/get-change-detail@v3.15.0-SNAPSHOT -- --change 621763
+go run github.com/davido/gerrit-sdk-go/v3/examples/get-change-detail@v3.16.0-SNAPSHOT -- --change 621763
 ```
 
 **Rationale:** Go resolves imports by module path. Inside this module the path maps to
@@ -139,7 +139,7 @@ ci, _, err := client.ChangesAPI.
 ```
 
 ```bash
-go get github.com/davido/gerrit-sdk-go/v3@v3.15.0-SNAPSHOT
+go get github.com/davido/gerrit-sdk-go/v3@v3.16.0-SNAPSHOT
 ```
 
 Go modules publish by **git tag** — there is no artifact to upload; `go get` fetches the
