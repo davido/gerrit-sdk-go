@@ -58,4 +58,17 @@ sed -E -i.bak \
   README.md
 rm -f README.md.bak
 
+# Keep the surface counts honest too: the operation count from the spec (generator-agnostic)
+# and the model-type count from the generated package. Anchored to the "**N operations**" and
+# "**N model types**" tokens so only those two numbers move -- the surface analogue of the
+# version-token sync above, so a REST-surface change (the 338->339 ref-storage class of drift)
+# cannot silently rot the README.
+OPS=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print(sum(1 for p in d["paths"].values() for m in p if m.lower() in ("get","post","put","delete","patch")))' "$SPEC")
+MODELS=$(ls gerritclient/model_*.go 2>/dev/null | wc -l | tr -d ' ')
+sed -E -i.bak \
+  -e "s#\*\*[0-9]+ operations\*\*#**${OPS} operations**#" \
+  -e "s#\*\*[0-9]+ model types\*\*#**${MODELS} model types**#" \
+  README.md
+rm -f README.md.bak
+
 echo "done: gerritclient/ regenerated from $SPEC"
