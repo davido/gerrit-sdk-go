@@ -57,6 +57,8 @@ type ConfigInfo struct {
 	DefaultSubmitType *SubmitTypeInfo `json:"default_submit_type,omitempty"`
 	// The state of the project, can be ACTIVE, READ_ONLY or HIDDEN. + Not set if the project state is ACTIVE.
 	State *ProjectState `json:"state,omitempty"`
+	// The ref storage format of the project's repository (FILES or REFTABLE). The request fails if the repository cannot be opened.
+	RefStorage *RefStorage `json:"ref_storage,omitempty"`
 	// Plugin configuration as map which maps the plugin name to a map of parameter names to ConfigParameterInfo entities. Only filled for users who have read access to refs/meta/config.
 	PluginConfig map[string]map[string]ConfigParameterInfo `json:"plugin_config,omitempty"`
 	// Actions the caller might be able to perform on this project. The information is a map of view names to
@@ -692,6 +694,38 @@ func (o *ConfigInfo) SetState(v ProjectState) {
 	o.State = &v
 }
 
+// GetRefStorage returns the RefStorage field value if set, zero value otherwise.
+func (o *ConfigInfo) GetRefStorage() RefStorage {
+	if o == nil || IsNil(o.RefStorage) {
+		var ret RefStorage
+		return ret
+	}
+	return *o.RefStorage
+}
+
+// GetRefStorageOk returns a tuple with the RefStorage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConfigInfo) GetRefStorageOk() (*RefStorage, bool) {
+	if o == nil || IsNil(o.RefStorage) {
+		return nil, false
+	}
+	return o.RefStorage, true
+}
+
+// HasRefStorage returns a boolean if a field has been set.
+func (o *ConfigInfo) HasRefStorage() bool {
+	if o != nil && !IsNil(o.RefStorage) {
+		return true
+	}
+
+	return false
+}
+
+// SetRefStorage gets a reference to the given RefStorage and assigns it to the RefStorage field.
+func (o *ConfigInfo) SetRefStorage(v RefStorage) {
+	o.RefStorage = &v
+}
+
 // GetPluginConfig returns the PluginConfig field value if set, zero value otherwise.
 func (o *ConfigInfo) GetPluginConfig() map[string]map[string]ConfigParameterInfo {
 	if o == nil || IsNil(o.PluginConfig) {
@@ -886,6 +920,9 @@ func (o ConfigInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.State) {
 		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.RefStorage) {
+		toSerialize["ref_storage"] = o.RefStorage
 	}
 	if !IsNil(o.PluginConfig) {
 		toSerialize["plugin_config"] = o.PluginConfig

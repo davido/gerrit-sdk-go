@@ -237,6 +237,8 @@ docs/RebaseChangeEditInput.md
 docs/RebaseInput.md
 docs/ReceiveInfo.md
 docs/ReduceMaxTokenLifetimeInput.md
+docs/RefStorage.md
+docs/RefStorageInput.md
 docs/ReflogEntryInfo.md
 docs/ReindexIndexVersionInput.md
 docs/RelatedChangeAndCommitInfo.md
@@ -517,6 +519,8 @@ model_rebase_change_edit_input.go
 model_rebase_input.go
 model_receive_info.go
 model_reduce_max_token_lifetime_input.go
+model_ref_storage.go
+model_ref_storage_input.go
 model_reflog_entry_info.go
 model_reindex_index_version_input.go
 model_related_change_and_commit_info.go

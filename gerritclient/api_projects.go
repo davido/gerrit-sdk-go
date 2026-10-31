@@ -5629,6 +5629,117 @@ func (a *ProjectsAPIService) PostProjectsProjectIdCommitsCommitIdCherrypickExecu
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPostProjectsProjectIdConvertRefStorageRequest struct {
+	ctx context.Context
+	ApiService *ProjectsAPIService
+	projectId string
+	refStorageInput *RefStorageInput
+}
+
+func (r ApiPostProjectsProjectIdConvertRefStorageRequest) RefStorageInput(refStorageInput RefStorageInput) ApiPostProjectsProjectIdConvertRefStorageRequest {
+	r.refStorageInput = &refStorageInput
+	return r
+}
+
+func (r ApiPostProjectsProjectIdConvertRefStorageRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.PostProjectsProjectIdConvertRefStorageExecute(r)
+}
+
+/*
+PostProjectsProjectIdConvertRefStorage Convert Ref Storage
+
+Converts the ref storage of a project's repository between FILES and REFTABLE.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param projectId
+ @return ApiPostProjectsProjectIdConvertRefStorageRequest
+*/
+func (a *ProjectsAPIService) PostProjectsProjectIdConvertRefStorage(ctx context.Context, projectId string) ApiPostProjectsProjectIdConvertRefStorageRequest {
+	return ApiPostProjectsProjectIdConvertRefStorageRequest{
+		ApiService: a,
+		ctx: ctx,
+		projectId: projectId,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *ProjectsAPIService) PostProjectsProjectIdConvertRefStorageExecute(r ApiPostProjectsProjectIdConvertRefStorageRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProjectsAPIService.PostProjectsProjectIdConvertRefStorage")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/projects/{project-id}/convert-ref-storage"
+	localVarPath = strings.Replace(localVarPath, "{"+"project-id"+"}", url.PathEscape(parameterValueToString(r.projectId, "projectId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "text/plain"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.refStorageInput
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiPostProjectsProjectIdCreateChangeRequest struct {
 	ctx context.Context
 	ApiService *ProjectsAPIService

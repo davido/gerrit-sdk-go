@@ -29,6 +29,8 @@ type ProjectInput struct {
 	PermissionsOnly *bool `json:"permissions_only,omitempty"`
 	// Whether an empty initial commit should be created.
 	CreateEmptyCommit *bool `json:"create_empty_commit,omitempty"`
+	// The ref storage format for the project's repository (FILES, REFTABLE). + If not set, the repository manager selects the format. Local disk storage uses JGit's init defaults, falling back to FILES.
+	RefStorage *RefStorage `json:"ref_storage,omitempty"`
 	// The submit type that should be set for the project (MERGE_IF_NECESSARY, REBASE_IF_NECESSARY, REBASE_ALWAYS, FAST_FORWARD_ONLY, MERGE_ALWAYS, CHERRY_PICK). + If not set, MERGE_IF_NECESSARY is set as submit type unless repository.<name>.defaultSubmitType is set to a different value.
 	SubmitType *SubmitType `json:"submit_type,omitempty"`
 	// A list of branches that should be initially created. + For the branch names the refs/heads/ prefix can be omitted. + The first entry of the list will be the default branch. + If the list is empty, host-level default is used.
@@ -234,6 +236,38 @@ func (o *ProjectInput) HasCreateEmptyCommit() bool {
 // SetCreateEmptyCommit gets a reference to the given bool and assigns it to the CreateEmptyCommit field.
 func (o *ProjectInput) SetCreateEmptyCommit(v bool) {
 	o.CreateEmptyCommit = &v
+}
+
+// GetRefStorage returns the RefStorage field value if set, zero value otherwise.
+func (o *ProjectInput) GetRefStorage() RefStorage {
+	if o == nil || IsNil(o.RefStorage) {
+		var ret RefStorage
+		return ret
+	}
+	return *o.RefStorage
+}
+
+// GetRefStorageOk returns a tuple with the RefStorage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectInput) GetRefStorageOk() (*RefStorage, bool) {
+	if o == nil || IsNil(o.RefStorage) {
+		return nil, false
+	}
+	return o.RefStorage, true
+}
+
+// HasRefStorage returns a boolean if a field has been set.
+func (o *ProjectInput) HasRefStorage() bool {
+	if o != nil && !IsNil(o.RefStorage) {
+		return true
+	}
+
+	return false
+}
+
+// SetRefStorage gets a reference to the given RefStorage and assigns it to the RefStorage field.
+func (o *ProjectInput) SetRefStorage(v RefStorage) {
+	o.RefStorage = &v
 }
 
 // GetSubmitType returns the SubmitType field value if set, zero value otherwise.
@@ -708,6 +742,9 @@ func (o ProjectInput) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.CreateEmptyCommit) {
 		toSerialize["create_empty_commit"] = o.CreateEmptyCommit
+	}
+	if !IsNil(o.RefStorage) {
+		toSerialize["ref_storage"] = o.RefStorage
 	}
 	if !IsNil(o.SubmitType) {
 		toSerialize["submit_type"] = o.SubmitType

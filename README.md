@@ -36,8 +36,8 @@ mirrors the Gerrit version, so consumers pin the exact server generation they ta
 
 ## What's in this repo
 
-- `gerritclient/` — the generated package: **338 operations** across **7 API services**
-  and **279 model types**, over `net/http`.
+- `gerritclient/` — the generated package: **339 operations** across **7 API services**
+  and **281 model types**, over `net/http`.
 - `gerritxssi/` — a tiny hand-written `http.RoundTripper` that strips Gerrit's `)]}'`
   XSSI guard (the one Gerrit-specific step; see below). Lives outside the generated
   code, so regeneration never touches it.
