@@ -25,8 +25,10 @@ type ChangeConfigInfo struct {
 	DisablePrivateChanges *bool `json:"disable_private_changes,omitempty"`
 	// How often in seconds the web interface should poll for updates to the currently open change.
 	UpdateDelay *int32 `json:"update_delay,omitempty"`
-	// A configuration if the whole topic is submitted.
+	// Configuration that enforces the whole topic to be submitted. Deprecated; use enforce_whole_topic_submit.
 	SubmitWholeTopic *bool `json:"submit_whole_topic,omitempty"`
+	// Configuration that enforces the whole topic to be submitted.
+	EnforceWholeTopicSubmit *bool `json:"enforce_whole_topic_submit,omitempty"`
 	// Value of the configuration parameter that controls whether the mergeability bit in ChangeInfo will never be set and if the bit is indexed.
 	MergeabilityComputationBehavior *string `json:"mergeability_computation_behavior,omitempty"`
 	// Are conflicts enabled?.
@@ -180,6 +182,38 @@ func (o *ChangeConfigInfo) SetSubmitWholeTopic(v bool) {
 	o.SubmitWholeTopic = &v
 }
 
+// GetEnforceWholeTopicSubmit returns the EnforceWholeTopicSubmit field value if set, zero value otherwise.
+func (o *ChangeConfigInfo) GetEnforceWholeTopicSubmit() bool {
+	if o == nil || IsNil(o.EnforceWholeTopicSubmit) {
+		var ret bool
+		return ret
+	}
+	return *o.EnforceWholeTopicSubmit
+}
+
+// GetEnforceWholeTopicSubmitOk returns a tuple with the EnforceWholeTopicSubmit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChangeConfigInfo) GetEnforceWholeTopicSubmitOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnforceWholeTopicSubmit) {
+		return nil, false
+	}
+	return o.EnforceWholeTopicSubmit, true
+}
+
+// HasEnforceWholeTopicSubmit returns a boolean if a field has been set.
+func (o *ChangeConfigInfo) HasEnforceWholeTopicSubmit() bool {
+	if o != nil && !IsNil(o.EnforceWholeTopicSubmit) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnforceWholeTopicSubmit gets a reference to the given bool and assigns it to the EnforceWholeTopicSubmit field.
+func (o *ChangeConfigInfo) SetEnforceWholeTopicSubmit(v bool) {
+	o.EnforceWholeTopicSubmit = &v
+}
+
 // GetMergeabilityComputationBehavior returns the MergeabilityComputationBehavior field value if set, zero value otherwise.
 func (o *ChangeConfigInfo) GetMergeabilityComputationBehavior() string {
 	if o == nil || IsNil(o.MergeabilityComputationBehavior) {
@@ -297,6 +331,9 @@ func (o ChangeConfigInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SubmitWholeTopic) {
 		toSerialize["submit_whole_topic"] = o.SubmitWholeTopic
+	}
+	if !IsNil(o.EnforceWholeTopicSubmit) {
+		toSerialize["enforce_whole_topic_submit"] = o.EnforceWholeTopicSubmit
 	}
 	if !IsNil(o.MergeabilityComputationBehavior) {
 		toSerialize["mergeability_computation_behavior"] = o.MergeabilityComputationBehavior

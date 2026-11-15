@@ -27,6 +27,8 @@ type SubmitInput struct {
 	Notify *NotifyHandling `json:"notify,omitempty"`
 	// Additional information about whom to notify about the update as a map of recipient type to NotifyInfo entity.
 	NotifyDetails map[string]NotifyInfo `json:"notify_details,omitempty"`
+	// If true, all open changes that share the topic of the submitted change are also submitted together in a single operation. Defaults to false.
+	SubmitWholeTopic *bool `json:"submit_whole_topic,omitempty"`
 }
 
 // NewSubmitInput instantiates a new SubmitInput object
@@ -174,6 +176,38 @@ func (o *SubmitInput) SetNotifyDetails(v map[string]NotifyInfo) {
 	o.NotifyDetails = v
 }
 
+// GetSubmitWholeTopic returns the SubmitWholeTopic field value if set, zero value otherwise.
+func (o *SubmitInput) GetSubmitWholeTopic() bool {
+	if o == nil || IsNil(o.SubmitWholeTopic) {
+		var ret bool
+		return ret
+	}
+	return *o.SubmitWholeTopic
+}
+
+// GetSubmitWholeTopicOk returns a tuple with the SubmitWholeTopic field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubmitInput) GetSubmitWholeTopicOk() (*bool, bool) {
+	if o == nil || IsNil(o.SubmitWholeTopic) {
+		return nil, false
+	}
+	return o.SubmitWholeTopic, true
+}
+
+// HasSubmitWholeTopic returns a boolean if a field has been set.
+func (o *SubmitInput) HasSubmitWholeTopic() bool {
+	if o != nil && !IsNil(o.SubmitWholeTopic) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubmitWholeTopic gets a reference to the given bool and assigns it to the SubmitWholeTopic field.
+func (o *SubmitInput) SetSubmitWholeTopic(v bool) {
+	o.SubmitWholeTopic = &v
+}
+
 func (o SubmitInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -195,6 +229,9 @@ func (o SubmitInput) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.NotifyDetails) {
 		toSerialize["notify_details"] = o.NotifyDetails
+	}
+	if !IsNil(o.SubmitWholeTopic) {
+		toSerialize["submit_whole_topic"] = o.SubmitWholeTopic
 	}
 	return toSerialize, nil
 }
