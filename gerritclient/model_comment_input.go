@@ -19,8 +19,34 @@ var _ MappedNullable = &CommentInput{}
 
 // CommentInput struct for CommentInput
 type CommentInput struct {
-	// Whether to include the source lines around the comment as context in the response.
-	EnableContext *bool `json:"enable_context,omitempty"`
+	// Whether or not the comment must be addressed by the user. This value will default to false if the comment is an orphan, or the value of the in_reply_to comment if it is supplied.
+	Unresolved *bool `json:"unresolved,omitempty"`
+	// The patch set number for the comment; only set in contexts where + comments may be returned for multiple patch sets.
+	PatchSet *int32 `json:"patch_set,omitempty"`
+	// The URL encoded UUID of the comment if an existing draft comment should be updated.
+	Id *string `json:"id,omitempty"`
+	// The file path for which the inline comment should be added. + Doesn't need to be set if contained in a map where the key is the file path.
+	Path *string `json:"path,omitempty"`
+	// The side on which the comment should be added. + Allowed values are REVISION and PARENT. + If not set, the default is REVISION.
+	Side *Side `json:"side,omitempty"`
+	// The 1-based parent number. Used only for merge commits when side == PARENT. When not set the comment is for the auto-merge tree.
+	Parent *int32 `json:"parent,omitempty"`
+	// The number of the line for which the comment should be added. + 0 if it is a file comment. + If neither line nor range is set, a file comment is added. + If range is set, this value is ignored in favor of the end_line of the range. + When updating a draft without path, the draft keeps its line.
+	Line *int32 `json:"line,omitempty"`
+	// The range of the comment as a CommentRange entity.
+	Range *Range `json:"range,omitempty"`
+	// The URL encoded UUID of the comment to which this comment is a reply.
+	InReplyTo *string `json:"in_reply_to,omitempty"`
+	// The timestamp of this comment. + Accepted but ignored.
+	Updated *string `json:"updated,omitempty"`
+	// The comment message. + If not set and an existing draft comment is updated, the existing draft comment is deleted.
+	Message *string `json:"message,omitempty"`
+	// Hex commit SHA-1 (40 characters string) of the commit of the patchset to which this comment applies.
+	CommitId *string `json:"commit_id,omitempty"`
+	// Suggested fixes for this comment as a list of FixSuggestionInfo entities.
+	FixSuggestions []FixSuggestionInfo `json:"fix_suggestions,omitempty"`
+	// Whether the comment was created by an AI agent. Not set if false.
+	IsAi *bool `json:"is_ai,omitempty"`
 }
 
 // NewCommentInput instantiates a new CommentInput object
@@ -40,36 +66,452 @@ func NewCommentInputWithDefaults() *CommentInput {
 	return &this
 }
 
-// GetEnableContext returns the EnableContext field value if set, zero value otherwise.
-func (o *CommentInput) GetEnableContext() bool {
-	if o == nil || IsNil(o.EnableContext) {
+// GetUnresolved returns the Unresolved field value if set, zero value otherwise.
+func (o *CommentInput) GetUnresolved() bool {
+	if o == nil || IsNil(o.Unresolved) {
 		var ret bool
 		return ret
 	}
-	return *o.EnableContext
+	return *o.Unresolved
 }
 
-// GetEnableContextOk returns a tuple with the EnableContext field value if set, nil otherwise
+// GetUnresolvedOk returns a tuple with the Unresolved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CommentInput) GetEnableContextOk() (*bool, bool) {
-	if o == nil || IsNil(o.EnableContext) {
+func (o *CommentInput) GetUnresolvedOk() (*bool, bool) {
+	if o == nil || IsNil(o.Unresolved) {
 		return nil, false
 	}
-	return o.EnableContext, true
+	return o.Unresolved, true
 }
 
-// HasEnableContext returns a boolean if a field has been set.
-func (o *CommentInput) HasEnableContext() bool {
-	if o != nil && !IsNil(o.EnableContext) {
+// HasUnresolved returns a boolean if a field has been set.
+func (o *CommentInput) HasUnresolved() bool {
+	if o != nil && !IsNil(o.Unresolved) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnableContext gets a reference to the given bool and assigns it to the EnableContext field.
-func (o *CommentInput) SetEnableContext(v bool) {
-	o.EnableContext = &v
+// SetUnresolved gets a reference to the given bool and assigns it to the Unresolved field.
+func (o *CommentInput) SetUnresolved(v bool) {
+	o.Unresolved = &v
+}
+
+// GetPatchSet returns the PatchSet field value if set, zero value otherwise.
+func (o *CommentInput) GetPatchSet() int32 {
+	if o == nil || IsNil(o.PatchSet) {
+		var ret int32
+		return ret
+	}
+	return *o.PatchSet
+}
+
+// GetPatchSetOk returns a tuple with the PatchSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetPatchSetOk() (*int32, bool) {
+	if o == nil || IsNil(o.PatchSet) {
+		return nil, false
+	}
+	return o.PatchSet, true
+}
+
+// HasPatchSet returns a boolean if a field has been set.
+func (o *CommentInput) HasPatchSet() bool {
+	if o != nil && !IsNil(o.PatchSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetPatchSet gets a reference to the given int32 and assigns it to the PatchSet field.
+func (o *CommentInput) SetPatchSet(v int32) {
+	o.PatchSet = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *CommentInput) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *CommentInput) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *CommentInput) SetId(v string) {
+	o.Id = &v
+}
+
+// GetPath returns the Path field value if set, zero value otherwise.
+func (o *CommentInput) GetPath() string {
+	if o == nil || IsNil(o.Path) {
+		var ret string
+		return ret
+	}
+	return *o.Path
+}
+
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetPathOk() (*string, bool) {
+	if o == nil || IsNil(o.Path) {
+		return nil, false
+	}
+	return o.Path, true
+}
+
+// HasPath returns a boolean if a field has been set.
+func (o *CommentInput) HasPath() bool {
+	if o != nil && !IsNil(o.Path) {
+		return true
+	}
+
+	return false
+}
+
+// SetPath gets a reference to the given string and assigns it to the Path field.
+func (o *CommentInput) SetPath(v string) {
+	o.Path = &v
+}
+
+// GetSide returns the Side field value if set, zero value otherwise.
+func (o *CommentInput) GetSide() Side {
+	if o == nil || IsNil(o.Side) {
+		var ret Side
+		return ret
+	}
+	return *o.Side
+}
+
+// GetSideOk returns a tuple with the Side field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetSideOk() (*Side, bool) {
+	if o == nil || IsNil(o.Side) {
+		return nil, false
+	}
+	return o.Side, true
+}
+
+// HasSide returns a boolean if a field has been set.
+func (o *CommentInput) HasSide() bool {
+	if o != nil && !IsNil(o.Side) {
+		return true
+	}
+
+	return false
+}
+
+// SetSide gets a reference to the given Side and assigns it to the Side field.
+func (o *CommentInput) SetSide(v Side) {
+	o.Side = &v
+}
+
+// GetParent returns the Parent field value if set, zero value otherwise.
+func (o *CommentInput) GetParent() int32 {
+	if o == nil || IsNil(o.Parent) {
+		var ret int32
+		return ret
+	}
+	return *o.Parent
+}
+
+// GetParentOk returns a tuple with the Parent field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetParentOk() (*int32, bool) {
+	if o == nil || IsNil(o.Parent) {
+		return nil, false
+	}
+	return o.Parent, true
+}
+
+// HasParent returns a boolean if a field has been set.
+func (o *CommentInput) HasParent() bool {
+	if o != nil && !IsNil(o.Parent) {
+		return true
+	}
+
+	return false
+}
+
+// SetParent gets a reference to the given int32 and assigns it to the Parent field.
+func (o *CommentInput) SetParent(v int32) {
+	o.Parent = &v
+}
+
+// GetLine returns the Line field value if set, zero value otherwise.
+func (o *CommentInput) GetLine() int32 {
+	if o == nil || IsNil(o.Line) {
+		var ret int32
+		return ret
+	}
+	return *o.Line
+}
+
+// GetLineOk returns a tuple with the Line field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetLineOk() (*int32, bool) {
+	if o == nil || IsNil(o.Line) {
+		return nil, false
+	}
+	return o.Line, true
+}
+
+// HasLine returns a boolean if a field has been set.
+func (o *CommentInput) HasLine() bool {
+	if o != nil && !IsNil(o.Line) {
+		return true
+	}
+
+	return false
+}
+
+// SetLine gets a reference to the given int32 and assigns it to the Line field.
+func (o *CommentInput) SetLine(v int32) {
+	o.Line = &v
+}
+
+// GetRange returns the Range field value if set, zero value otherwise.
+func (o *CommentInput) GetRange() Range {
+	if o == nil || IsNil(o.Range) {
+		var ret Range
+		return ret
+	}
+	return *o.Range
+}
+
+// GetRangeOk returns a tuple with the Range field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetRangeOk() (*Range, bool) {
+	if o == nil || IsNil(o.Range) {
+		return nil, false
+	}
+	return o.Range, true
+}
+
+// HasRange returns a boolean if a field has been set.
+func (o *CommentInput) HasRange() bool {
+	if o != nil && !IsNil(o.Range) {
+		return true
+	}
+
+	return false
+}
+
+// SetRange gets a reference to the given Range and assigns it to the Range field.
+func (o *CommentInput) SetRange(v Range) {
+	o.Range = &v
+}
+
+// GetInReplyTo returns the InReplyTo field value if set, zero value otherwise.
+func (o *CommentInput) GetInReplyTo() string {
+	if o == nil || IsNil(o.InReplyTo) {
+		var ret string
+		return ret
+	}
+	return *o.InReplyTo
+}
+
+// GetInReplyToOk returns a tuple with the InReplyTo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetInReplyToOk() (*string, bool) {
+	if o == nil || IsNil(o.InReplyTo) {
+		return nil, false
+	}
+	return o.InReplyTo, true
+}
+
+// HasInReplyTo returns a boolean if a field has been set.
+func (o *CommentInput) HasInReplyTo() bool {
+	if o != nil && !IsNil(o.InReplyTo) {
+		return true
+	}
+
+	return false
+}
+
+// SetInReplyTo gets a reference to the given string and assigns it to the InReplyTo field.
+func (o *CommentInput) SetInReplyTo(v string) {
+	o.InReplyTo = &v
+}
+
+// GetUpdated returns the Updated field value if set, zero value otherwise.
+func (o *CommentInput) GetUpdated() string {
+	if o == nil || IsNil(o.Updated) {
+		var ret string
+		return ret
+	}
+	return *o.Updated
+}
+
+// GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetUpdatedOk() (*string, bool) {
+	if o == nil || IsNil(o.Updated) {
+		return nil, false
+	}
+	return o.Updated, true
+}
+
+// HasUpdated returns a boolean if a field has been set.
+func (o *CommentInput) HasUpdated() bool {
+	if o != nil && !IsNil(o.Updated) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdated gets a reference to the given string and assigns it to the Updated field.
+func (o *CommentInput) SetUpdated(v string) {
+	o.Updated = &v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *CommentInput) GetMessage() string {
+	if o == nil || IsNil(o.Message) {
+		var ret string
+		return ret
+	}
+	return *o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.Message) {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *CommentInput) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *CommentInput) SetMessage(v string) {
+	o.Message = &v
+}
+
+// GetCommitId returns the CommitId field value if set, zero value otherwise.
+func (o *CommentInput) GetCommitId() string {
+	if o == nil || IsNil(o.CommitId) {
+		var ret string
+		return ret
+	}
+	return *o.CommitId
+}
+
+// GetCommitIdOk returns a tuple with the CommitId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetCommitIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CommitId) {
+		return nil, false
+	}
+	return o.CommitId, true
+}
+
+// HasCommitId returns a boolean if a field has been set.
+func (o *CommentInput) HasCommitId() bool {
+	if o != nil && !IsNil(o.CommitId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitId gets a reference to the given string and assigns it to the CommitId field.
+func (o *CommentInput) SetCommitId(v string) {
+	o.CommitId = &v
+}
+
+// GetFixSuggestions returns the FixSuggestions field value if set, zero value otherwise.
+func (o *CommentInput) GetFixSuggestions() []FixSuggestionInfo {
+	if o == nil || IsNil(o.FixSuggestions) {
+		var ret []FixSuggestionInfo
+		return ret
+	}
+	return o.FixSuggestions
+}
+
+// GetFixSuggestionsOk returns a tuple with the FixSuggestions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetFixSuggestionsOk() ([]FixSuggestionInfo, bool) {
+	if o == nil || IsNil(o.FixSuggestions) {
+		return nil, false
+	}
+	return o.FixSuggestions, true
+}
+
+// HasFixSuggestions returns a boolean if a field has been set.
+func (o *CommentInput) HasFixSuggestions() bool {
+	if o != nil && !IsNil(o.FixSuggestions) {
+		return true
+	}
+
+	return false
+}
+
+// SetFixSuggestions gets a reference to the given []FixSuggestionInfo and assigns it to the FixSuggestions field.
+func (o *CommentInput) SetFixSuggestions(v []FixSuggestionInfo) {
+	o.FixSuggestions = v
+}
+
+// GetIsAi returns the IsAi field value if set, zero value otherwise.
+func (o *CommentInput) GetIsAi() bool {
+	if o == nil || IsNil(o.IsAi) {
+		var ret bool
+		return ret
+	}
+	return *o.IsAi
+}
+
+// GetIsAiOk returns a tuple with the IsAi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CommentInput) GetIsAiOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsAi) {
+		return nil, false
+	}
+	return o.IsAi, true
+}
+
+// HasIsAi returns a boolean if a field has been set.
+func (o *CommentInput) HasIsAi() bool {
+	if o != nil && !IsNil(o.IsAi) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAi gets a reference to the given bool and assigns it to the IsAi field.
+func (o *CommentInput) SetIsAi(v bool) {
+	o.IsAi = &v
 }
 
 func (o CommentInput) MarshalJSON() ([]byte, error) {
@@ -82,8 +524,47 @@ func (o CommentInput) MarshalJSON() ([]byte, error) {
 
 func (o CommentInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.EnableContext) {
-		toSerialize["enable_context"] = o.EnableContext
+	if !IsNil(o.Unresolved) {
+		toSerialize["unresolved"] = o.Unresolved
+	}
+	if !IsNil(o.PatchSet) {
+		toSerialize["patch_set"] = o.PatchSet
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
+	if !IsNil(o.Side) {
+		toSerialize["side"] = o.Side
+	}
+	if !IsNil(o.Parent) {
+		toSerialize["parent"] = o.Parent
+	}
+	if !IsNil(o.Line) {
+		toSerialize["line"] = o.Line
+	}
+	if !IsNil(o.Range) {
+		toSerialize["range"] = o.Range
+	}
+	if !IsNil(o.InReplyTo) {
+		toSerialize["in_reply_to"] = o.InReplyTo
+	}
+	if !IsNil(o.Updated) {
+		toSerialize["updated"] = o.Updated
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.CommitId) {
+		toSerialize["commit_id"] = o.CommitId
+	}
+	if !IsNil(o.FixSuggestions) {
+		toSerialize["fix_suggestions"] = o.FixSuggestions
+	}
+	if !IsNil(o.IsAi) {
+		toSerialize["is_ai"] = o.IsAi
 	}
 	return toSerialize, nil
 }

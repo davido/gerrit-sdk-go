@@ -23,13 +23,13 @@ type DiffWebLinkInfo struct {
 	ShowOnSideBySideDiffView *bool `json:"show_on_side_by_side_diff_view,omitempty"`
 	// Whether the web link should be shown on the unified diff screen.
 	ShowOnUnifiedDiffView *bool `json:"show_on_unified_diff_view,omitempty"`
-	// See WebLinkInfo
+	// The text to be linkified.
 	Name *string `json:"name,omitempty"`
-	// See WebLinkInfo
+	// Tooltip to show when hovering over the link. Using \"Open in $NAME_OF_EXTERNAL_TOOL\" is a good option here.
 	Tooltip *string `json:"tooltip,omitempty"`
-	// See WebLinkInfo
+	// URL to the icon of the link.
 	ImageUrl *string `json:"image_url,omitempty"`
-	// See WebLinkInfo
+	// The link URL.
 	Url *string `json:"url,omitempty"`
 }
 

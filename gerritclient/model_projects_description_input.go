@@ -21,6 +21,8 @@ var _ MappedNullable = &ProjectsDescriptionInput{}
 type ProjectsDescriptionInput struct {
 	// Message that should be used to commit the change of the project description in the project.config file to the refs/meta/config branch.
 	CommitMessage *string `json:"commit_message,omitempty"`
+	// The project description. + The project description will be deleted if not set.
+	Description *string `json:"description,omitempty"`
 }
 
 // NewProjectsDescriptionInput instantiates a new ProjectsDescriptionInput object
@@ -72,6 +74,38 @@ func (o *ProjectsDescriptionInput) SetCommitMessage(v string) {
 	o.CommitMessage = &v
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *ProjectsDescriptionInput) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectsDescriptionInput) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *ProjectsDescriptionInput) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *ProjectsDescriptionInput) SetDescription(v string) {
+	o.Description = &v
+}
+
 func (o ProjectsDescriptionInput) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -84,6 +118,9 @@ func (o ProjectsDescriptionInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CommitMessage) {
 		toSerialize["commit_message"] = o.CommitMessage
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	return toSerialize, nil
 }
